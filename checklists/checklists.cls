@@ -72,9 +72,6 @@
 	\renewcommand*{\ShortPlane}{#2}%
 	\renewcommand*{\ID}{#3}%
 }
-%
-\newcommand*{\FieldAltitude}{}
-\newcommand*{\SetFieldAltitude}[1]{\renewcommand*{\FieldAltitude}{#1}}
 % }}}
 % Document size {{{
 \setlength{\topmargin}{-20mm}
@@ -185,7 +182,7 @@
 	}{%
 		\stepcounter{CheckOddEven}%
 		\ifthenelse{\isodd{\value{CheckOddEven}} }{%
-			\vspace{-7mm}%
+			\vspace{-11mm}%
 		}{%
 			\vspace{-5mm}%
 			\begin{MDeven}%
@@ -270,14 +267,13 @@
 	\vspace{-2pt}%
 	\end{MDinfobox}%
 }% }}}
-\newenvironment{InfoDistances}{% {{{
+\newenvironment{InfoDistances}[1]{% {{{
 	\begin{InfoBox}%
 		\normalsize
 		\vspace{-1mm}%
 		\begin{tabular}{r|c|c|c|c|}%
-			%\multicolumn{2}{r|}{\FieldAltitude ft 1003hPa $+20\oC$ (50ft) $[m]$}
 			$[m]$ (50ft)
-			& \FieldAltitude ft 1003hPa $+20\oC$
+			& #1 ft 1003hPa $+20\oC$
 			& 993hPa
 			& $+30\oC$
 			& Grass
@@ -300,6 +296,8 @@
 \newcommand*{\BlockOnCounter}{\Check{Block-on time, hour meter stand}{WRITTEN}}
 \newcommand*{\TakeOffTime}{\WriteTime{Take-off}}
 \newcommand*{\LandingTime}{\WriteTime{Landing}}
+\newcommand*{\FuelPump}[1]{\Check{Fuel pump}{#1, PRESSURE CHECKED}}
+\newcommand*{\CheckChecklist}[1]{\Check{On-board checklist version}{#1}}
 %
 %
 %

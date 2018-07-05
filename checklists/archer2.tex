@@ -1,11 +1,10 @@
 \documentclass{checklists}
 \SetPlane{Piper Archer II}{PA28-181}{HB-PMR}
-\SetFieldAltitude{2300}
-\DocV{2.02}{AFS}{2.12}
+\DocV{2.03}{AFS}{2.12}
 \usepackage{nicefrac}
 \begin{document}
 \begin{CheckListRule}{Before starting engine}{}%% {{{
-	\Check{On-board checklist version}{\SrcVersion}
+	\CheckChecklist{\SrcName\ \SrcVersion}
 	\Check{Preflight inspection           }{COMPLETED}
 	\Check{Wheel chocks and pitot cover   }{REMOVED, ON BOARD}
 	\Check{Passenger briefing             }{COMPLETED}
@@ -33,7 +32,7 @@
 	\Check[hh]{Engine warm up    }{\RPM{1100}}
 	\Check[hh]{Oil pressure      }{}
 	\Check[hh]{Starter           }{CHECK DISCONNECTED (ammeter)}
-	\Check{Electric fuel pump    }{OFF}
+	\FuelPump{OFF}
 	\Check{Avionics master switch}{ON}
 	\Check{Radios                }{ON, SET}
 	\Check{Position light        }{AS REQUIRED}
@@ -65,7 +64,7 @@
 \begin{SubCheckList}{Fuel}%% {{{
 	\Check{Fuel quantity L and R}{}
 	\Check{Fuel selector valve}{ON FULLEST TANK}
-	\Check{Electric fuel pump}{ON}
+	\FuelPump{ON}
 	\Check{Mixture}{RICH or according AFM}
 	\Check{Carburetor heater}{OFF}
 	\Check{Primer}{LOCKED}
@@ -111,7 +110,7 @@
 \begin{CheckListRule}{Climb}{h}%% {{{
 	\Check{Power}{MAXIMUM}
 	\Check{Flaps}{UP}
-	\Check{Fuel pump}{OFF}
+	\FuelPump{OFF}
 	\Check{Mixture}{SET}
 	\Check{Lights}{ON as required}
 	\Check{Transponder}{ALT}
@@ -162,7 +161,7 @@
 \begin{CheckListRule}{Approach}{h}%% {{{
 	\Check{Gyro}{SET, bug on RWY}
 	\Check{Altimeter}{2x QNH}
-	\Check{Fuel pump}{ON}
+	\FuelPump{ON}
 	\Check{Fuel quantity L and R}{}
 	\Check{Fuel selector valve}{ON FULLEST TANK}
 	\Check{Mixture}{RICH}
@@ -185,7 +184,7 @@
 	\Check{Flaps}{UP}
 	\Check{Transponder}{GND}
 	\Check{Strobe light}{OFF}
-	\Check{Electric fuel pump}{OFF}
+	\FuelPump{OFF}
 \end{CheckListRule}%% }}}
 \begin{CheckList}{Engine shut down}{}%% {{{
 	\Check{Parking brake}{SET}
@@ -202,7 +201,7 @@
 	\Check{Wheel chocks and pitot cover}{SET}
 \end{CheckList}%% }}}
 %%
-\begin{InfoDistances}
+\begin{InfoDistances}{2300}
 T-off F2 & 420 (?) & +10 (?) & +45 (?) & ? (?)\\\hline
 T-off 0F & 480 (?) & +30 (?) & +45 (?) & ? (?)\\\hline
 Landing  & 310 (455) & +2 (+3) & +8 (+12) & ---\\

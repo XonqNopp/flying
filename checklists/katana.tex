@@ -1,10 +1,9 @@
 \documentclass{checklists}
 \SetPlane{Katana}{DV20}{HB-SDI}
-\SetFieldAltitude{2300}
-\DocV{1.09}{AFS}{2.1}
+\DocV{1.10}{AFS}{2.1}
 \begin{document}
 \begin{CheckListRule}{Before starting engine}{}%% {{{
-	\Check{On-board checklist version}{\SrcVersion}
+	\CheckChecklist{\SrcName\ \SrcVersion}
 	\Check{Preflight inspection}{COMPLETED}
 	\Check{Wheel chocks and pitot cover}{REMOVED, ON BOARD}
 	\Check{Passenger briefing}{COMPLETED}
@@ -192,7 +191,7 @@
 	\Check{Wheel chocks and pitot cover}{SET}
 \end{CheckList}%% }}}
 %%
-\begin{InfoDistances}
+\begin{InfoDistances}{2300}
 T-off & 340 (?) & +45 (?) & +55 (?) & +25\% (?)\\\hline
 Landing & 250 (476) & ? (?) & ? (?) & ---\\
 \end{InfoDistances}

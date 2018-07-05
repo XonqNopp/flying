@@ -1,13 +1,14 @@
 \documentclass{checklists}
 \SetPlane{Pilot's own checks}{PIC}{}
-\DocV{1.10}{}{}
+\DocV{1.11}{}{}
 \usepackage{nicefrac}
 \usepackage{longtable,hhline,multirow}
 \begin{document}
+\vspace{5mm}
 \begin{CheckListRule}{Before boarding}{}%% {{{
 	\vspace{2mm}
 	\Check{PPL(A) SEP(L)}{9 PAX, MTOW $\leq 2700 kg$, no pressure or special}
-	\Check{SEP revalidation}{12h in last 12 months, 12 t-off+ldg, check flight}
+	\Check{SEP revalidation}{12h in last 12 months, 12 t-off+ldg (half PIC), check flight}
 	\Check{PAX}{3 t/o + 3 ldg in last 3 months}
 	\Check{> 3 PAX}{> 100h (> 50h PIC)}
 	\Check{< 12 y.o. is \nicefrac{1}{2} PAX if uses \nicefrac{1}{2} seat+seatbelt}
@@ -17,6 +18,7 @@
 \end{CheckListRule}%% }}}
 \vfill
 \begin{SubWrapper}{Diseases}{}%% {{{
+	\vspace{5mm}
 \begin{SubCheckList}{General}{}%%{{{
 	\Check{cinetosis}{look ahead, head straight, fresh air (ev. fly the plane)}
 	\item hypoxia\\\phantom{boooo}
@@ -43,10 +45,10 @@
 	%\item bad wx
 	\item \href{http://www.fribourg-voltige.ch/Activlites.htm}{Upset recovery
 		training} with Fribourg Voltige
-	\item Glaciers (LSYS)
+	\item LSYS
+	\item Glaciers
 	\item \href{http://fr.seaplanes.ch/}{SEP(S)?}
 	\item FI(A)
-	\item SEP(S)
 \end{CheckListRule}
 %% }}}
 \vfill
@@ -104,11 +106,11 @@
 	\Check{I must listen to the radio communications      }{understood}
 	\Check{tell me if see traffic and side                }{understood}
 \end{SubCheckList}%% }}}
-\begin{SubCheckList}{Responsibilities}%% {{{
-	\Check{boarding pass or declaration of renouncement}{DONE}
-\end{SubCheckList}%% }}}
 \begin{SubCheckList}{Planned trip}%% {{{
 	\Check{Map}{EXPOSED}
+\end{SubCheckList}%% }}}
+\begin{SubCheckList}{Responsibilities}%% {{{
+	\Check{boarding pass or declaration of renouncement}{DONE}
 \end{SubCheckList}%% }}}
 \end{SubWrapperRule}%% }}}
 \vfill

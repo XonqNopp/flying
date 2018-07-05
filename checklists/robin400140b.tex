@@ -1,0 +1,198 @@
+\documentclass{checklists}
+%
+\SetPlane{Robin DR400--140B}{}{HB-KFQ HB-KEX}
+\DocV{0.01}{GVM Sion}{1.2}
+%
+\input{robinPreparation}
+%
+\begin{document}
+\RobinPreparation{\SrcName\ \SrcVersion}
+\begin{CheckListRule}{Preflight check}{}% {{{
+	\Check{Outside check}{COMPLETED}
+	%\Check{Aircraft papers}{}
+	%\Check{Aircraft log}{}
+	\Check{Tow bar}{REMOVED \& SECURED}
+	\Check{Cabin}{}
+\end{CheckListRule}%% }}}
+\begin{CheckList}{Check before engine start}{}% {{{
+	\Check{Seats}{ADJUSTED \& LOCKED}
+	\Check{Seat belts \& harness}{FASTENED}
+	\Check{Electrical consumers}{OFF}
+	\Check{Circuit breakers}{}
+	\Check{Avionics}{OFF}
+	\Check{Battery \& alternator}{ON}
+	\Check{ELT}{AUTO, ARMED}
+	\Check{Fuel quantity}{MAIN + AUX}
+	\Check{Fuel selector}{MAIN OPEN, AUX CLOSED}
+	\Check{Mixture}{RICH}
+	\Check{Carburettor heater}{OFF}
+	\Check{Throttle}{IDLE}
+	\Check{Canopy}{CLOSED \& LOCKED}
+\end{CheckList}%% }}}
+\SkipPage
+\begin{CheckListRule}{Engine start}{}% {{{
+	\Check{NAV lights}{ON}
+	\Check{Fuel pump}{ON}
+	\Check{Magnetos}{LEFT}
+	\Check{Priming}{ACCORDING AFM}
+	\Check{Throttle}{0.5cm}
+	\Check{Propeller area}{CLEAR}
+	\Check[h]{Starter}{ENGAGE, TIME CHECK}
+	\Check[hh]{Magnetos}{BOTH}
+	\Check[hh]{Throttle}{\RPM{1000}}
+	\Check[hh]{Oil pressure}{MIN YELLOW ARC (max 30s)}
+\end{CheckListRule}%% }}}
+\begin{CheckListRule}{Check after engine start}{}% {{{
+	\Check{Voltmeter output}{}
+	\FuelPump{OFF}
+	\Check{Annunciator lights}{}
+	\Check{Ventilation, heater, defroster}{AS REQUIRED}
+	\Check{Avionics + FLARM}{ON}
+	\Check{Flight instruments}{SET \& CHECKED}
+	\Check{Engine instruments}{}
+	\Check{Radios}{SET}
+	\Check{Flaps}{UP}
+\end{CheckListRule}%% }}}
+\begin{CheckListRule}{Taxi check}{}% {{{
+	\BlockOff
+	\Check[h]{Brakes \& steering}{}
+	\Check[hh]{Gyro instruments}{}
+	\Check[hh]{Transponder}{GND}
+\end{CheckListRule}%% }}}
+\begin{CheckList}{Run up}{}% {{{
+	\Check{Parking brake}{SET}
+	\Check{Warm up time}{}
+	\Check{Zone behind aircraft}{CLEAR}
+	\Check{Throttle}{\RPM{2000}}
+	\Check{Eng instr, suction, voltmeter}{}
+	\Check{Magnetos}{max drop \RPM{175}, max diff \RPM{50}}
+	\Check{Carburettor heater}{}
+	\Check{Mixture}{}
+	\Check{Throttle idle}{\RPM{500--700}}
+	\Check{Throttle}{\RPM{1000}}
+\end{CheckList}%% }}}
+% Departure briefing
+\SkipPage
+\begin{CheckListRule}{Check before departure}{}% {{{
+	\FuelPump{ON}
+	\Check{Fuel quantity}{MAIN + AUX}
+	\Check{Fuel selector}{MAIN OPEN, AUX CLOSED}
+	\Check{Mixture}{AS REQUIRED}
+	\Check{Carburettor heater}{OFF}
+	\Check{Magnetos}{BOTH}
+	\Check{Trim}{SET FOR DEPARTURE}
+	\Check{Flaps}{SET FOR DEPARTURE}
+	\Check{Flight inst \& avionics}{SET FOR DEPARTURE}
+	\Check{Seat positions}{CHECKED \& LOCKED}
+	\Check{Cabin \& PAX}{SECURED}
+	\Check{Flight controls}{FREE \& CORRECT}  % downLeft upLeft upRight downRight
+	\Check{Departure briefing}{COMPLETED}
+\end{CheckListRule}%% }}}
+\begin{CheckListRule}{Line up check}{}% {{{
+	\TakeOffTime
+	\Check{Canopy}{CLOSED \& LOCKED}
+	\Check{Transponder}{ALT}
+	\Check{Approach sector \& runway}{CLEAR}
+	\Check{Landing + strobe lights}{ON}
+\end{CheckListRule}%% }}}
+\stepcounter{CheckOddEven}%
+\begin{CheckListRule}{Climb check}{h}% {{{
+	\Check{Flaps}{UP}
+	\Check{Climb power}{SET}
+	\FuelPump{OFF}
+\end{CheckListRule}%% }}}
+\begin{CheckList}{Cruise check}{}% {{{
+	\Check{Altimeter}{}
+	\Check{Direction}{SET}
+	\Check{Power}{}
+	\Check{Mixture}{}
+	\Check{Engine instruments}{}
+	\Check{Fuel quantity}{MAIN + AUX}
+	\Check{Fuel management}{AS REQUIRED}
+\end{CheckList}%% }}}
+% Approach briefing
+%
+\begin{InfoBox}%% speeds + downwind power {{{
+	\large
+	$\VBmath{1} = 45$ kts
+	\hfill
+	$\VBtxt{app} = 85, 80$ kts
+	\\
+	$\VBmath{r} = 54$ kts
+	\hfill
+	$\VBtxt{fin} = 62$ kts
+	\\
+	$\VBmath{x} = 70$ kts
+	\hfill
+	$\VBmath{a} = 116$ kts
+	\\
+	$\VBmath{y} = 81$ kts
+	\hfill
+	$\VBtxt{glide} = 78$ kts
+	\\
+	$\VBmath{cc} = 90$ kts
+	\hfill
+	Glide ratio: 1:XX (1000 ft: X.X NM)
+	\\
+	($\VBtxt{plan} = 100$ kts)
+	\hfill
+	Downwind power: \RPM{XXXX}
+	% max crosswind comp: 22kts
+\end{InfoBox}%% }}}
+%
+\SkipPage
+\begin{CheckListRule}{Descent check}{}% {{{
+	\Check{ATIS or AD INFO}{}
+	\Check{Approach briefing}{COMPLETED}
+	\Check{Avionics}{SET}
+	\Check{Direction}{SET}
+	\Check{Circuit breakers}{}
+	\Check{Cabin \& PAX}{SECURED}
+\end{CheckListRule}%% }}}
+\begin{CheckListRule}{Approach check}{}% {{{
+	\Check{Altimeter}{QNH}
+	\FuelPump{ON}
+	\Check{Fuel quantity}{MAIN + AUX}
+	\Check{Fuel selector}{MAIN OPEN, AUX CLOSED}
+	\Check{Mixture}{ENRICHED AS REQUIRED}
+	\Check{Carburettor heater}{AS REQUIRED}
+\end{CheckListRule}%% }}}
+\stepcounter{CheckOddEven}%
+\begin{CheckListRule}{Landing check}{h}% {{{
+	\Check{Flaps}{SET FOR LANDING}
+	\Check{Mixture}{AS REQUIRED}
+	\Check{Carburettor heater}{OFF (or TO GO)}
+\end{CheckListRule}%% }}}
+\begin{CheckListRule}{After landing check}{}% {{{
+	\LandingTime
+	\Check{Transponder}{GND or STBY}
+	\Check{Strobe + landing lights}{OFF}
+	\FuelPump{OFF}
+	\Check{Flaps}{UP}
+\end{CheckListRule}%% }}}
+\begin{CheckList}{Engine shut down}{}% {{{
+	\Check{Parking brake}{SET}
+	\BlockOn
+	\Check{Throttle}{\RPM{1000}}
+	\Check{Avionics}{MONITOR 121.5, THEN OFF}
+	\Check{Electrical consumers}{OFF}
+	\Check{Magnetos grounding}{AS REQUIRED (at idle)}
+	\Check{Mixture}{LEAN CUT OFF}
+	\Check{Magnetos}{OFF, KEY REMOVED}
+	\Check{NAV lights}{OFF}
+	%\Check{Hour meter stand}{WRITTEN}
+	\Check{Battery master \& alternator}{OFF}
+	\Check{Flaps}{DOWN}
+	\Check{Flight data \& documents}{NOTED \& COMPLETED}
+	\Check{Aircraft}{TO BE SECURED}
+\end{CheckList}%% }}}
+%
+\begin{InfoDistances}{1600}
+	% roll(50ft) #1 ft QNH:1003hPa +20oC
+	%                    & 993hPa     & +30oC      & Grass
+	T-off F2 & ? (?) & +? (?) & +? (?) & ? (?)\\\hline
+	T-off 0F & ? (?) & +? (?) & +? (?) & ? (?)\\\hline
+	Landing  & ? (?) & +? (?) & +? (?) & ? (?)\\
+\end{InfoDistances}
+\end{document}
+

@@ -1,9 +1,19 @@
 #!/bin/sh
-localfiles="PICnPAX.pdf katana.pdf archer2.pdf c172r.pdf c182s.pdf"
+localfiles="PICnPAX.pdf"
+localfiles="$localfiles katana.pdf"
+localfiles="$localfiles archer2.pdf"
+#localfiles="$localfiles c172r.pdf"
+#localfiles="$localfiles c182s.pdf"
+localfiles="$localfiles robin400140b.pdf"
 remotePath="xonqnopp.ch/fly/pdf"
 
 remotefiles=""
 for fil in $localfiles; do
+	if [ ! -f $fil ]; then
+		echo "Missing: $fil"
+		exit 1
+	fi
+
 	remotefiles="$remotefiles $remotePath/$fil"
 done
 ##
