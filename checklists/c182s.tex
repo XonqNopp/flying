@@ -1,0 +1,205 @@
+\documentclass{checklists}
+\SetPlane{Skylane}{C182S}{HB-TDR}
+\SetFieldAltitude{2300}
+\DocV{0.04}{AFS}{1.12}
+\usepackage{nicefrac}
+\begin{document}
+\begin{CheckListRule}{Before starting engine}{}%% {{{
+	\Check{Preflight inspection        }{COMPLETED}
+	\Check{Wheel chocks and pitot cover}{REMOVED, ON BOARD}
+	\Check{Passenger briefing          }{COMPLETED}
+	\Check{Seats, seat belts           }{ADJUSTED and LOCKED}
+	\Check{Parking brake               }{TESTED and SET}
+	\Check{Avionics master switch      }{OFF}
+	\Check{Electrical equipment        }{OFF}
+	\Check{Cowl flaps                  }{OPEN}
+	\Check{Circuit breakers            }{2 rows IN}
+	\Check{Master switch               }{ON}
+	\Check{Hour meter stand            }{WRITTEN}
+	\Check{Fuel quantity L and R       }{}
+	\Check{Fuel selector valve         }{BOTH}
+\end{CheckListRule}%% }}}
+\begin{CheckList}{Starting engine}{}%% {{{
+	\Check{Beacon light          }{ON}
+	\Check{Propeller             }{FULL RPM}
+	\Check{Throttle friction lock}{ADJUSTED}
+	\Check{Throttle              }{\nicefrac{1}{4}''}
+	\Check{Mixture               }{CUT OFF}
+	\begin{ConditionalChecks}{If engine cold:}
+		\Check{Auxiliary fuel pump}{ON}
+		\Check{Mixture            }{UP TO 3--5 GPH then CUT OFF}
+		\Check{Auxiliary fuel pump}{OFF}
+	\end{ConditionalChecks}
+	\Check[h]{Propeller area     }{CLEAR}
+	\Check[hh]{Ignition key      }{START}
+	\Check[hh]{Mixture           }{SMOOTHLY TO RICH}
+	\Check[hh]{Engine warm up    }{\RPM{1000--1200}}
+	\Check[hh]{Oil pressure      }{}
+	\Check[hh]{Starter           }{CHECK DISCONNECTED (ammeter)}
+	\Check{Avionics master switch}{ON}
+	\Check{Radios                }{ON, SET}
+	\Check{Position light        }{AS REQUIRED}
+	\Check{Wing flaps            }{CHECKED then RETRACTED}
+\end{CheckList}%% }}}
+\SkipPage
+\begin{CheckListRule}{Taxi}{}%% {{{
+	\Check{Taxi and Landing lights}{BOTH ON}
+	\Check{Parking brake}{RELEASED}
+	\Check[h]{Brakes}{}
+	\Check[hh]{Nose wheel steering}{}
+	\Check[hh]{Flight instruments}{}
+	\Check[hh]{Squawk}{GND}
+\end{CheckListRule}%% }}}
+\begin{CheckListRule}{Engine check}{}%% {{{
+	\Check{Parking brake}{SET (pedals depressed)}
+	\Check{Taxi and Landing lights}{BOTH OFF}
+	\Check{Throttle}{\RPM{1800}}
+	\Check{Magnetos}{CHECKED (max drop \RPM{150})}
+	\Check{Propeller}{CYCLE, then FULL RPM}
+	\Check{Mixture, EGT and Fuel Flow}{}
+	\Check{Ammeter}{}
+	\Check{Vacuum}{}
+	\Check{Oil pressure, Oil temperature}{}
+	\Check{Annunciator panel}{}
+	\Check{Throttle idle}{\RPM{500--700}}
+	\Check{Engine warm up}{\RPM{1000}}
+\end{CheckListRule}%% }}}
+\begin{SubWrapper}{Before take-off}{}%% {{{
+\begin{SubCheckList}{Fuel}%% {{{
+	\Check{Fuel quantity L and R}{}
+	\Check{Fuel selector valve}{BOTH}
+	\Check{Mixture}{RICH or according AFM}
+\end{SubCheckList}%% }}}
+\begin{SubCheckList}{Engine}%% {{{
+	\Check{Oil pressure}{}
+	\Check{Oil temperature}{}
+	\Check{Propeller}{FULL RPM}
+\end{SubCheckList}%% }}}
+\begin{SubCheckList}{Airplane}%% {{{
+	\Check{Wing flaps}{SET for take-off (0 or 2)}
+	\Check{Elevator and Rudder trims}{SET for take-off}
+	\Check{Cowl flaps}{OPEN}
+	\Check{Altimeter}{QNH}
+	\Check{Flight instruments}{SET}
+	\Check{Autopilot}{OFF}
+	\Check{Cabin doors}{CLOSED and LATCHED}
+	\Check{Seats and seat belts}{SECURED}
+	\Check{Seat backs}{MOST UPRIGHT POSITION}
+	\Check{Flight controls}{FREE and CORRECT}
+	\Check{Departure briefing}{COMPLETED}
+	\Check{Taxi and Landing lights}{BOTH ON}
+	\Check{Parking brake}{RELEASED}
+\end{SubCheckList}%% }}}
+\end{SubWrapper}
+%% }}}
+\SkipPage
+\begin{CheckListRule}{Line-up}{}%% {{{
+	\Check{Approach sector}{FREE}
+	\Check{Strobe, Taxi, Landing lights}{3x ON}
+	\Check{Time}{KNOWN}
+	\Check[h]{Runway}{IDENTIFIED}
+	\Check[hh]{Gyro}{}
+	\Check[hh]{Wind}{}
+\end{CheckListRule}%% }}}
+\begin{CheckListRule}{Take-off}{h}%% {{{
+	\Check{Runway}{FREE}
+	\Check{Power}{FULL (\RPM{2400})}
+	\Check{Mixture}{RICH or according AFM}
+	\Check{Speed}{ALIVE}
+\end{CheckListRule}%% }}}
+\begin{CheckListRule}{Climb}{h}%% {{{
+	\Check{Power}{MAXIMUM}
+	\Check{Flaps}{UP}
+	\Check{Mixture}{SET}
+	\Check{Strobe, Landing, Taxi lights}{ON}
+	\Check{Cowl flaps}{OPEN}
+	\Check{Squawk}{ALT}
+\end{CheckListRule}%% }}}
+\begin{CheckListRule}{Cruise}{h}%% {{{
+	\Check{Gyro}{}
+	\Check{Altimeter}{}
+	\Check{Power}{SET}
+	\Check{Mixture}{SET}
+	\Check{Engine}{}
+	\Check{Lights}{}
+	\Check{Cowl flaps}{CLOSED}
+	\Check{Elevator and Rudder trims}{SET}
+\end{CheckListRule}%% }}}
+\begin{CheckList}{Descent}{h}%% {{{
+	\Check{Fuel selector valve}{BOTH}
+	\Check{Mixture}{ENRICHED as required}
+\end{CheckList}%% }}}
+%%
+\begin{InfoBox}%% speeds + downwind power {{{
+	$\VBmath{1} = $xxx kts
+	\hfill
+	$\VBtxt{app} = $xxx kts
+	\\
+	$\VBmath{r} = $xxx kts
+	\hfill
+	$\VBtxt{fin} = $xxx kts
+	\\
+	$\VBmath{x} = 58$ kts flaps-2 / 63 kts 0-flaps
+	\hfill
+	$\VBmath{a} = $xxx kts
+	\\
+	$\VBmath{y} = 80$ kts
+	\hfill
+	$\VBtxt{glide} = $xxx kts
+	\\
+	$\VBmath{cc} = 85-95$ kts
+	\hfill
+	Glide ratio: 1:xx (1000 ft: xx NM)
+	\\
+	($\VBtxt{plan} = $xxx kts)
+	\hfill
+	Downwind power: \RPM{2000}
+\end{InfoBox}%% }}}
+\SkipPage
+\begin{CheckListRule}{Approach}{h}%% {{{
+	\Check{Gyro}{SET, bug on RWY}
+	\Check{Altimeter}{}
+	\Check{Fuel quantity L and R}{}
+	\Check{Fuel selector valve}{BOTH}
+	\Check{Mixture}{RICH}
+	\Check{Cowl flaps}{CLOSED}
+	\Check{Autopilot}{OFF}
+	\Check{Strobe, Taxi, Landing light}{3x ON}
+	\Check{Seat backs}{MOST UPRIGHT POSITION}
+	\Check{Seats and seat belts}{SECURED}
+	\Check{Approach briefing}{COMPLETED}
+\end{CheckListRule}%% }}}
+\begin{CheckListRule}{Final}{h}%% {{{
+	\Check{Flaps}{FULL}
+	\Check{Propeller}{FULL RPM}
+	%\Check{Mixture}{RICH as required}
+	\Check{Wind}{}
+\end{CheckListRule}%% }}}
+\begin{CheckListRule}{After landing}{}%% {{{
+	\Check{Flaps}{UP}
+	\Check{Cowl flaps}{OPEN}
+	\Check{Squawk}{GND}
+	\Check{Strobe light}{OFF}
+\end{CheckListRule}%% }}}
+\begin{CheckList}{Engine shut down}{}%% {{{
+	\Check{Parking brake}{SET}
+	\Check{Taxi, Landing light}{BOTH OFF}
+	\Check{Power}{\RPM{1000}}
+	\Check{Electrical equipment}{OFF}
+	\Check{Avionics master switch}{OFF}
+	\Check{Mixture}{CUT OFF}
+	\Check{Ignition key}{OFF and REMOVED}
+	\Check{Hour meter stand}{WRITTEN}
+	\Check{Master switch}{OFF}
+	\Check{Control lock}{SET}
+	\Check{Fuel selector valve}{LEFT or RIGHT}
+	\Check{Cabin and seat belts}{TIDY}
+	\Check{Wheel chocks and pitot cover}{SET}
+\end{CheckList}%% }}}
+%%
+\begin{InfoDistances}
+T-off F2 & ? (?) & ? (?) & ? (?) & ? (?)\\\hline
+T-off 0F & ? (?) & ? (?) & ? (?) & ? (?)\\\hline
+Landing & ? (?) & ? (?) & ? (?) & ---\\
+\end{InfoDistances}
+\end{document}

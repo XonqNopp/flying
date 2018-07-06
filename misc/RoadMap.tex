@@ -1,0 +1,317 @@
+
+\newcommand*{\DocVersion}{45}
+%% Headers %%% {{{
+\documentclass[12pt,twoside,a4paper]{article}
+
+%% Document variables %%% {{{
+\newcommand*{\Gael}{Ga\"el Induni}
+\newcommand*{\ThisAuthors}{\Gael}
+\newcommand*{\ThisTitle}{Flight Roadmap}
+\newcommand*{\ThisTitleSHORT}{\ThisTitle}
+%% End of document variables %%% }}}
+%% Usepackages %%% {{{
+%% General {{{
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[english]{babel}
+%% }}}
+%% Math %% {{{
+\usepackage{amsmath}
+%\usepackage{amssymb}
+%\usepackage{empheq}
+%\usepackage{cancel}
+%% }}}
+%% Hyper refs %% {{{
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks        = true,
+	bookmarks         = true,
+	bookmarksnumbered = false,
+	linkcolor         = black,
+	urlcolor          = blue,
+	citecolor         = blue,
+	filecolor         = blue,
+	hyperfigures      = true,
+	breaklinks        = false,
+	ps2pdf,
+	pdftitle          = {\ThisTitle},
+	pdfsubject        = {\ThisTitle},
+	pdfauthor         = {\ThisAuthors}
+}
+%% }}}
+%% Tables and lists %% {{{
+\usepackage{longtable}
+\usepackage{multirow}
+%\usepackage{array}
+%\usepackage{colortbl}
+%\newcommand*{\HL}{\cellcolor[gray]{0.85}}
+\usepackage{hhline}
+%\usepackage{spreadtab}
+%\usepackage{numprint}
+%\usepackage{enumitem}
+%\setlist{noitemsep}
+%\usepackage{rotating}
+%% }}}
+%% Making stuff fancy (not fancyhdr package) %% {{{
+%\usepackage{color}
+%\usepackage{everysel,ragged2e}
+%\usepackage{gensymb}
+%\usepackage{marvosym}
+%\usepackage{wasysym}
+%\usepackage{fourier}
+%\usepackage{nicefrac}
+%\usepackage[normalem]{ulem}
+%% }}}
+%% Miscellaneous %% {{{
+%\usepackage{alltt}
+%\usepackage{ifthen}
+%\usepackage{xstring}
+%\usepackage{multicol}% Remember environement is begin{multicols}{n}
+%% }}}
+%% End of usepackages %%% }}}
+%% Document size %%% {{{
+\setlength{\topmargin}{-15mm}
+\setlength{\textheight}{270mm}
+\setlength{\hoffset}{-17mm}
+\setlength{\textwidth}{190mm}
+\setlength{\evensidemargin}{3.8mm}
+\setlength{\parskip}{0.5ex}
+%% End of document size %%% }}}
+%% Fancy and header and footer rules %%% {{{
+\usepackage{fancyhdr}
+%\usepackage{lastpage}
+%\newcommand*{\LastPage}{\pageref{LastPage}}
+\newcommand*{\GoodJob}{\jobname.pdf}
+%% Fancy!
+\fancypagestyle{plain}{%
+\fancyhf{}
+\fancyhf[HR]{\ThisAuthors}
+\fancyhf[HL]{\GoodJob\ v\DocVersion}
+}
+\pagestyle{plain}
+\renewcommand{\headrulewidth}{0.4pt}
+%\renewcommand{\footrulewidth}{0.4pt}
+%% End of fancy %%% }}}
+%% Pictures positions %%% {{{
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\textfraction}{0.1}
+\renewcommand{\floatpagefraction}{0.75}
+%% End of pictures %%% }}}
+%% New commands %%% {{{
+\newcommand*{\Vi}[1]{\ensuremath{\textrm{v}_{#1}} }
+\newcommand*{\Vapp}{\Vi{\textrm{app}} }
+\newcommand*{\Speed}{\ensuremath{\textrm{v}} }
+\newcommand*{\RefSpeed}{\ensuremath{\Speed_{\textrm{\small ref}} }}
+\newcommand*{\WSpeed}{\ensuremath{\Speed_w}}
+\newcommand*{\GSpeed}{\ensuremath{\Speed_G}}
+%% Hyperref {{{
+\newcommand*{\mailto}[1]{\href{mailto:#1}{#1}}
+%% \url{link}
+%% \href{link}{text}
+%% \href[ref]{text}
+%% Form commands {{{
+%% Must be placed in a 'Form' environment
+%% \MyField{fieldname (like HTML form)}{additional options}{Text to be displayed before}
+%% options: (double) width, (int) maxlen, (bool) multiline
+%\newcommand{\MyField}[3]{\TextField[name=#1,backgroundcolor=1 1 0.95,bordercolor=0 0 0,bordersep=3,borderwidth=1,charsize=12pt,color=0 0 0,#2]{#3}}
+%% \MyRadio{fieldname (like HTML form)}{wth}{wtf} %% prints a radio box AFTER text
+%\newcommand{\MyRadio}[3]{\ChoiceMenu[name=#1,backgroundcolor=1 1 0.95,bordercolor=0 0 0,bordersep=3,borderwidth=1,charsize=12pt,color=0 0 0,radio=true,radiosymbol=\ding{54}]{#2}{#3}}
+%% \MySingleRadio{fieldname (like HTML form)} %% only prints a radio box
+%\newcommand{\MySingleRadio}[1]{\MyRadio{#1}{ }{ }}
+%% }}}
+%% }}}
+%% Miscellaneous %% {{{
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\roman}{\Roman}
+%\renewcommand{\geq}{\geqslant}
+%\renewcommand{\leq}{\leqslant}
+\newcommand*{\oC}{\ensuremath{^{\circ}C}}
+\AtBeginDocument{\renewcommand{\labelitemi}{\textbullet}}% Default is \textendash % must be placed after begin-doc
+\makeatletter
+\newcommand{\rom}[1]{\expandafter\@slowromancap\romannumeral #1@}
+%\newcommand{\InlineTOC}{\@starttoc{toc}}%% For report inline toc (to use with the 'notitlepage' class option
+\makeatother
+%% }}}
+%% End of new commands %%% }}}
+%% }}}
+
+%% content defined {{{
+%\newcommand*{\LvS}{$\frac{\textsc{L}}{\textsc{S}}$}
+%\newcommand*{\LvS}[1]{{\footnotesize LS}{\small #1}}
+\newcommand*{\LvS}[1]{{LS}{#1}}
+\newcommand*{\LvSS}[2]{{LS}{#1}\ {\small #2}}
+\newcommand*{\ATIS}{{\footnotesize ATIS}}
+
+\newcounter{visp}
+\setcounter{visp}{-16}
+
+
+\newcommand{\ALL}{%% {{{
+
+\mbox{}
+\vspace{\value{visp}mm}
+\begin{longtable}{c|c|c|c|l}%% {{{
+& LSGELSGEL & LSGELSGEL & LSGELSGEL & space space space spac\kill
+	\multicolumn{1}{l}{HB\textbf{--}}
+	&\multicolumn{1}{l}{}
+	&
+	\multicolumn{1}{r}{Date:}
+	&
+	& C-off:
+\\
+	\multicolumn{1}{l}{\small Aircraft:}
+	&\multicolumn{1}{l}{}
+	&
+	\multicolumn{1}{r}{HRH*:}
+	&
+	& B-off:
+\\
+\hhline{~---~}
+	& From & To & Alt
+	& T-off:
+\\
+\hline
+	\multicolumn{1}{|l|}{\small AD}
+	&\multicolumn{1}{r|}{/\phantom{000}}
+	&\multicolumn{1}{r|}{/\phantom{000}}
+	&\multicolumn{1}{r|}{/\phantom{000}}
+	&Ldg:
+\\\hhline{----~}
+	\multicolumn{1}{|l|}{\multirow{3}{*}{\small COM}} &&&
+	&B-on:
+\\
+	\multicolumn{1}{|l|}{}&&&
+	&C-on:
+\\
+\hhline{~~~~=}
+	\multicolumn{1}{|l|}{}&&&
+	& LDG:
+\\
+\hhline{----~}
+	\multicolumn{4}{l|}{%
+		$%
+		\Vi{1} = \_\_
+		\quad \Vi{r} = \_\_
+		\quad \Vi{x} = \_\_
+		\quad \Vi{y} = \_\_
+		$%
+	}
+	& GA:
+\\
+\hhline{~~~~-}
+	\multicolumn{4}{l}{%
+		$%
+		\Vi{cc} = \_\_
+		\quad \Vi{a} = \_\_
+		\quad \Vi{\textrm{glide}} = \_\_
+		$%
+	}
+	&
+\\
+\hhline{~~~~-}
+	\multicolumn{4}{l|}{%
+		$%
+		\Vapp = \_\_\_\_
+		\quad \Vi{\textrm{fin}} = \_\_\_\_
+		$%
+	}
+	& Oil up:
+\\
+\hhline{~~~~=}
+	\multicolumn{4}{l|}{}
+	& RFOB:
+\\
+\hhline{~~--~}
+	\multicolumn{2}{l}{Wind:}
+	& \multicolumn{2}{|c|}{%
+		$\Speed_{\textrm{dep}} = \RefSpeed + \_\_\_$%% Gust/3 or (Gust-wind)
+	}
+	& Fuel up:
+\\
+\hline
+	\multicolumn{4}{l|}{
+		\normalsize
+		$
+		\textrm{QNH} < \textrm{QNE} \Longrightarrow \textrm{FL} > \textrm{altitude}
+		$\ !
+	}
+	& T-off fuel:
+\\
+	\multicolumn{4}{l|}{}
+	&Exp. 0-fuel LT:
+\\
+\hhline{~~~~-}
+\end{longtable}%% }}}
+
+\vspace{66mm}
+
+\begin{longtable}{c|c|c|c|c|l}%% {{{
+	& LSGE LSGE L &&& FEW OVERCAST &\kill
+\hhline{~-----}
+	& AD COM ID
+	& RWY
+	& SW wind \RefSpeed
+	& visi clouds
+	& T QNH RMK
+\\\hline
+\textbf{A} &&&&\multicolumn{1}{c|}{}&\\
+\textbf{T} &&&&\multicolumn{1}{c|}{}&\\
+\textbf{I} &&&&\multicolumn{1}{c|}{}&\\
+\textbf{S} &&&&\multicolumn{1}{c|}{}&\\
+\hline
+\end{longtable}%% }}}
+\vspace{-8mm}
+\begin{longtable}{rl|rl|rl|rl}%% {{{
+& 88888888 && 88888888 && 88888888 && 88888888\kill
+	\multicolumn{2}{c|}{Gen\`eve}
+	&\multicolumn{2}{c|}{Z\"urich}
+
+	& \textbf{LSGE} & 120.625
+	& \multicolumn{1}{l}{\textbf{LSGS} {\small T}} & 118.275
+\\
+\hhline{----~~~~}
+	Info & 126.350
+	& Info & 124.7\phantom{00}
+
+	& \LvS{GT} & 124.675
+	& \multicolumn{1}{l}{\LvSS{GS}{G}} & 121.7\phantom{00}
+\\
+	Delta & 119.175
+	& Delta & 119.225
+
+	& \LvS{MP} & 128.675
+	& \LvS{GS} \ATIS & 130.625
+\\
+\hhline{------~~}
+	&&&
+	& \multicolumn{1}{l}{\LvSS{ZB}{T}} & 121.025
+	& \multicolumn{1}{l}{\LvSS{GS}{H}} & 131.475
+\\
+\hhline{~~~~~~--}
+	&
+	&&
+	& \LvS{ZB} \ATIS & 125.125
+	& \LvS{TA} & 129.875
+\\
+	{\small Baloo} & 122.250
+	&&
+	&&
+	& \LvS{GB} & 122.150
+\\
+\end{longtable}%% }}}
+
+}%% }}}
+
+
+%% }}}
+%% Document body {{{
+\begin{document}
+\Large
+\ALL
+\clearpage
+%% vspace -= 1mm;
+\addtocounter{visp}{-1}
+\ALL
+\end{document}
+%% }}}
+

@@ -1,0 +1,130 @@
+\documentclass{checklists}
+\SetPlane{Pilot's own checks}{PIC}{}
+\DocV{1.10}{}{}
+\usepackage{nicefrac}
+\usepackage{longtable,hhline,multirow}
+\begin{document}
+\begin{CheckListRule}{Before boarding}{}%% {{{
+	\vspace{2mm}
+	\Check{PPL(A) SEP(L)}{9 PAX, MTOW $\leq 2700 kg$, no pressure or special}
+	\Check{SEP revalidation}{12h in last 12 months, 12 t-off+ldg, check flight}
+	\Check{PAX}{3 t/o + 3 ldg in last 3 months}
+	\Check{> 3 PAX}{> 100h (> 50h PIC)}
+	\Check{< 12 y.o. is \nicefrac{1}{2} PAX if uses \nicefrac{1}{2} seat+seatbelt}
+			{up to 50\% PAX}
+	\Check{oxy lim FL130 (PIC FL125), FL230 deadly}{unless > 1 month > 3500m}
+	\Check{children < 12 y.o. max altitude}{FL100}
+\end{CheckListRule}%% }}}
+\vfill
+\begin{SubWrapper}{Diseases}{}%% {{{
+\begin{SubCheckList}{General}{}%%{{{
+	\Check{cinetosis}{look ahead, head straight, fresh air (ev. fly the plane)}
+	\item hypoxia\\\phantom{boooo}
+		pickling in hands or mouth, audition and visual troubles, tiredness, concentration difficulties
+	\item hyperventilation\\\phantom{boooo}
+		fear, respiratory difficulties, pickling in hands or mouth, cramps
+\end{SubCheckList}%% }}}
+\begin{SubCheckList}{Specific}%% {{{
+	\item CO intoxication\\\phantom{boooo}
+		headache, vertigo, red nails, concentration troubles, confusion, loss of consciousness
+	\item decompression accident\\\phantom{boooo}
+		bends (articulations), chokes (pulmonary), itching/picking, \textbf{starry vision, headache, shaking}
+\end{SubCheckList}%% }}}
+\end{SubWrapper}%% }}}
+\SkipPage
+\begin{CheckListRule}{Wishes}{}%%{{{
+\renewcommand{\labelenumi}{\Square}
+	%\item steep turn/descent
+	\item Empty tank on Archer
+	\item Crosswind with C172
+	\item NVFR LSZB
+	\item IFR training
+	\item PAX in para
+	%\item bad wx
+	\item \href{http://www.fribourg-voltige.ch/Activlites.htm}{Upset recovery
+		training} with Fribourg Voltige
+	\item Glaciers (LSYS)
+	\item \href{http://fr.seaplanes.ch/}{SEP(S)?}
+	\item FI(A)
+	\item SEP(S)
+\end{CheckListRule}
+%% }}}
+\vfill
+\begin{CheckListRule}{Transition}{}%%{{{
+\renewcommand{\labelenumi}{\Square\Square\Square}
+	\item Slow turns
+	\item Out-/Inbound AD
+	\item Circuit
+	\item Touch-and-go
+	\item Go around
+	\item 0-flaps
+	\item 600m
+	\item Failure in fields
+	\item Engine failure after take-off
+	\item Full charge flight to another AD
+	\item avionics and radionav
+	\item fuel considerations if applicable
+\end{CheckListRule}
+%% }}}
+%\begin{CheckList}{FI(A) (DISABLED)}{}%%{{{
+%\renewcommand{\labelenumi}{\Square}
+	%\item Theoretical CPL% (200h?)
+	%\item 200h (150h PIC)
+	%\item 10h IFR
+	%\item 300NM with 2 full stops (20h)
+	%%\item aerobatics?
+%\end{CheckList}
+%% }}}
+\SkipPage
+%%
+%%
+%%
+\SetPlane{Flight with passengers}{PAX}{}
+%%
+\begin{SubWrapperRule}{Before boarding}{}%%{{{
+\begin{SubCheckList}{Altidude}%% {{{
+	\Check{diving or hyperbaric environment}{$\geq 24h$}
+	\Check{recent diet: bloatings          }{no cabbage, peas, beans}
+	\Check{gaseous drink                   }{no gas}
+	\Check{recent alcohol                  }{check}
+	\Check{smoker                          }{critic FL25, deadly FL130}
+		%% non-smoker: sane FL100, critic FL125, deadly FL231
+\end{SubCheckList}%% }}}
+\begin{SubCheckList}{Health}%% {{{
+	\Check{toilets                }{done}
+	\Check{subject to sea/road sickness}{check}
+	\Check{cold, pharyngitis, etc.}{healthy}
+	\Check{teach Vaslava (gently!)}{done}
+	\Check{if feeling bad, weird, tickling, pricking, sleepy, pain}{tell me\\
+		(often reversible quickly, not worth waiting and having a bad flight)}
+\end{SubCheckList}%% }}}
+\begin{SubCheckList}{Security}%% {{{
+	\Check{afraid of flying?                              }{check}
+	\Check{if problem, do not yell!! Questions welcome    }{understood}
+	\Check{I must listen to the radio communications      }{understood}
+	\Check{tell me if see traffic and side                }{understood}
+\end{SubCheckList}%% }}}
+\begin{SubCheckList}{Responsibilities}%% {{{
+	\Check{boarding pass or declaration of renouncement}{DONE}
+\end{SubCheckList}%% }}}
+\begin{SubCheckList}{Planned trip}%% {{{
+	\Check{Map}{EXPOSED}
+\end{SubCheckList}%% }}}
+\end{SubWrapperRule}%% }}}
+\vfill
+\begin{CheckList}{Passengers briefing}{}%% {{{
+	\Check{Headsets}{DONNED}
+	\Check{Seat belts}{OPEN--CLOSED}
+	\Check{Air ventilation}{OK}
+	\Check{Sick bags}{OK}
+	\Check{Extinguisher}{LOCATED}
+	\Check{Emergency exit}{}
+	\Check{Break glass}{}
+	\Check{Door mechanisms}{}
+	\Check{Seat firmly fixed}{}
+	\Check{Commands free}{HANDS \& FEET}
+	\Check{Radio}{}
+\end{CheckList}%% }}}
+%\SkipPage
+%\SetPlane{Gravity Center data}{GC}{}
+\end{document}

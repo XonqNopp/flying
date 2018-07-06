@@ -1,0 +1,340 @@
+%%
+%% Headers %%% {{{
+\documentclass[12pt,twoside,a4paper]{article}
+%%
+\newcommand*{\DocVersion}{1}
+%% Document variables %%% {{{
+\newcommand*{\Gael}{Ga\"el Induni}
+\newcommand*{\ThisAuthors}{\Gael}
+\newcommand*{\ThisTitle}{Voice}
+\newcommand*{\ThisTitleSHORT}{\ThisTitle}
+%% End of document variables %%% }}}
+%% Usepackages %%% {{{
+%% General {{{
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[english]{babel}
+%% }}}
+%% Graphics and figures %% {{{
+\usepackage{graphicx}
+%\usepackage{wrapfig}
+%\usepackage{subfig,caption,keyval}
+%\captionsetup{justification=centering}
+\usepackage{float}
+%\usepackage{wallpaper}
+%\usepackage{tikz}
+%% }}}
+%% Math %% {{{
+\usepackage{amsmath}
+%\usepackage{amssymb}
+%\usepackage{empheq}
+%\usepackage{cancel}
+%% }}}
+%% Listings %% {{{
+%\usepackage{listings}
+%\renewcommand{\thelstlisting}{\arabic{section}.\arabic{lstlisting}}
+%\lstloadlanguages{bash,C,C++,Fortran,HTML,Lisp,make,Matlab,Perl,Python,PHP,[LaTeX]TeX,SQL}
+%\lstloadlanguages{C++}
+%\lstdefinestyle{cpp}{
+%    language=C++,
+%    numbers=left,
+%    numberstyle=\tiny,
+%    basicstyle=\small,
+%    keywordstyle=\bfseries,
+%    identifierstyle=,
+%    commentstyle=\color{blue},
+%    stringstyle=,
+%    showstringspaces=false,
+%    showspaces=false,
+%    frame=single,
+%    morecomment=[s][\color{red}]{/***}{***/},
+%    tabsize=4,
+%    breaklines=true
+%}
+%\lstdefinestyle{matlab}{
+%    language=Matlab,
+%    numbers=left,
+%    numberstyle=\tiny,
+%    basicstyle=\small,
+%    keywordstyle=\bfseries,
+%    identifierstyle=,
+%    commentstyle=\color{blue},
+%    stringstyle=,
+%    showstringspaces=false,
+%    showspaces=false,
+%    frame=single,
+%    breaklines=true
+%}
+%% }}}
+%% Hyper refs %% {{{
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks        = true,
+	bookmarks         = true,
+	bookmarksnumbered = false,
+	linkcolor         = black,
+	urlcolor          = blue,
+	citecolor         = blue,
+	filecolor         = blue,
+	hyperfigures      = true,
+	breaklinks        = false,
+	ps2pdf,
+	pdftitle          = {\ThisTitle},
+	pdfsubject        = {\ThisTitle},
+	pdfauthor         = {\ThisAuthors}
+}
+%% }}}
+%% Tables and lists %% {{{
+%\usepackage{longtable}
+%\usepackage{multirow}
+%\usepackage{array}
+%\usepackage{colortbl}
+%\usepackage{spreadtab}
+%\usepackage{numprint}
+\usepackage{enumitem}
+\setlist{noitemsep}
+%\usepackage{rotating}
+%% }}}
+%% Making stuff fancy (not fancyhdr package) %% {{{
+\usepackage{color}
+%\usepackage{everysel,ragged2e}
+%\usepackage{gensymb}
+%\usepackage{marvosym}
+%\usepackage{wasysym}
+%\usepackage{nicefrac}
+\usepackage[normalem]{ulem}
+%%
+%\usepackage{draftwatermark}
+%\SetWatermarkColor[rgb]{1,0,0}
+%\SetWatermarkAngle{60}
+%\SetWatermarkScale{3}
+%\SetWatermarkFontSize{2cm}
+%\newcommand*{\WMText}{\bf\textsc{confidential}}
+%\SetWatermarkText{\WMText}
+%% If not wanted on some pages (title), set wmText to be empty before and reset it then
+%% }}}
+%% Miscellaneous %% {{{
+%\usepackage{alltt}
+%\usepackage{ifthen}
+%\usepackage{xstring}
+%\usepackage{multicol}% Remember environement is begin{multicols}{n}
+%% }}}
+%% End of usepackages %%% }}}
+%% Document size %%% {{{
+\setlength{\topmargin}{-12.5mm}
+\setlength{\textheight}{250mm}
+\setlength{\hoffset}{-22mm}
+\setlength{\textwidth}{195mm}
+\setlength{\evensidemargin}{3.8mm}
+\setlength{\parskip}{0.5ex}
+%% End of document size %%% }}}
+%% Fancy and header and footer rules %%% {{{
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\newcommand*{\LastPage}{\pageref{LastPage}}
+%% Defining document filename
+\newcommand*{\GoodJob}{\jobname.pdf}
+%% Fancy!
+\fancypagestyle{plain}{%
+\fancyhf{}
+%% Header for left-odd right-even (1st: left)
+\fancyhf[HRO,HLE]{\ThisAuthors}
+%% Header for center
+\fancyhf[HCO,HCE]{}
+%% Header for right-odd left-even (1st: right)
+%\fancyhf[HLO,HRE]{\ThisTitleSHORT}
+%\fancyhf[HLO,HRE]{\ThisAuthors}
+%% Footer for left-odd right-even (1st: left)
+\fancyhf[FRE]{(\GoodJob, v. \DocVersion) \ThisTitleSHORT}
+\fancyhf[FLO]{\ThisTitleSHORT\ (\GoodJob, v. \DocVersion)}
+%% Footer for center
+\fancyhf[FCO,FCE]{}
+%% Footer for right-odd left-even (1st: right)
+\fancyhf[FRO,FLE]{\thepage/\LastPage}
+%% Rules at top and bottom
+}
+\pagestyle{plain}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+%% End of fancy %%% }}}
+%% Pictures positions %%% {{{
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\textfraction}{0.1}
+\renewcommand{\floatpagefraction}{0.75}
+%% End of pictures %%% }}}
+%% New commands %%% {{{
+%% References %% {{{
+\newcommand*{\FigRef}[1]{\ref{fig:#1}}
+\newcommand*{\TabRef}[1]{\ref{tab:#1}}
+\newcommand*{\RefP}[1]{\S\ref{#1} p.~\pageref{#1}}
+\newcommand*{\RefPP}[1]{\S\ref{#1} (p.~\pageref{#1})}
+%% }}}
+%% Hyperref {{{
+\newcommand*{\mailto}[1]{\href{mailto:#1}{#1}}
+%% \url{link}
+%% \href{link}{text}
+%% \href[ref]{text}
+%% Form commands {{{
+%% Must be placed in a 'Form' environment
+%% \MyField{fieldname (like HTML form)}{additional options}{Text to be displayed before}
+%% options: (double) width, (int) maxlen, (bool) multiline
+%\newcommand{\MyField}[3]{\TextField[name=#1,backgroundcolor=1 1 0.95,bordercolor=0 0 0,bordersep=3,borderwidth=1,charsize=12pt,color=0 0 0,#2]{#3}}
+%% \MyRadio{fieldname (like HTML form)}{wth}{wtf} %% prints a radio box AFTER text
+%\newcommand{\MyRadio}[3]{\ChoiceMenu[name=#1,backgroundcolor=1 1 0.95,bordercolor=0 0 0,bordersep=3,borderwidth=1,charsize=12pt,color=0 0 0,radio=true,radiosymbol=\ding{54}]{#2}{#3}}
+%% \MySingleRadio{fieldname (like HTML form)} %% only prints a radio box
+%\newcommand{\MySingleRadio}[1]{\MyRadio{#1}{ }{ }}
+%% }}}
+%% }}}
+%% BibTeX %% {{{
+%\newcommand{\FootnoteOne}[2]{\footnote{#2}\newcounter{#1}\setcounter{#1}{\value{footnote}} }
+%\newcommand{\FootnoteRecall}[1]{\footnotemark[\value{#1}]}
+%% }}}
+%% Miscellaneous %% {{{
+%\renewcommand\STprintnum[1]{\numprint{#1}}
+%\npdecimalsign{.}
+%\newcommand*{\Cpp}{C{\scriptsize ++}\ }
+%\newcommand*{\Hpp}{C{\normalsize ++}\ }
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\roman}{\Roman}
+%\renewcommand{\geq}{\geqslant}
+%\renewcommand{\leq}{\leqslant}
+\newcommand*{\oC}{\ensuremath{^{\circ}C}}
+\AtBeginDocument{\renewcommand{\labelitemi}{\textbullet}}% Default is \textendash % must be placed after begin-doc
+\makeatletter
+\newcommand{\rom}[1]{\expandafter\@slowromancap\romannumeral #1@}
+%\newcommand{\InlineTOC}{\@starttoc{toc}}%% For report inline toc (to use with the 'notitlepage' class option
+\makeatother
+%% }}}
+%% Specific to document {{{
+\newcommand*{\Rep}[1]{<\emph{#1}>}
+\newcommand*{\Act}[1]{{\color{red}{#1}} }
+\newcommand*{\AP}[1][]{\Rep{airport#1}}
+\newcommand*{\GND}{Ground}
+\newcommand*{\DEL}{Delivery}
+\newcommand*{\APR}{Apron}
+\newcommand*{\TWR}{Tower}
+\newcommand*{\INFO}{Information}
+\newcommand*{\DELTA}{Delta}
+\newcommand*{\SOL}{Sol}
+\newcommand*{\TOR}{Tour}
+\newcommand*{\HB}{HB--XXX}
+\newcommand*{\ShortHB}{H(B--X)XX}
+\newcommand*{\TYPE}{\Rep{aircraft type}}
+\newcommand*{\VFR}{VFR}
+\newcommand*{\NVFR}{(N)\VFR}
+\newcommand*{\SNVFR}{(S|N)\VFR}
+\newcommand*{\POS}{\Rep{position}}
+\newcommand*{\POSDDD}{\Rep{position + altitude}}
+\newcommand*{\InfoA}{\Rep{A}}
+\newcommand*{\Via}{\Rep{via1, via2, ...}}
+\newcommand*{\WAIT}{\Act{.....wait for answer.....}}
+%% }}}
+%% End of new commands %%% }}}
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+\setcounter{tocdepth}{2}
+%\setcounter{secnumdepth}{3}
+%\hyphenation{}
+%% Title page %%% {{{
+\title{\ThisTitle}
+\author{\ThisAuthors\\{\small \mailto{gael.induni@gmail.com}} }
+\date{Belfaux, \today\\[5mm]\normalsize Document version~\DocVersion}
+%% End of title page %%% }}}
+%%
+%% }}}
+%%
+\begin{document}
+%%
+\section{Introduction messages}%%{{{
+\label{sec:introo}
+%%
+\subsection{Initial}%%{{{
+\label{sec:intro:init}
+%%
+\begin{itemize}
+	\item \AP[1]\ \GND/\DEL/\APR/\TWR\ --- \SOL/\DEL/Traffic/\TOR
+	\item \HB
+	\item \TYPE
+	\item \SNVFR\ to \AP[2]
+	\item \POS
+	\item Request start-up/taxi --- demande d\'emarrage/roulage
+	\item Information \InfoA
+\end{itemize}
+%%}}}
+\subsection{Departure}%%{{{
+\label{sec:intro:departure}
+%%
+\begin{itemize}
+	\item[(\textbullet)] \AP[1]\ \TWR --- \TOR
+	\item \ShortHB
+	%\item[x] \xout{\TYPE}
+	%\item[x] \xout{\SNVFR\ to \AP[2]}
+	\item \POS
+	\item Ready for departure --- pr\^et au d\'epart
+	\item Route \Rep{exit route}
+	\item (LSZH NVFR only: Information \InfoA)
+\end{itemize}
+%%}}}
+\subsection{Info \& Delta}%%{{{
+\label{sec:intro:InfoDelta}
+%%
+\begin{itemize}
+\renewcommand{\labelitemi}{\bfseries I+D}
+	\item \AP\ \INFO/\DELTA
+	\item \HB
+	\item \WAIT
+	\item \ShortHB
+	\item \TYPE
+	\item \NVFR\ from \AP[1]\ to \AP[2]
+	\item \POSDDD
+	\item Proceeding via \Via\ (only in juridiction!!)
+\renewcommand{\labelitemi}{\bfseries D}
+	\item Request enter airspace C at/over \Rep{...} and climb to FL\Rep{...}
+\end{itemize}
+%%}}}
+\subsection{Landing}%%{{{
+\label{sec:intro:landing}
+%%
+\begin{itemize}
+	\item \AP[1]\ \TWR\ --- \TOR
+	\item \HB
+	\item \WAIT\ if low radio traffic and unsure about reception quality
+	\item \ShortHB
+	\item \TYPE
+	\item \NVFR\ from \AP[2]
+	\item \POSDDD
+	\item For landing (S\VFR)
+	\item Route \Rep{route}
+	\item Information \InfoA
+\end{itemize}
+%%}}}
+\setcounter{subsection}{98}
+\subsection{Military (for exam only!)}%%{{{
+%\label{sec:intro:mil}
+%%
+\begin{itemize}
+	\item \AP\ \TWR\ --- \TOR
+	\item \HB
+	\item \POSDDD
+	\item Request cross \Rep{zone}\ via \Via
+\end{itemize}
+%%}}}
+%%}}}
+\section{Weather}%%{{{
+\label{sec:weather}
+%%
+\subsection{Clouds translations}%%{{{
+\label{sec:weather:clouds}
+%%
+\begin{description}
+	\item[FEW (1-2):] quelques nuages
+	\item[SCT (3-4):] espac\'es
+	\item[BKN (5-7):] couvert avec trou\'ees
+	\item[OVC (8)  :] couvert
+\end{description}
+
+%%}}}
+%%}}}
+%%
+\end{document}
+%%

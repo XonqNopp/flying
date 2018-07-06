@@ -1,0 +1,36 @@
+\documentclass{checklists}
+%
+\SetPlane{#&%}{#&%}{HB-#&%}
+\SetFieldAltitude{#&%}
+\DocV{0.01}{#&%}{#&%}
+%
+\begin{document}
+\begin{CheckListRule}{#&%}%% {{{
+	\Check{#&%}{#&%}
+\end{CheckListRule}%% }}}
+%%
+\begin{InfoBox}%% {{{ climb speeds
+	\begin{description}
+		\item[$\textrm{v}_x$ flaps 2:] 55kts flaps-2, 60kts 0-flaps
+		\item[$\textrm{v}_y$:] 76kts
+		\item[$\textrm{v}_{cc}$:] 90kts
+	\end{description}
+\end{InfoBox}%% }}}
+%%
+\begin{InfoBox}%% {{{ Gliding
+	Glide speed:\\
+	Glide ratio: 1:xx (1000 ft: xx NM)
+\end{InfoBox}%% }}}
+\begin{InfoBox}%% {{{ downwind
+Downwind power: \RPM{2100}
+\end{InfoBox}%% }}}
+%
+\begin{InfoDistances}
+	% roll(50ft) \FieldAltitude QNH:1003hPa +20oC
+	%                    & 993hPa     & +30oC      & Grass
+	T-off F2 & #&% (#&%) & +#&% (#&%) & +#&% (#&%) & #&% (#&%)\\\hline
+	T-off 0F & #&% (#&%) & +#&% (#&%) & +#&% (#&%) & #&% (#&%)\\\hline
+	Landing  & #&% (#&%) & +#&% (#&%) & +#&% (#&%) & #&% (#&%)\\
+\end{InfoDistances}
+\end{document}
+
