@@ -1,6 +1,6 @@
 \documentclass{checklists}
 \SetPlane{Katana}{DV20}{HB-SDI}
-\DocV{1.10}{AFS}{2.1}
+\DocV{1.12}{AFS}{2.1}
 \begin{document}
 \begin{CheckListRule}{Before starting engine}{}%% {{{
 	\CheckChecklist{\SrcName\ \SrcVersion}
@@ -192,7 +192,17 @@
 \end{CheckList}%% }}}
 %%
 \begin{InfoDistances}{2300}
-T-off & 340 (?) & +45 (?) & +55 (?) & +25\% (?)\\\hline
-Landing & 250 (476) & ? (?) & ? (?) & ---\\
+	T-off F1
+	& 350 (570)  % roll(50ft) #1 ft 1003hPa +20oC
+	& +10 (+30)  % 993hPa
+	& +20 (+50)  % +30oC
+	& +25\%      % grass
+	\\\hline
+	Landing
+	& 250 (476)  % roll(50ft) #1 ft 1003hPa +20oC
+	& +5 (+5)  % 993hPa
+	& ---  % +30oC
+	& ---  % grass
+	\\
 \end{InfoDistances}
 \end{document}

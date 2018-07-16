@@ -6,8 +6,8 @@
 
 % TeX
 \NeedsTeXFormat{LaTeX2e}[1998/12/01]
-\newcommand*{\GIclsChecklistsV}{0.6}
-\newcommand*{\GIclsChecklistsD}{2014/12/23}
+\newcommand*{\GIclsChecklistsV}{0.7}
+\newcommand*{\GIclsChecklistsD}{2018/07/17}
 % Class name {{{
 % Tell your name and your birthday and describe yourself in 5 words
 \newcommand*{\GIclsChecklistsN}{checklists}
@@ -106,7 +106,12 @@
 	\ifthenelse{\equal{\ID}{}}{}{ \ID}%
 }
 \fancyhf[FL]{\Gael}
-\fancyhf[FC]{\jobname.pdf v\DocVersion\ (\today) \SrcFoot}
+\fancyhf[FC]{%
+\jobname.pdf %
+\textbf{v\DocVersion\ (\today)}\ %
+cls v\GIclsChecklistsV\ %
+\textbf{\SrcFoot}%
+}
 \fancyhf[FR]{\thepage/\pageref{LastPage}}
 % Rules at top and bottom
 \renewcommand{\headrulewidth}{0.4pt}
@@ -274,8 +279,8 @@
 		\begin{tabular}{r|c|c|c|c|}%
 			$[m]$ (50ft)
 			& #1 ft 1003hPa $+20\oC$
-			& 993hPa
-			& $+30\oC$
+			& 993hPa = +300 ft
+			& $+30\oC =$ +1200 ft
 			& Grass
 			\\\hline
 }{%

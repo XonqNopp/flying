@@ -1,6 +1,6 @@
 \documentclass{checklists}
-\SetPlane{Piper Archer II}{PA28-181}{HB-PMR}
-\DocV{2.03}{AFS}{2.12}
+\SetPlane{Piper Archer II}{PA28-181}{HB-PMH}
+\DocV{2.05}{AFS}{2.12}
 \usepackage{nicefrac}
 \begin{document}
 \begin{CheckListRule}{Before starting engine}{}%% {{{
@@ -202,8 +202,23 @@
 \end{CheckList}%% }}}
 %%
 \begin{InfoDistances}{2300}
-T-off F2 & 420 (?) & +10 (?) & +45 (?) & ? (?)\\\hline
-T-off 0F & 480 (?) & +30 (?) & +45 (?) & ? (?)\\\hline
-Landing  & 310 (455) & +2 (+3) & +8 (+12) & ---\\
+	T-off F2
+	& 424 (812)  % roll(50ft) #1 ft 1003hPa +20oC
+	& +9 (+36)  % 993hPa
+	& +12 (+85)  % +30oC
+	& +? (+?)  % grass
+	\\\hline
+	T-off 0F
+	& 482 (894)  % roll(50ft) #1 ft 1003hPa +20oC
+	& +12 (+30)  % 993hPa
+	& +58 (+106)  % +30oC
+	& +? (+?)  % grass
+	\\\hline
+	Landing
+	& 310 (455)  % roll(50ft) #1 ft 1003hPa +20oC
+	& +2 (+6)  % 993hPa
+	& +8 (+12)  % +30oC
+	& ---  % grass
+	\\
 \end{InfoDistances}
 \end{document}
