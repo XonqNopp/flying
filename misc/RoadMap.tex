@@ -1,5 +1,5 @@
 
-\newcommand*{\DocVersion}{45}
+\newcommand*{\DocVersion}{47}
 %% Headers %%% {{{
 \documentclass[12pt,twoside,a4paper]{article}
 
@@ -191,9 +191,10 @@
 	\multicolumn{4}{l|}{%
 		$%
 		\Vi{1} = \_\_
-		\quad \Vi{r} = \_\_
-		\quad \Vi{x} = \_\_
-		\quad \Vi{y} = \_\_
+		\ \ \Vi{r} = \_\_
+		\ \ \Vi{x} = \_\_
+		\ \ \Vi{y} = \_\_
+		\ \ \Vi{cc} = \_\_
 		$%
 	}
 	& GA:
@@ -201,38 +202,36 @@
 \hhline{~~~~-}
 	\multicolumn{4}{l}{%
 		$%
-		\Vi{cc} = \_\_
-		\quad \Vi{a} = \_\_
-		\quad \Vi{\textrm{glide}} = \_\_
+		\Vapp = \_\_\_\_
+		\ \ \Vi{\textrm{fin}} = \_\_\_\_
+		\ \ \Vi{a} = \_\_
+		\ \ \Vi{\textrm{glide}} = \_\_
 		$%
 	}
 	&
 \\
 \hhline{~~~~-}
-	\multicolumn{4}{l|}{%
-		$%
-		\Vapp = \_\_\_\_
-		\quad \Vi{\textrm{fin}} = \_\_\_\_
-		$%
-	}
+	\multicolumn{4}{l|}{}
 	& Oil up:
 \\
 \hhline{~~~~=}
-	\multicolumn{4}{l|}{}
+	\multicolumn{1}{l}{\normalsize Wind:}
+	& \multicolumn{3}{r|}{%
+		$\Speed_{\textrm{dep}} = \RefSpeed + \_\_\_$
+	\normalsize max(G/3 or G--W)
+	}
 	& RFOB:
 \\
-\hhline{~~--~}
-	\multicolumn{2}{l}{Wind:}
-	& \multicolumn{2}{|c|}{%
-		$\Speed_{\textrm{dep}} = \RefSpeed + \_\_\_$%% Gust/3 or (Gust-wind)
-	}
+\hhline{----~}
+	\multicolumn{1}{l}{QNH:}
+	& \multicolumn{3}{l|}{}
 	& Fuel up:
 \\
-\hline
+\hhline{~~~~-}
 	\multicolumn{4}{l|}{
 		\normalsize
 		$
-		\textrm{QNH} < \textrm{QNE} \Longrightarrow \textrm{FL} > \textrm{altitude}
+		\textrm{QNH} > \textrm{QNE} \Longrightarrow \textrm{altitude} > \textrm{FL}
 		$\ !
 	}
 	& T-off fuel:
@@ -270,16 +269,16 @@
 	& \multicolumn{1}{l}{\textbf{LSGS} {\small T}} & 118.275
 \\
 \hhline{----~~~~}
-	Info & 126.350
+	Info   & 126.350
 	& Info & 124.7\phantom{00}
 
 	& \LvS{GT} & 124.675
 	& \multicolumn{1}{l}{\LvSS{GS}{G}} & 121.7\phantom{00}
 \\
-	Delta & 119.175
+	Delta   & 119.175
 	& Delta & 119.225
 
-	& \LvS{MP} & 128.675
+	& \LvS{MP}       & 128.675
 	& \LvS{GS} \ATIS & 130.625
 \\
 \hhline{------~~}
@@ -291,12 +290,12 @@
 	&
 	&&
 	& \LvS{ZB} \ATIS & 125.125
-	& \LvS{TA} & 129.875
+	& \LvS{TA}       & 129.875
 \\
-	{\small Baloo} & 122.250
+	{\small Baloo}   & 122.250
 	&&
-	&&
-	& \LvS{GB} & 122.150
+	& \LvSS{ZB}{APP} & 127.325
+	& \LvS{GB}       & 122.150
 \\
 \end{longtable}%% }}}
 
