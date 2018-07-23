@@ -1,7 +1,7 @@
 \documentclass{checklists}
 %
 \SetPlane{Robin DR400--140B}{}{HB-KFQ HB-KEX}
-\DocV{1.00}{GVM Sion}{1.2}
+\DocV{1.01}{GVM Sion}{1.2}
 %
 \input{robinPreparation}
 %
@@ -32,7 +32,7 @@
 \SkipPage
 \begin{CheckListRule}{Engine start}{}% {{{
 	\Check{NAV lights}{ON}
-	\Check{Fuel pump}{ON}
+	\FuelPump{ON}
 	\Check{Magnetos}{LEFT}
 	\Check{Priming}{ACCORDING AFM}
 	\Check{Throttle}{0.5cm}
@@ -112,34 +112,14 @@
 \end{CheckList}%% }}}
 % Approach briefing
 %
-\begin{InfoBox}%% speeds + downwind power {{{
-	\large
-	$\VBmath{1} = 45$ kts
-	\hfill
-	$\VBtxt{app} = 85, 80$ kts
-	\\
-	$\VBmath{r} = 54$ kts
-	\hfill
-	$\VBtxt{fin} = 62$ kts
-	\\
-	$\VBmath{x} = 70$ kts
-	\hfill
-	$\VBmath{a} = 116$ kts
-	\\
-	$\VBmath{y} = 81$ kts
-	\hfill
-	$\VBtxt{glide} = 78$ kts
-	\\
-	$\VBmath{cc} = 90$ kts
-	\hfill
-	Glide ratio: 1:XX (1000 ft: X.X NM)
-	\\
-	($\VBtxt{plan} = 100$ kts)
-	\hfill
-	Downwind power: \RPM{2000}
-	% max crosswind comp: 22kts
-	% fuel cons 35l/h
-\end{InfoBox}%% }}}
+\begin{InfoBox}%% speeds + downwind power
+	% Take off          1   r   x   y  cc
+	\InfoSpeedsTakeOff{45}{54}{70}{81}{90}
+	% Landing                   app  fin  a    glide
+	\InfoSpeedsLandingCriticals{85, 75}{62}{116}{78}
+	% More infos   plan ratio NM  fuel   downwind   Xwind
+	\InfoSpeedsMore{100}{XX?}{XX?}{35 l}{\RPM{2000}}{22}
+\end{InfoBox}
 %
 \SkipPage
 \begin{CheckListRule}{Descent check}{}% {{{

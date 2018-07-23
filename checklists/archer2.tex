@@ -1,6 +1,6 @@
 \documentclass{checklists}
 \SetPlane{Piper Archer II}{PA28-181}{HB-PMH}
-\DocV{2.06}{AFS}{2.12}
+\DocV{2.08}{AFS}{2.12}
 \usepackage{nicefrac}
 \begin{document}
 \begin{CheckListRule}{Before starting engine}{}%% {{{
@@ -132,32 +132,14 @@
 	\Check{Carburetor heater}{ON as required}
 \end{CheckList}%% }}}
 %%
-\begin{InfoBox}%% speeds + downwind power {{{
-	\large
-	$\VBmath{1} = 45$ kts
-	\hfill
-	$\VBtxt{app} = 90, 75$ kts
-	\\
-	$\VBmath{r} = 55$ kts
-	\hfill
-	$\VBtxt{fin} = 65\ (60)$ kts
-	\\
-	$\VBmath{x} = 65$ kts
-	\hfill
-	$\VBmath{a} = 113$ kts
-	\\
-	$\VBmath{y} = 76$ kts
-	\hfill
-	$\VBtxt{glide} = 75$ kts
-	\\
-	$\VBmath{cc} = 90$ kts
-	\hfill
-	Glide ratio: 1:10 (1000 ft: 1.7 NM)
-	\\
-	($\VBtxt{plan} = 110$ kts)
-	\hfill
-	Downwind power: \RPM{2100}
-\end{InfoBox}%% }}}
+\begin{InfoBox}% speeds + downwind power
+	% Take off          1   r   x   y  cc
+	\InfoSpeedsTakeOff{45}{55}{65}{76}{90}
+	% Landing                   app  fin  a    glide
+	\InfoSpeedsLandingCriticals{90, 75}{65, 60}{113}{75}
+	% More infos   plan ratio NM  fuel   downwind Xwind
+	\InfoSpeedsMore{110}{10}{1.7}{10 USG}{\RPM{2000--2100}}{17}
+\end{InfoBox}
 \SkipPage
 \begin{CheckListRule}{Approach}{h}%% {{{
 	\Check{Gyro}{SET, bug on RWY}

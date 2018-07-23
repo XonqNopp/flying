@@ -1,6 +1,6 @@
 \documentclass{checklists}
 \SetPlane{Katana}{DV20}{HB-SDI}
-\DocV{1.12}{AFS}{2.1}
+\DocV{1.13}{AFS}{2.1}
 \begin{document}
 \begin{CheckListRule}{Before starting engine}{}%% {{{
 	\CheckChecklist{\SrcName\ \SrcVersion}
@@ -127,31 +127,14 @@
 	\Check{Carburetor heater}{ON as required}
 \end{CheckList}%% }}}
 %%
-\begin{InfoBox}%% speeds + downwind power {{{
-	$\VBmath{1} = 40$ kts
-	\hfill
-	$\VBtxt{app} = 70$ kts
-	\\
-	$\VBmath{r} = 50$ kts
-	\hfill
-	$\VBtxt{fin} = 60$ kts
-	\\
-	$\VBmath{x} = 58$ kts
-	\hfill
-	$\VBmath{a} = 104$ kts
-	\\
-	$\VBmath{y} = 70$ kts 0-flaps
-	\hfill
-	$\VBtxt{glide} = 70$ kts
-	\\
-	$\VBmath{cc} = 80$ kts
-	\hfill
-	Glide ratio: 1:14 (1000 ft: 2.3 NM)
-	\\
-	($\VBtxt{plan} = 100$ kts, 80 kts climb)
-	\hfill
-	Downwind power: 20'' Hg / \RPM{2100}
-\end{InfoBox}%% }}}
+\begin{InfoBox}%% speeds + downwind power
+	% Take off          1   r   x   y  cc
+	\InfoSpeedsTakeOff{40}{50}{58}{70}{80}
+	% Landing                   app  fin  a    glide
+	\InfoSpeedsLandingCriticals{70}{60}{104}{70}
+	% More infos   plan ratio NM  fuel   downwind Xwind
+	\InfoSpeedsMore{100}{14}{2.3}{20 l}{20 inHg \& \RPM{2000--2100}}{15}
+\end{InfoBox}
 \SkipPage
 \begin{CheckListRule}{Approach}{h}%% {{{
 	\Check{Gyro}{SET}

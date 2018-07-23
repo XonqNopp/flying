@@ -288,6 +288,42 @@ cls v\GIclsChecklistsV\ %
 		\vspace{-1mm}%
 	\end{InfoBox}%
 }% }}}
+\newcommand{\InfoSpeedsTakeOff}[5]{% {{{
+{\large%
+$\VBmath{1} = #1$ kts%
+\hfill%
+$\VBtxt{r} = #2$ kts%
+\hfill%
+$\VBmath{x} = #3$ kts%
+\hfill%
+$\VBmath{y} = #4$ kts%
+\hfill%
+$\VBmath{cc} = #5$ kts%
+\\%
+}}% }}}
+\newcommand{\InfoSpeedsLandingCriticals}[4]{% {{{
+{\large%
+$\VBtxt{app} = #1$ kts%
+\hfill%
+$\VBtxt{fin} = #2$ kts%
+\hfill%
+$\VBmath{a} = #3$ kts%
+\hfill%
+$\VBtxt{glide} = #4$ kts%
+\\%
+}}% }}}
+\newcommand{\InfoSpeedsMore}[6]{% {{{
+{\large%
+($\VBtxt{plan} = #1$ kts)%
+\hfill%
+Glide ratio: 1:#2 (1000 ft: #3 NM)%
+\\%
+Fuel: #4/h%
+\hfill%
+Max X-wind comp: #6 kts%
+\\%
+Downwind pwr: #5%
+}}% }}}
 \newcommand{\BoxSpace}{\mbox{}\vspace{-8mm}}
 \newcommand{\SkipPage}{\clearpage\BoxSpace}
 \newcommand*{\Vtxt}[1]{\ensuremath{\textrm{v}_{\textrm{\small #1}} }}

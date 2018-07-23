@@ -8,32 +8,14 @@
 	\Check{#&%}{#&%}
 \end{CheckListRule}% }}}
 %
-\begin{InfoBox}% speeds + downwind power {{{
-	\large
-	$\VBmath{1} = #&%$ kts
-	\hfill
-	$\VBtxt{app} = #&%$ kts
-	\\
-	$\VBmath{r} = #&%$ kts
-	\hfill
-	$\VBtxt{fin} = #&%$ kts
-	\\
-	$\VBmath{x} = #&%$ kts
-	\hfill
-	$\VBmath{a} = #&%$ kts
-	\\
-	$\VBmath{y} = #&%$ kts
-	\hfill
-	$\VBtxt{glide} = #&%$ kts
-	\\
-	$\VBmath{cc} = #&%$ kts
-	\hfill
-	Glide ratio: 1:#&% (1000 ft: #&% NM)
-	\\
-	($\VBtxt{plan} = #&%$ kts)
-	\hfill
-	Downwind power: \RPM{#&%}
-\end{InfoBox}% }}}
+\begin{InfoBox}% speeds + downwind power
+	% Take off          1   r   x   y  cc
+	\InfoSpeedsTakeOff{#&%}{#&%}{#&%}{#&%}{#&%}
+	% Landing                   app  fin  a    glide
+	\InfoSpeedsLandingCriticals{#&%}{#&%}{#&%}{#&%}
+	% More infos   plan ratio NM  fuel   downwind Xwind
+	\InfoSpeedsMore{#&%}{#&%}{#&%}{#&%}{#&%}{#&%}
+\end{InfoBox}
 %
 \begin{InfoDistances}{#&%}
 	T-off F2
