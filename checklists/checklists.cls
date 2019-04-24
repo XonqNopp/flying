@@ -1,13 +1,9 @@
 % This is a class to write checlists for airplanes
-% Created: Sun 2014-11-23 16:15:44 CET
-%
-% TODO:
-%
 
 % TeX
 \NeedsTeXFormat{LaTeX2e}[1998/12/01]
-\newcommand*{\GIclsChecklistsV}{0.7}
-\newcommand*{\GIclsChecklistsD}{2018/07/17}
+\newcommand*{\GIclsChecklistsV}{0.8}
+\newcommand*{\GIclsChecklistsD}{2019/04/24}
 % Class name {{{
 % Tell your name and your birthday and describe yourself in 5 words
 \newcommand*{\GIclsChecklistsN}{checklists}
@@ -54,13 +50,11 @@
 \renewcommand*{\geq}{\geqslant}
 \renewcommand*{\leq}{\leqslant}
 %
-\newcommand*{\DocVersion}{}
 \newcommand*{\SrcVersion}{}
 \newcommand*{\SrcName}{}
-\newcommand*{\DocV}[3]{%
-\renewcommand*{\DocVersion}{#1}%
-\renewcommand*{\SrcName}{#2}%
-\renewcommand*{\SrcVersion}{#3}%
+\newcommand*{\DocV}[2]{%
+\renewcommand*{\SrcName}{#1}%
+\renewcommand*{\SrcVersion}{#2}%
 \ifthenelse{\equal{\SrcName}{}}{}{\renewcommand*{\SrcFoot}{from \SrcName\ v\SrcVersion}}%
 }
 %
@@ -108,7 +102,7 @@
 \fancyhf[FL]{\Gael}
 \fancyhf[FC]{%
 \jobname.pdf %
-\textbf{v\DocVersion\ (\today)}\ %
+\textbf{v\SrcVersion.\today}\ %
 cls v\GIclsChecklistsV\ %
 \textbf{\SrcFoot}%
 }

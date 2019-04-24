@@ -1,7 +1,7 @@
 \documentclass{checklists}
 %
 \SetPlane{Robin DR400--140B}{}{HB-KFQ HB-KEX}
-\DocV{1.03}{GVM Sion}{1.2}
+\DocV{GVM Sion}{1.2}
 %
 \input{robinPreparation}
 %
@@ -34,7 +34,15 @@
 	\Check{NAV lights}{ON}
 	\FuelPump{ON}
 	\Check{Magnetos}{LEFT}
-	%\Check{Priming}{ACCORDING AFM}% throttle does
+	\begin{ConditionalChecks}{If WEATHER cold:}
+		\Check{Throttle}{10x open-close then $5mm$}
+		\Check{Magnetos}{BOTH}
+		\Check{Starter}{ENGAGE}
+		\Check{Throttle}{5-6x open-close then idle}
+		\Check{Magnetos}{LEFT}
+		\Check{Starter}{ENGAGE}
+		\Check{Throttle}{Increase progressively}
+	\end{ConditionalChecks}
 	\Check{Throttle}{3x open-close then $5mm$}
 	\Check{Propeller area}{CLEAR}
 	\Check[h]{Starter}{ENGAGE, TIME CHECK}
@@ -47,7 +55,7 @@
 	\FuelPump{OFF}
 	\Check{Annunciator lights}{}
 	\Check{Ventilation, heater, defroster}{AS REQUIRED}
-	\Check{Avionics + FLARM}{ON}
+	\Check{Avionics + Transponder + FLARM}{ON}
 	\Check{Flight instruments}{SET \& CHECKED}
 	\Check{Engine instruments}{}
 	\Check{Radios}{SET}
@@ -162,8 +170,8 @@
 	\Check{Magnetos}{OFF, KEY REMOVED}
 	\Check{NAV lights}{OFF}
 	\Check{Battery master \& alternator}{OFF}
-	\Check{Flaps}{DOWN}
 	\Check{Hour meter stand}{WRITTEN}
+	\Check{Flaps}{DOWN}
 	\Check{Flight data \& documents}{NOTED \& COMPLETED}
 	\Check{Aircraft}{TO BE SECURED}
 \end{CheckList}%% }}}
