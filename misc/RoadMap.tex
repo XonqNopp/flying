@@ -1,5 +1,4 @@
 
-\newcommand*{\DocVersion}{48}
 %% Headers %%% {{{
 \documentclass[12pt,twoside,a4paper]{article}
 
@@ -8,6 +7,7 @@
 \newcommand*{\ThisAuthors}{\Gael}
 \newcommand*{\ThisTitle}{Flight Roadmap}
 \newcommand*{\ThisTitleSHORT}{\ThisTitle}
+\newcommand*{\DocVersion}{\today}
 %% End of document variables %%% }}}
 %% Usepackages %%% {{{
 %% General {{{
@@ -61,6 +61,8 @@
 %\usepackage{fourier}
 %\usepackage{nicefrac}
 %\usepackage[normalem]{ulem}
+\usepackage[yyyymmdd]{datetime}
+\renewcommand*{\dateseparator}{-}
 %% }}}
 %% Miscellaneous %% {{{
 %\usepackage{alltt}
@@ -172,16 +174,14 @@
 \\
 \hline
 	\multicolumn{1}{|l|}{\small AD}
-	&\multicolumn{1}{r|}{/\phantom{000}}
-	&\multicolumn{1}{r|}{/\phantom{000}}
-	&\multicolumn{1}{r|}{/\phantom{000}}
-	&Ldg:
+	&&&
+	& Ldg:
 \\\hhline{----~}
 	\multicolumn{1}{|l|}{\multirow{3}{*}{\small COM}} &&&
-	&B-on:
+	& B-on:
 \\
 	\multicolumn{1}{|l|}{}&&&
-	&C-on:
+	& C-on:
 \\
 \hhline{~~~~=}
 	\multicolumn{1}{|l|}{}&&&
@@ -223,17 +223,16 @@
 	& RFOB:
 \\
 \hhline{----~}
-	\multicolumn{1}{l}{QNH:}
-	& \multicolumn{3}{l|}{}
-	& Fuel up:
-\\
-\hhline{~~~~-}
 	\multicolumn{4}{l|}{
 		\normalsize
 		$
 		\textrm{QNH} > \textrm{QNE} \Longrightarrow \textrm{altitude} > \textrm{FL}
 		$\ !
 	}
+	& Fuel up:
+\\
+\hhline{~~~~-}
+	\multicolumn{4}{l|}{}
 	& T-off fuel:
 \\
 	\multicolumn{4}{l|}{}
@@ -242,21 +241,28 @@
 \hhline{~~~~-}
 \end{longtable}%% }}}
 
-\vspace{66mm}
+\vspace{57mm}
 
-\begin{longtable}{c|c|c|c|c|l}%% {{{
-	& LSGE LSGE L &&& FEW OVERCAST &\kill
-\hhline{~-----}
-	& AD COM ID
-	& RWY
-	& SW wind \RefSpeed
-	& visi clouds
-	& T QNH RMK
+\begin{longtable}{c|c|c|c|c|c|c|c|l}%% {{{
+	&&&& SHRA FG &&&& hello world\kill
+\hhline{~--------}
+	& AD,ID
+	& \textsc{rwy}
+	& SW
+	& wind + \RefSpeed
+	& visi + clouds
+	& T/DP
+	& QNH
+	& RMK
 \\\hline
-\textbf{A} &&&&\multicolumn{1}{c|}{}&\\
-\textbf{T} &&&&\multicolumn{1}{c|}{}&\\
-\textbf{I} &&&&\multicolumn{1}{c|}{}&\\
-\textbf{S} &&&&\multicolumn{1}{c|}{}&\\
+&&&&&&&&\\
+\textbf{A} &&&&&&&&\\
+\hhline{~--------}
+\textbf{T} &&&&&&&&\\
+\textbf{I} &&&&&&&&\\
+\hhline{~--------}
+\textbf{S} &&&&&&&&\\
+&&&&&&&&\\
 \hline
 \end{longtable}%% }}}
 \vspace{-8mm}
@@ -265,15 +271,15 @@
 	\multicolumn{2}{c|}{Gen\`eve}
 	&\multicolumn{2}{c|}{Z\"urich}
 
-	& \textbf{LSGE} & 120.625
+	& \textbf{LSGE} & 120.630
 	& \multicolumn{1}{l}{\textbf{LSGS} {\small T}} & 118.275
 \\
 \hhline{----~~~~}
 	Info   & 126.350
-	& Info & 124.7\phantom{00}
+	& Info & 124.700
 
-	& \LvS{GT} & 124.675
-	& \multicolumn{1}{l}{\LvSS{GS}{G}} & 121.7\phantom{00}
+	& \LvS{GT} & 124.680
+	& \multicolumn{1}{l}{\LvSS{GS}{G}} & 121.705
 \\
 	Delta   & 119.175
 	& Delta & 119.225
@@ -290,12 +296,12 @@
 	&
 	&&
 	& \LvS{ZB} \ATIS & 125.130
-	& \LvS{TA}       & 129.875
+	& \LvS{TA}       & 129.880
 \\
-	{\small Baloo}   & 122.250
+	{\small Baloo}   & 122.255
 	&&
 	& \LvSS{ZB}{APP} & 127.325
-	& \LvS{GB}       & 122.150
+	& \LvS{GB}       & 122.155
 \\
 \end{longtable}%% }}}
 
@@ -303,7 +309,6 @@
 
 
 %% }}}
-%% Document body {{{
 \begin{document}
 \Large
 \ALL
@@ -312,5 +317,4 @@
 \addtocounter{visp}{-1}
 \ALL
 \end{document}
-%% }}}
 
