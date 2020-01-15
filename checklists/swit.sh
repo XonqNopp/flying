@@ -6,7 +6,7 @@ localfiles="$localfiles archer2.pdf"
 #localfiles="$localfiles c182s.pdf"
 localfiles="$localfiles robin400140b.pdf"
 
-if [ $# > 0 ]; then
+if [ $# -gt 0 ]; then
 	localfiles="$@"
 fi
 

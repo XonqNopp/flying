@@ -333,6 +333,7 @@ Downwind pwr: #5%
 \newcommand*{\LandingTime}{\WriteTime{Landing}}
 \newcommand*{\FuelPump}[1]{\Check{Fuel pump}{#1, PRESSURE CHECKED}}
 \newcommand*{\CheckChecklist}[1]{\Check{On-board checklist version}{#1}}
+\newcommand*{\MagnetosGrounding}{\Check{Magnetos grounding (at idle)}{DONE}}
 %
 %
 %

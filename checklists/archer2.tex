@@ -39,7 +39,7 @@
 	\Check{Position light        }{AS REQUIRED}
 \end{CheckListRule}%% }}}
 \begin{CheckList}{Taxi}{}%% {{{
-	\BlockTime{off}
+	\BlockOff
 	\Check{Landing + recognition lights}{2x ON}
 	\Check{Parking brake}{RELEASED}
 	\Check[h]{Brakes, nose wheel steering}{}
@@ -98,7 +98,7 @@
 	\Check{Approach sector}{FREE}
 	\Check{Strobe + landing + recognition lights}{3x ON}
 	\Check[h]{Runway}{IDENTIFIED}
-	\Check[hh]{Gyro}{CHECKED, bug set}
+	\Check[hh]{Direction indicator}{CHECKED, bug set}
 	\Check[hh]{Wind}{}
 \end{CheckListRule}%% }}}
 \begin{CheckListRule}{Take-off}{h}%% {{{
@@ -117,7 +117,7 @@
 	\Check{Transponder}{ALT}
 \end{CheckListRule}%% }}}
 \begin{CheckListRule}{Cruise}{h}%% {{{
-	\Check{Gyro}{CHECKED, bug set}
+	\Check{Direction indicator}{CHECKED, bug set}
 	\Check{Altimeter}{2x CHECKED}
 	\Check{Power}{SET}
 	\Check{Mixture}{SET}
@@ -142,7 +142,7 @@
 \end{InfoBox}
 \SkipPage
 \begin{CheckListRule}{Approach}{h}%% {{{
-	\Check{Gyro}{SET, bug on RWY}
+	\Check{Direction indicator}{SET, bug on RWY}
 	\Check{Altimeter}{2x QNH}
 	\FuelPump{ON}
 	\Check{Fuel quantity L and R}{}
@@ -163,11 +163,11 @@
 	\Check{Wind}{}
 \end{CheckListRule}%% }}}
 \begin{CheckListRule}{After landing}{}%% {{{
-	\LandingTime
 	\Check{Flaps}{UP}
 	\Check{Transponder}{GND}
 	\Check{Strobe light}{OFF}
 	\FuelPump{OFF}
+	\LandingTime
 \end{CheckListRule}%% }}}
 \begin{CheckList}{Engine shut down}{}%% {{{
 	\Check{Parking brake}{SET}
@@ -175,8 +175,9 @@
 	\Check{Power}{\RPM{1100}}
 	\Check{Electrical equipment}{OFF}
 	\Check{Avionics master switch}{OFF}
-	\Check[h]{Mixture}{CUT OFF}
-	\Check[hh]{Ignition key}{OFF and REMOVED}
+	\MagnetosGrounding
+	\Check{Mixture}{CUT OFF}
+	\Check{Ignition key}{OFF and REMOVED}
 	\BlockOnCounter
 	\Check{Master switch}{OFF}
 	\Check{Control lock}{SET}
@@ -202,6 +203,6 @@
 	& +2 (+6)  % 993hPa
 	& +8 (+12)  % +30oC
 	& ---  % grass
-	\\
+	\\[-1.4mm]
 \end{InfoDistances}
 \end{document}
