@@ -2,8 +2,8 @@
 
 % TeX
 \NeedsTeXFormat{LaTeX2e}[1998/12/01]
-\newcommand*{\GIclsChecklistsV}{0.8}
-\newcommand*{\GIclsChecklistsD}{2019/04/24}
+\newcommand*{\GIclsChecklistsV}{1.0}
+\newcommand*{\GIclsChecklistsD}{2020/06/29}
 % Class name {{{
 % Tell your name and your birthday and describe yourself in 5 words
 \newcommand*{\GIclsChecklistsN}{checklists}
@@ -332,6 +332,7 @@ Downwind pwr: #5%
 \newcommand*{\TakeOffTime}{\WriteTime{Take-off}}
 \newcommand*{\LandingTime}{\WriteTime{Landing}}
 \newcommand*{\FuelPump}[1]{\Check{Fuel pump}{#1, PRESSURE CHECKED}}
+\newcommand*{\FuelQuantity}[1][CHECKED]{\Check{Fuel quantity}{#1, Endurance}}
 \newcommand*{\CheckChecklist}[1]{\Check{On-board checklist version}{#1}}
 \newcommand*{\MagnetosGrounding}{\Check{Magnetos grounding (at idle)}{DONE}}
 %
