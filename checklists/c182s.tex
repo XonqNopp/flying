@@ -15,7 +15,7 @@
 	\Check{Circuit breakers            }{2 rows IN}
 	\Check{Master switch               }{ON}
 	\Check{Hour meter stand            }{WRITTEN}
-	\Check{Fuel quantity L and R       }{}
+	\FuelQuantity[L + R]
 	\Check{Fuel selector valve         }{BOTH}
 \end{CheckListRule}%% }}}
 \begin{CheckList}{Starting engine}{}%% {{{
@@ -42,12 +42,13 @@
 \end{CheckList}%% }}}
 \SkipPage
 \begin{CheckListRule}{Taxi}{}%% {{{
+	\BlockOff
 	\Check{Taxi and Landing lights}{BOTH ON}
 	\Check{Parking brake}{RELEASED}
 	\Check[h]{Brakes}{}
 	\Check[hh]{Nose wheel steering}{}
 	\Check[hh]{Flight instruments}{}
-	\Check[hh]{Squawk}{GND}
+	\Check[hh]{Transponder}{GND}
 \end{CheckListRule}%% }}}
 \begin{CheckListRule}{Engine check}{}%% {{{
 	\Check{Parking brake}{SET (pedals depressed)}
@@ -65,7 +66,7 @@
 \end{CheckListRule}%% }}}
 \begin{SubWrapper}{Before take-off}{}%% {{{
 \begin{SubCheckList}{Fuel}%% {{{
-	\Check{Fuel quantity L and R}{}
+	\FuelQuantity[L + R]
 	\Check{Fuel selector valve}{BOTH}
 	\Check{Mixture}{RICH or according AFM}
 \end{SubCheckList}%% }}}
@@ -93,9 +94,9 @@
 %% }}}
 \SkipPage
 \begin{CheckListRule}{Line-up}{}%% {{{
+	\TakeOffTime
 	\Check{Approach sector}{FREE}
 	\Check{Strobe, Taxi, Landing lights}{3x ON}
-	\Check{Time}{KNOWN}
 	\Check[h]{Runway}{IDENTIFIED}
 	\Check[hh]{Gyro}{}
 	\Check[hh]{Wind}{}
@@ -112,7 +113,7 @@
 	\Check{Mixture}{SET}
 	\Check{Strobe, Landing, Taxi lights}{ON}
 	\Check{Cowl flaps}{OPEN}
-	\Check{Squawk}{ALT}
+	\Check{Transponder}{ALT}
 \end{CheckListRule}%% }}}
 \begin{CheckListRule}{Cruise}{h}%% {{{
 	\Check{Gyro}{}
@@ -129,36 +130,19 @@
 	\Check{Mixture}{ENRICHED as required}
 \end{CheckList}%% }}}
 %%
-\begin{InfoBox}%% speeds + downwind power {{{
-	$\VBmath{1} = $xxx kts
-	\hfill
-	$\VBtxt{app} = $xxx kts
-	\\
-	$\VBmath{r} = $xxx kts
-	\hfill
-	$\VBtxt{fin} = $xxx kts
-	\\
-	$\VBmath{x} = 58$ kts flaps-2 / 63 kts 0-flaps
-	\hfill
-	$\VBmath{a} = $xxx kts
-	\\
-	$\VBmath{y} = 80$ kts
-	\hfill
-	$\VBtxt{glide} = $xxx kts
-	\\
-	$\VBmath{cc} = 85-95$ kts
-	\hfill
-	Glide ratio: 1:xx (1000 ft: xx NM)
-	\\
-	($\VBtxt{plan} = $xxx kts)
-	\hfill
-	Downwind power: \RPM{2000}
-\end{InfoBox}%% }}}
+\begin{InfoBox}%% speeds + downwind power
+	% Take off          1   r   x   y  cc
+	\InfoSpeedsTakeOff{XX}{XX}{XX}{XX}{XX}
+	% Landing                   app  fin  a    glide
+	\InfoSpeedsLandingCriticals{XX}{XX}{XX}{XX}
+	% More infos   plan ratio NM  fuel   downwind Xwind
+	\InfoSpeedsMore{XX}{XX}{X.X}{XX USG}{XX inHg \& \RPM{XX}}{XX}
+\end{InfoBox}%%
 \SkipPage
 \begin{CheckListRule}{Approach}{h}%% {{{
 	\Check{Gyro}{SET, bug on RWY}
 	\Check{Altimeter}{}
-	\Check{Fuel quantity L and R}{}
+	\FuelQuantity[L + R]
 	\Check{Fuel selector valve}{BOTH}
 	\Check{Mixture}{RICH}
 	\Check{Cowl flaps}{CLOSED}
@@ -175,17 +159,20 @@
 	\Check{Wind}{}
 \end{CheckListRule}%% }}}
 \begin{CheckListRule}{After landing}{}%% {{{
+	\LandingTime
 	\Check{Flaps}{UP}
 	\Check{Cowl flaps}{OPEN}
-	\Check{Squawk}{GND}
+	\Check{Transponder}{GND}
 	\Check{Strobe light}{OFF}
 \end{CheckListRule}%% }}}
 \begin{CheckList}{Engine shut down}{}%% {{{
 	\Check{Parking brake}{SET}
 	\Check{Taxi, Landing light}{BOTH OFF}
 	\Check{Power}{\RPM{1000}}
+	\BlockOn
 	\Check{Electrical equipment}{OFF}
 	\Check{Avionics master switch}{OFF}
+	\Check{Magnetos grounding}{}
 	\Check{Mixture}{CUT OFF}
 	\Check{Ignition key}{OFF and REMOVED}
 	\Check{Hour meter stand}{WRITTEN}
