@@ -1,6 +1,6 @@
 \documentclass{checklists}
 \SetPlane{Skylane}{C182S}{HB-TDR}
-\DocV{AFS}{1.12}
+\DocV{AFS}{2.11}
 \usepackage{nicefrac}
 \begin{document}
 \begin{CheckListRule}{Before starting engine}{}%% {{{
@@ -19,10 +19,10 @@
 	\Check{Fuel selector valve         }{BOTH}
 \end{CheckListRule}%% }}}
 \begin{CheckList}{Starting engine}{}%% {{{
-	\Check{Beacon light          }{ON}
-	\Check{Propeller             }{FULL RPM}
+	\Check{Beacon light, FLARM, Aspen PFD}{ON}
+	\Check{Propeller             }{MAX RPM}
 	\Check{Throttle friction lock}{ADJUSTED}
-	\Check{Throttle              }{\nicefrac{1}{4}''}
+	\Check{Throttle              }{5mm}
 	\Check{Mixture               }{CUT OFF}
 	\begin{ConditionalChecks}{If engine cold:}
 		\Check{Auxiliary fuel pump}{ON}
@@ -40,7 +40,6 @@
 	\Check{Position light        }{AS REQUIRED}
 	\Check{Wing flaps            }{CHECKED then RETRACTED}
 \end{CheckList}%% }}}
-\SkipPage
 \begin{CheckListRule}{Taxi}{}%% {{{
 	\BlockOff
 	\Check{Taxi and Landing lights}{BOTH ON}
@@ -50,17 +49,18 @@
 	\Check[hh]{Flight instruments}{}
 	\Check[hh]{Transponder}{GND}
 \end{CheckListRule}%% }}}
+\SkipPage
 \begin{CheckListRule}{Engine check}{}%% {{{
 	\Check{Parking brake}{SET (pedals depressed)}
 	\Check{Taxi and Landing lights}{BOTH OFF}
 	\Check{Throttle}{\RPM{1800}}
 	\Check{Magnetos}{CHECKED (max drop \RPM{150})}
-	\Check{Propeller}{CYCLE, then FULL RPM}
+	\Check{Propeller}{CYCLE, then MAX RPM}
 	\Check{Mixture, EGT and Fuel Flow}{}
 	\Check{Ammeter}{}
 	\Check{Vacuum}{}
 	\Check{Oil pressure, Oil temperature}{}
-	\Check{Annunciator panel}{}
+	\Check{Annunciator panel}{TESTED then NO LIGHTS}
 	\Check{Throttle idle}{\RPM{500--700}}
 	\Check{Engine warm up}{\RPM{1000}}
 \end{CheckListRule}%% }}}
@@ -71,15 +71,14 @@
 	\Check{Mixture}{RICH or according AFM}
 \end{SubCheckList}%% }}}
 \begin{SubCheckList}{Engine}%% {{{
-	\Check{Oil pressure}{}
-	\Check{Oil temperature}{}
-	\Check{Propeller}{FULL RPM}
+	\Check{Oil pressure, Oil temperature}{}
+	\Check{Propeller}{MAX RPM}
 \end{SubCheckList}%% }}}
 \begin{SubCheckList}{Airplane}%% {{{
-	\Check{Wing flaps}{SET for take-off (0 or 2)}
+	\Check{Wing flaps}{SET for take-off (0, 1, 2)}
 	\Check{Elevator and Rudder trims}{SET for take-off}
 	\Check{Cowl flaps}{OPEN}
-	\Check{Altimeter}{QNH}
+	\Check{Altimeters x3}{QNH}
 	\Check{Flight instruments}{SET}
 	\Check{Autopilot}{OFF}
 	\Check{Cabin doors}{CLOSED and LATCHED}
@@ -97,18 +96,19 @@
 	\TakeOffTime
 	\Check{Approach sector}{FREE}
 	\Check{Strobe, Taxi, Landing lights}{3x ON}
+	\Check{Transponder}{ALT}
 	\Check[h]{Runway}{IDENTIFIED}
-	\Check[hh]{Gyro}{}
+	\Check[hh]{Gyro}{CHECKED and HDG BUG SET}
 	\Check[hh]{Wind}{}
 \end{CheckListRule}%% }}}
 \begin{CheckListRule}{Take-off}{h}%% {{{
 	\Check{Runway}{FREE}
 	\Check{Power}{FULL (\RPM{2400})}
 	\Check{Mixture}{RICH or according AFM}
-	\Check{Speed}{ALIVE}
+	\Check{Speed x2}{ALIVE}
 \end{CheckListRule}%% }}}
 \begin{CheckListRule}{Climb}{h}%% {{{
-	\Check{Power}{MAXIMUM}
+	\Check{Power}{FULL THROTTLE (23 inHg) and \RPM{2300}}
 	\Check{Flaps}{UP}
 	\Check{Mixture}{SET}
 	\Check{Strobe, Landing, Taxi lights}{ON}
@@ -116,36 +116,37 @@
 	\Check{Transponder}{ALT}
 \end{CheckListRule}%% }}}
 \begin{CheckListRule}{Cruise}{h}%% {{{
-	\Check{Gyro}{}
-	\Check{Altimeter}{}
+	\Check{Gyro}{CHECKED and HDG BUG SET}
+	\Check{Altimeters x3}{}
 	\Check{Power}{SET}
 	\Check{Mixture}{SET}
-	\Check{Engine}{}
-	\Check{Lights}{}
+	\FuelQuantity[L + R]
+	\Check{Engine instruments}{}
 	\Check{Cowl flaps}{CLOSED}
+	\Check{Lights}{}
 	\Check{Elevator and Rudder trims}{SET}
 \end{CheckListRule}%% }}}
-\begin{CheckList}{Descent}{h}%% {{{
-	\Check{Fuel selector valve}{BOTH}
-	\Check{Mixture}{ENRICHED as required}
-\end{CheckList}%% }}}
+%\begin{CheckList}{Descent}{h}%% {{{
+	%\Check{Fuel selector valve}{BOTH}
+	%\Check{Mixture}{ENRICHED as required}
+%\end{CheckList}%% }}}
 %%
 \begin{InfoBox}%% speeds + downwind power
-	% Take off          1   r   x   y  cc
-	\InfoSpeedsTakeOff{XX}{XX}{XX}{XX}{XX}
+	% Take off          1   r   x                y  cc
+	\InfoSpeedsTakeOff{XX}{XX}{58 (F2),63 (F0)}{80}{85-95}
 	% Landing                   app  fin  a    glide
-	\InfoSpeedsLandingCriticals{XX}{XX}{XX}{XX}
+	\InfoSpeedsLandingCriticals{90}{XX}{XX}{XX}
 	% More infos   plan ratio NM  fuel   downwind Xwind
 	\InfoSpeedsMore{XX}{XX}{X.X}{XX USG}{XX inHg \& \RPM{XX}}{XX}
 \end{InfoBox}%%
 \SkipPage
 \begin{CheckListRule}{Approach}{h}%% {{{
-	\Check{Gyro}{SET, bug on RWY}
-	\Check{Altimeter}{}
+	\Check{Gyro}{HDG BUG SET on RWY}
+	\Check{Altimeters x3}{}
 	\FuelQuantity[L + R]
 	\Check{Fuel selector valve}{BOTH}
-	\Check{Mixture}{RICH}
 	\Check{Cowl flaps}{CLOSED}
+	\Check{Mixture}{RICH}
 	\Check{Autopilot}{OFF}
 	\Check{Strobe, Taxi, Landing light}{3x ON}
 	\Check{Seat backs}{MOST UPRIGHT POSITION}
@@ -154,7 +155,7 @@
 \end{CheckListRule}%% }}}
 \begin{CheckListRule}{Final}{h}%% {{{
 	\Check{Flaps}{FULL}
-	\Check{Propeller}{FULL RPM}
+	\Check{Propeller}{MAX RPM}
 	%\Check{Mixture}{RICH as required}
 	\Check{Wind}{}
 \end{CheckListRule}%% }}}
@@ -174,7 +175,7 @@
 	\Check{Avionics master switch}{OFF}
 	\Check{Magnetos grounding}{}
 	\Check{Mixture}{CUT OFF}
-	\Check{Ignition key}{OFF and REMOVED}
+	\Check{Magnetos}{OFF and KEY REMOVED}
 	\Check{Hour meter stand}{WRITTEN}
 	\Check{Master switch}{OFF}
 	\Check{Control lock}{SET}
@@ -186,21 +187,18 @@
 \begin{InfoDistances}{2300}
 	T-off F2
 	& ? (?)  % roll(50ft) #1 ft 1003hPa +20oC
-	& +? (+?)  % +1000ft
 	& +? (+?)  % 993hPa
 	& +? (+?)  % +30oC
 	& +? (+?)  % grass
 	\\\hline
 	T-off 0F
 	& ? (?)  % roll(50ft) #1 ft 1003hPa +20oC
-	& +? (+?)  % +1000ft
 	& +? (+?)  % 993hPa
 	& +? (+?)  % +30oC
 	& +? (+?)  % grass
 	\\\hline
 	Landing
 	& ? (?)  % roll(50ft) #1 ft 1003hPa +20oC
-	& +? (+?)  % +1000ft
 	& +? (+?)  % 993hPa
 	& +? (+?)  % +30oC
 	& +? (+?)  % grass
