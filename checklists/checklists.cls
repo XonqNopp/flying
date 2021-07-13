@@ -120,28 +120,30 @@ cls v\GIclsChecklistsV\ %
 	skipbelow=0,
 	innertopmargin=0,
 	innerbottommargin=0
-}
+}%
+%
 \newmdenv[
 	backgroundcolor=yellow!50,
 	innerbottommargin=2pt,
 	innertopmargin=1.2mm
-]{MDeven}
+]{MDeven}%
+%
 \newmdenv[
 	backgroundcolor=orange!80,
 	innerbottommargin=2pt,
 	innertopmargin=1.2mm
-]{MDheartEnv}
+]{MDheartEnv}%
+%
 \newmdenv[
 	backgroundcolor=orange!80,
-	innerleftmargin=9mm,
-	innertopmargin=3pt,
-	innerbottommargin=4pt
-]{MDheartItem}
+	innerbottommargin=2pt,
+	innertopmargin=1.2mm
+]{MDheartItem}%
+%
 \newmdenv[
-	backgroundcolor=blue!10,
-	skipabove=3pt,
-	innertopmargin=3pt
-]{MDconditional}
+	backgroundcolor=blue!10
+]{MDconditional}%
+%
 \newmdenv[
 	backgroundcolor=blue!30,
 	innertopmargin=2mm,
@@ -320,22 +322,84 @@ Downwind pwr: #5%
 }}% }}}
 \newcommand{\BoxSpace}{\mbox{}\vspace{-8mm}}
 \newcommand{\SkipPage}{\clearpage\BoxSpace}
+%
 \newcommand*{\Vtxt}[1]{\ensuremath{\textrm{v}_{\textrm{\small #1}} }}
 \newcommand*{\Vmath}[1]{\ensuremath{\textrm{v}_{#1} }}
 \newcommand*{\VBtxt}[1]{\ensuremath{\textbf{v}_{\textrm{\small #1}} }}
 \newcommand*{\VBmath}[1]{\ensuremath{\textbf{v}_{#1} }}
+%
 \newcommand*{\WriteTime}[1]{\Check{#1 time}{WRITTEN}}
 \newcommand*{\BlockTime}[1]{\WriteTime{Block-#1}}
-\newcommand*{\BlockOff}{\BlockTime{off}}
-\newcommand*{\BlockOn}{\BlockTime{on}}
 \newcommand*{\BlockOnCounter}{\Check{Block-on time, hour meter stand}{WRITTEN}}
 \newcommand*{\TakeOffTime}{\WriteTime{Take-off}}
 \newcommand*{\LandingTime}{\WriteTime{Landing}}
+\newcommand*{\HourMeterStandWRITTEN}{\Check{Hour meter stand}{WRITTEN}}
+%
+\newcommand*{\PreflightInspectionCOMPLETED}{\Check{Preflight inspection}{COMPLETED}}
+%
+\newcommand*{\BriefingCOMPLETED}[1]{\Check{#1 briefing}{COMPLETED}}
+\newcommand*{\PassengerBriefingCOMPLETED}{\BriefingCOMPLETED{Passenger}}
+\newcommand*{\DepartureBriefingCOMPLETED}{\BriefingCOMPLETED{Departure}}
+\newcommand*{\ApproachBriefingCOMPLETED}{\BriefingCOMPLETED{Approach}}
+%
+\newcommand*{\WheelChocksAndPitotCover}[1]{\Check{Wheel chocks and pitot cover}{#1}}
+\newcommand*{\WheelChocksAndPitotCoverOnBoard}{\WheelChocksAndPitotCover{REMOVED, ON BOARD}}
+\newcommand*{\WheelChocksAndPitotCoverSET}{\WheelChocksAndPitotCover{SET}}
+%
+\newcommand*{\ParkingBrake}[1]{\Check{Parking brake}{#1}}
+\newcommand*{\ParkingBrakeTESTED}{\ParkingBrake{TESTED and SET}}
+%
+\newcommand*{\CheckChecklist}[1]{\Check{On-board checklist version}{#1}}
+%
+\newcommand*{\SeatsADJUSTED}{\Check{Seats, seat belts}{ADJUSTED and LOCKED}}
+\newcommand*{\SeatsSECURED}{\Check{Seats and seat belts}{SECURED}}
+\newcommand*{\SeatBacksUPRIGHT}{\Check{Seat backs}{MOST UPRIGHT POSITION}}
+%
+\newcommand*{\AvionicsMasterSwitch}[1]{\Check{Avionics master switch}{#1}}
+\newcommand*{\MasterSwitch}[1]{\Check{Master switch}{#1}}
+\newcommand*{\ElectricalOFF}{\Check{Electrical equipment}{OFF}}
+\newcommand*{\CircuitBreakers}[1]{\Check{Circuit breakers}{#1}}
+\newcommand*{\PositionLightAsRequired}{\Check{Position light}{AS REQUIRED}}
+\newcommand*{\TaxiLandingLights}[1]{\Check{Taxi and Landing lights}{BOTH #1}}
+%
+\newcommand*{\MagnetosOFF}{\Check{Magnetos}{OFF and KEY REMOVED}}
+\newcommand*{\MagnetosGrounding}{\Check{Magnetos grounding (at idle)}{}}
+\newcommand*{\IgnitionKeySTART}{\Check[hh]{Ignition key}{START}}
+%
+\newcommand*{\FuelSelectorValve}[1]{\Check{Fuel selector valve}{#1}}
+\newcommand*{\FuelSelectorValveBOTH}{\FuelSelectorValve{BOTH}}
 \newcommand*{\FuelPump}[1]{\Check{Fuel pump}{#1, PRESSURE CHECKED}}
 \newcommand*{\FuelQuantity}[1][CHECKED]{\Check{Fuel quantity}{#1, Endurance}}
-\newcommand*{\CheckChecklist}[1]{\Check{On-board checklist version}{#1}}
-\newcommand*{\MagnetosGrounding}{\Check{Magnetos grounding (at idle)}{DONE}}
+\newcommand*{\FuelQuantityLR}{\FuelQuantity[L + R]}
+\newcommand*{\PropellerMAX}{\Check{Propeller}{MAX RPM}}
+\newcommand*{\ThrottleFrictionLockADJUSTED}{\Check{Throttle friction lock}{ADJUSTED}}
+\newcommand*{\PowerFULL}[1]{\Check{Power}{FULL (\RPM{#1})}}
+\newcommand*{\ThrottleRpm}[2][]{\Check{Throttle #1}{\RPM{#2}}}
+\newcommand*{\EngineWarmUp}[1]{\Check{Engine warm up}{\RPM{#1}}}
+\newcommand*{\Mixture}[1]{\Check{Mixture}{#1}}
+\newcommand*{\MixtureRICH}{\Mixture{RICH or according AFM}}
 %
+\newcommand*{\RunwayIDENTIFIED}{\Check[h]{Runway}{IDENTIFIED}}
+\newcommand*{\RunwayFREE}{\Check{Runway}{FREE}}
+%
+\newcommand*{\Flaps}[1]{\Check{Flaps}{#1}}
+\newcommand*{\Transponder}[1]{\Check{Transponder}{#1}}
+\newcommand*{\Autopilot}[1]{\Check{Autopilot}{#1}}
+\newcommand*{\Altimeter}[1][]{\Check{Altimeter #1}{}}
+\newcommand*{\AltimeterQNH}[1][]{\Check{Altimeter #1}{QNH}}
+\newcommand*{\PropellerAreaCLEAR}{\Check[h]{Propeller area}{CLEAR}}
+\newcommand*{\RadiosON}{\Check{Radios}{ON, SET}}
+\newcommand*{\WingFlapsCHECKED}{\Check{Wing flaps}{CHECKED then RETRACTED}}
+\newcommand*{\BrakesCHECK}{\Check[h]{Brakes}{}}
+\newcommand*{\NoseWheelSteeringCHECK}{\Check[hh]{Nose wheel steering}{}}
+\newcommand*{\FlightInstrumentsCHECK}{\Check[hh]{Flight instruments}{}}
+\newcommand*{\OilPressureTemperature}{\Check{Oil pressure, Oil temperature}{}}
+\newcommand*{\CabinDoorsCLOSED}{\Check{Cabin doors}{CLOSED and LATCHED}}
+\newcommand*{\FlightControlsCORRECT}{\Check{Flight controls}{FREE, EASY and CORRECT}}
+\newcommand*{\ApproachSectorFREE}{\Check{Approach sector}{FREE}}
+\newcommand*{\GyroSET}[1][]{\Check[#1]{Gyro}{CHECKED and HDG BUG SET}}
+\newcommand*{\WindCHECKED}[1][]{\Check[#1]{Wind}{}}
+\newcommand*{\SpeedALIVE}[1][]{\Check{Speed #1}{ALIVE}}
 %
 %
 \AtBeginDocument{\BoxSpace\large}
