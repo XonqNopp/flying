@@ -120,28 +120,30 @@ cls v\GIclsChecklistsV\ %
 	skipbelow=0,
 	innertopmargin=0,
 	innerbottommargin=0
-}
+}%
+%
 \newmdenv[
 	backgroundcolor=yellow!50,
 	innerbottommargin=2pt,
 	innertopmargin=1.2mm
-]{MDeven}
+]{MDeven}%
+%
 \newmdenv[
 	backgroundcolor=orange!80,
 	innerbottommargin=2pt,
 	innertopmargin=1.2mm
-]{MDheartEnv}
+]{MDheartEnv}%
+%
 \newmdenv[
 	backgroundcolor=orange!80,
-	innerleftmargin=9mm,
-	innertopmargin=3pt,
-	innerbottommargin=4pt
-]{MDheartItem}
+	innerbottommargin=2pt,
+	innertopmargin=1.2mm
+]{MDheartItem}%
+%
 \newmdenv[
-	backgroundcolor=blue!10,
-	skipabove=3pt,
-	innertopmargin=3pt
-]{MDconditional}
+	backgroundcolor=blue!10
+]{MDconditional}%
+%
 \newmdenv[
 	backgroundcolor=blue!30,
 	innertopmargin=2mm,
