@@ -34,9 +34,9 @@
 	\Check[hh]{Mixture           }{SMOOTHLY TO RICH}
 	\Check[hh]{Engine warm up    }{\RPM{1000--1200}}
 	\Check[hh]{Oil pressure      }{}
-	\Check[hh]{Starter           }{CHECK DISCONNECTED (ammeter)}
+	\Check[hh]{Starter           }{CHECK DISCONNECTED (light + ammeter)}
 	\Check{Avionics master switch}{ON}
-	\Check{Radios                }{ON, SET}
+	\Check{Radios                }{ON, LIGHTS TESTED, SET}
 	\Check{Position light        }{AS REQUIRED}
 	\Check{Wing flaps            }{CHECKED then RETRACTED}
 \end{CheckList}%% }}}
@@ -58,7 +58,6 @@
 	\Check{Propeller}{CYCLE, then MAX RPM}
 	\Check{Mixture, EGT and Fuel Flow}{}
 	\Check{Ammeter}{}
-	\Check{Vacuum}{}
 	\Check{Oil pressure, Oil temperature}{}
 	\Check{Annunciator panel}{TESTED then NO LIGHTS}
 	\Check{Throttle idle}{\RPM{500--700}}
@@ -76,9 +75,9 @@
 \end{SubCheckList}%% }}}
 \begin{SubCheckList}{Airplane}%% {{{
 	\Check{Wing flaps}{SET for take-off (0, 1, 2)}
-	\Check{Elevator and Rudder trims}{SET for take-off}
+	\Check{Elevator and Rudder trims}{SET for take-off (1cm right)}
 	\Check{Cowl flaps}{OPEN}
-	\Check{Altimeters x3}{QNH}
+	\Check{Altimeters x4}{QNH}
 	\Check{Flight instruments}{SET}
 	\Check{Autopilot}{OFF}
 	\Check{Cabin doors}{CLOSED and LATCHED}
@@ -117,7 +116,7 @@
 \end{CheckListRule}%% }}}
 \begin{CheckListRule}{Cruise}{h}%% {{{
 	\Check{Gyro}{CHECKED and HDG BUG SET}
-	\Check{Altimeters x3}{}
+	\Check{Altimeters x4}{}
 	\Check{Power}{SET}
 	\Check{Mixture}{SET}
 	\FuelQuantity[L + R]
@@ -133,16 +132,16 @@
 %%
 \begin{InfoBox}%% speeds + downwind power
 	% Take off          1   r   x                y  cc
-	\InfoSpeedsTakeOff{XX}{XX}{58 (F2),63 (F0)}{80}{85-95}
-	% Landing                   app  fin  a    glide
-	\InfoSpeedsLandingCriticals{90}{XX}{XX}{XX}
-	% More infos   plan ratio NM  fuel   downwind Xwind
-	\InfoSpeedsMore{XX}{XX}{X.X}{XX USG}{XX inHg \& \RPM{XX}}{XX}
+	\InfoSpeedsTakeOff{45}{55}{58 (F2),65 (F0)}{80}{90}
+	% Landing                   app  fin         a    glide
+	\InfoSpeedsLandingCriticals{90}{75-70 (65)}{110}{70 (FX), 75 (F0)}
+	% More infos   plan ratio NM  fuel    downwind             Xwind
+	\InfoSpeedsMore{120}{XX}{1.6}{13 USG}{20 inHg \& \RPM{20}}{15}
 \end{InfoBox}%%
 \SkipPage
 \begin{CheckListRule}{Approach}{h}%% {{{
 	\Check{Gyro}{HDG BUG SET on RWY}
-	\Check{Altimeters x3}{}
+	\Check{Altimeters x4}{}
 	\FuelQuantity[L + R]
 	\Check{Fuel selector valve}{BOTH}
 	\Check{Cowl flaps}{CLOSED}
