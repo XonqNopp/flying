@@ -1,6 +1,6 @@
 \documentclass{checklists}
 \SetPlane{Skylane}{C182S}{HB-TDR}
-\DocV{AFS}{2.11}
+\DocV{AFS}{2.14}
 %
 \newcommand*{\Naltimeters}{4}
 \newcommand*{\CowlFlaps}[1]{\Check{Cowl flaps}{#1}}
@@ -9,12 +9,12 @@
 \begin{CheckListRule}{Before starting engine}{}%% {{{
 	\PreflightInspectionCOMPLETED
 	\WheelChocksAndPitotCoverOnBoard
+	\ParkingBrakeTESTED
 	\PassengerBriefingCOMPLETED
 	\SeatsADJUSTED
-	\ParkingBrakeTESTED
+	\CowlFlaps{OPEN}
 	\AvionicsMasterSwitch{OFF}
 	\ElectricalOFF
-	\CowlFlaps{OPEN}
 	\CircuitBreakers{2 rows IN}
 	\MasterSwitch{ON}
 	\HourMeterStandWRITTEN
@@ -22,25 +22,24 @@
 	\FuelSelectorValveBOTH
 \end{CheckListRule}%% }}}
 \begin{CheckList}{Starting engine}{}%% {{{
-	\Check{Beacon light, FLARM, Aspen PFD}{ON}
+	\Check{BCN + NAV lights, FLARM, Aspen PFD}{ALL ON}
 	\PropellerMAX
 	\ThrottleFrictionLockADJUSTED
 	\Check{Throttle}{5mm}
 	\Mixture{CUT OFF}
 	\begin{ConditionalChecks}{If engine cold:}
 		\Check{Auxiliary fuel pump}{ON}
-		\Mixture{UP TO 3--5 GPH then CUT OFF}
+		\Mixture{RICH UP TO 3--5 GPH then CUT OFF}
 		\Check{Auxiliary fuel pump}{OFF}
 	\end{ConditionalChecks}
 	\PropellerAreaCLEAR
 	\IgnitionKeySTART
-	\Check[hh]{Mixture}{SMOOTHLY TO RICH}
+	\Check[hh]{Mixture}{SMOOTHLY TO RICH when engine fires}
 	\Check[hh]{Engine warm up}{\RPM{1000--1200}}
 	\Check[hh]{Oil pressure}{}
 	\Check[hh]{Starter}{CHECK DISCONNECTED (light + ammeter)}
 	\AvionicsMasterSwitch{ON}
 	\Check{Radios}{ON, LIGHTS TESTED, SET}
-	\PositionLightAsRequired
 	\WingFlapsCHECKED
 \end{CheckList}%% }}}
 \begin{CheckListRule}{Taxi}{}%% {{{
@@ -54,6 +53,7 @@
 \end{CheckListRule}%% }}}
 \SkipPage
 \begin{CheckListRule}{Engine check}{}%% {{{
+	\Check{PAX checklist}{GIVEN}
 	\ParkingBrake{SET (pedals depressed)}
 	\TaxiLandingLights{OFF}
 	\ThrottleRpm{1800}
@@ -77,13 +77,14 @@
 	\PropellerMAX
 \end{SubCheckList}%% }}}
 \begin{SubCheckList}{Airplane}%% {{{
-	\Check{Wing flaps}{SET for take-off (0, 1, 2)}
-	\Check{Elevator and Rudder trims}{SET for take-off (1cm right)}
+	\Check{Wing flaps}{SET for take-off (0 or 2)}
+	\Check{Elevator and Rudder trims}{SET for take-off (1cm right) (2cm up if PAX)}
 	\CowlFlaps{OPEN}
 	\AltimeterQNH[x\Naltimeters]
 	\Check{Flight instruments}{SET}
 	\Autopilot{OFF}
 	\CabinDoorsCLOSED
+	%\Check{Cabin + PAX}{SEATS and SEAT BELTS SECURED, SEAT BACKS UPRIGHT}
 	\SeatsSECURED
 	\SeatBacksUPRIGHT
 	\FlightControlsCORRECT
@@ -107,15 +108,15 @@
 	\RunwayFREE
 	\PowerFULL{2400}
 	\MixtureRICH
-	\SpeedALIVE[x2]
+	\SpeedALIVE[x3]
 \end{CheckListRule}%% }}}
 \begin{CheckListRule}{Climb}{h}%% {{{
-	\Check{Power}{FULL THROTTLE (23 inHg) and \RPM{2300}}
+	\Check{Climb power}{FULL THROTTLE (23 inHg) and \RPM{2300}}
+	\CowlFlaps{OPEN}
 	\Flaps{UP}
 	\Mixture{SET}
-	\Check{Strobe, Landing, Taxi lights}{ON}
-	\CowlFlaps{OPEN}
 	\Transponder{ALT}
+	\Check{Strobe, Landing, Taxi lights}{ON}
 \end{CheckListRule}%% }}}
 \begin{CheckListRule}{Cruise}{h}%% {{{
 	\GyroSET
@@ -134,8 +135,8 @@
 %\end{CheckList}%% }}}
 %%
 \begin{InfoBox}%% speeds + downwind power
-	% Take off          1   r   x                y  cc
-	\InfoSpeedsTakeOff{45}{55}{58 (F2),65 (F0)}{80}{90}
+	% Take off          1   r   x                 y  cc
+	\InfoSpeedsTakeOff{45}{55}{58 (F2), 65 (F0)}{80}{90}
 	% Landing                   app  fin         a    glide
 	\InfoSpeedsLandingCriticals{90}{75-70 (65)}{110}{70 (FX), 75 (F0)}
 	% More infos   plan ratio NM  fuel    downwind             Xwind
@@ -143,7 +144,8 @@
 \end{InfoBox}%%
 \SkipPage
 \begin{CheckListRule}{Approach}{h}%% {{{
-	\Check{Gyro}{HDG BUG SET on RWY}
+	\ApproachBriefingCOMPLETED
+	\Check{Avionics}{SET, HDG BUG SET on RWY}
 	\Altimeter[x\Naltimeters]
 	\FuelQuantityLR
 	\FuelSelectorValveBOTH
@@ -151,14 +153,12 @@
 	\Mixture{RICH}
 	\Autopilot{OFF}
 	\Check{Strobe, Taxi, Landing light}{3x ON}
-	\SeatBacksUPRIGHT
-	\SeatsSECURED
-	\ApproachBriefingCOMPLETED
+	\Check{Cabin + PAX}{SECURED}
 \end{CheckListRule}%% }}}
 \begin{CheckListRule}{Final}{h}%% {{{
 	\Flaps{FULL}
 	\PropellerMAX
-	%\Check{Mixture}{RICH as required}
+	\Check{Mixture}{RICH as required}
 	\WindCHECKED
 \end{CheckListRule}%% }}}
 \begin{CheckListRule}{After landing}{}%% {{{
