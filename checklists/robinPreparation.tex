@@ -2,23 +2,24 @@
 \newcommand{\RobinPreparation}[1]{%
 \begin{CheckListRule}{Aeroplane and cockpit preparation}{}
 	\CheckChecklist{#1}
+	\PassengerBriefingCOMPLETED
 	\Check{Aircraft papers + log}{}
-	\Check{Key}{INSERT}
-	\Check{Throttle}{IDLE}
-	\Check{Mixture}{IDLE CUTOFF}
-	\Check{Carburettor heater}{OFF}
-	\Check{Electrical consumers}{OFF}
-	\Check{Battery and alternator}{ON}
-	\Check{Circuit breakers}{ALL IN}
-	\Check{Annunciator lights}{TESTED}
-	\Check{Avionics}{ON}
-	\Check{COM monitor}{EMG 121.5, ATIS (phone)}
-	\Check{COM}{SET}
-	\Check{Avionics}{OFF}
-	\Check{Parking brake}{TESTED and SET}
-	\Check{Elevator and rudder trim}{NEUTRAL}
-	\Check{Flaps}{UP}
+	\HourMeterWRITTEN
+	\KeyINSERT
+	\Throttle{IDLE}
+	\Mixture{CUT OFF}
+	\CarburetorHeater{OFF}
+	\ElectricalConsumersOFF
+	\BatteryAlternator{ON}
+	\CircuitBreakersALLIN
+	\AnnunciatorLights{TESTED}
+	\Avionics{ON}
+	\COM[monitor]{EMG 121.5, ATIS (phone)}
+	\COM{SET}
+	\Avionics{OFF}
+	\ParkingBrakeTESTED
+	\Trim[Elevator and rudder]{NEUTRAL}
+	\Flaps{UP}
 	%\Check{Wheel chocks and pitot cover}{REMOVED, ON BOARD}
-	%\Check{Hour meter stand}{}
 \end{CheckListRule}%
 }
