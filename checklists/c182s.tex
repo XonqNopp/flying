@@ -1,27 +1,28 @@
 \documentclass{checklists}
-\SetPlane{Skylane}{C182S}{HB-TDR}
+\SetPlane{C182S}{Skylane}{HB-TDR}
 \DocV{AFS}{2.14}
 %
 \newcommand*{\Naltimeters}{4}
 \newcommand*{\CowlFlaps}[1]{\Check{Cowl flaps}{#1}}
 %
 \begin{document}
-\begin{CheckListRule}{Before starting engine}{}%% {{{
+\begin{CheckListRule}{Before starting engine}{}% {{{
 	\PreflightInspectionCOMPLETED
-	\WheelChocksAndPitotCoverOnBoard
+	\WheelChocksAndPitotCoverREMOVED
 	\ParkingBrakeTESTED
 	\PassengerBriefingCOMPLETED
-	\SeatsADJUSTED
+	\SeatsAndBeltsADJUSTED% TODO
 	\CowlFlaps{OPEN}
-	\AvionicsMasterSwitch{OFF}
-	\ElectricalOFF
+	\Avionics{OFF}
+	\ElectricalConsumersOFF
 	\CircuitBreakers{2 rows IN}
 	\MasterSwitch{ON}
-	\HourMeterStandWRITTEN
+	\HourMeterWRITTEN
 	\FuelQuantityLR
-	\FuelSelectorValveBOTH
-\end{CheckListRule}%% }}}
-\begin{CheckList}{Starting engine}{}%% {{{
+	\FuelSelectorBOTH
+\end{CheckListRule}% }}}
+\vfill
+\begin{CheckList}{Starting engine}{}% {{{
 	\Check{BCN + NAV lights, FLARM, Aspen PFD}{ALL ON}
 	\PropellerMAX
 	\ThrottleFrictionLockADJUSTED
@@ -29,7 +30,7 @@
 	\Mixture{CUT OFF}
 	\begin{ConditionalChecks}{If engine cold:}
 		\Check{Auxiliary fuel pump}{ON}
-		\Mixture{RICH UP TO 3--5 GPH then CUT OFF}
+		\Mixture{RICH up to 3--5 GPH then CUT OFF}
 		\Check{Auxiliary fuel pump}{OFF}
 	\end{ConditionalChecks}
 	\PropellerAreaCLEAR
@@ -38,11 +39,12 @@
 	\Check[hh]{Engine warm up}{\RPM{1000--1200}}
 	\Check[hh]{Oil pressure}{}
 	\Check[hh]{Starter}{CHECK DISCONNECTED (light + ammeter)}
-	\AvionicsMasterSwitch{ON}
+	\Avionics{ON}
 	\Check{Radios}{ON, LIGHTS TESTED, SET}
-	\WingFlapsCHECKED
-\end{CheckList}%% }}}
-\begin{CheckListRule}{Taxi}{}%% {{{
+	\WingFlapsCHECK
+\end{CheckList}% }}}
+\vfill
+\begin{CheckListRule}{Taxi}{}% {{{
 	\BlockTime{off}
 	\TaxiLandingLights{ON}
 	\ParkingBrake{RELEASED}
@@ -50,9 +52,10 @@
 	\NoseWheelSteeringCHECK
 	\FlightInstrumentsCHECK
 	\Check[hh]{Transponder}{GND}
-\end{CheckListRule}%% }}}
+\end{CheckListRule}% }}}
 \SkipPage
-\begin{CheckListRule}{Engine check}{}%% {{{
+%
+\begin{CheckListRule}{Engine check}{}% {{{
 	\Check{PAX checklist}{GIVEN}
 	\ParkingBrake{SET (pedals depressed)}
 	\TaxiLandingLights{OFF}
@@ -64,21 +67,21 @@
 	\OilPressureTemperature
 	\Check{Annunciator panel}{TESTED then NO LIGHTS}
 	\ThrottleRpm[idle]{500--700}
-	\EngineWarmUp{1000}
-\end{CheckListRule}%% }}}
-\begin{SubWrapper}{Before take-off}{}%% {{{
-\begin{SubCheckList}{Fuel}%% {{{
+	\Throttle{1000}
+\end{CheckListRule}% }}}
+\begin{SubWrapper}{Before take-off}{}% {{{
+\begin{SubCheckList}{Fuel}% {{{
 	\FuelQuantityLR
-	\FuelSelectorValveBOTH
+	\FuelSelectorBOTH
 	\MixtureRICH
-\end{SubCheckList}%% }}}
-\begin{SubCheckList}{Engine}%% {{{
+\end{SubCheckList}% }}}
+\begin{SubCheckList}{Engine}% {{{
 	\OilPressureTemperature
 	\PropellerMAX
-\end{SubCheckList}%% }}}
-\begin{SubCheckList}{Airplane}%% {{{
+\end{SubCheckList}% }}}
+\begin{SubCheckList}{Airplane}% {{{
 	\Check{Wing flaps}{SET for take-off (0 or 2)}
-	\Check{Elevator and Rudder trims}{SET for take-off (1cm right) (2cm up if PAX)}
+	\Check{Elevator and Rudder trims}{SET for take-off (1cm right, PAX: 2cm nose up)}
 	\CowlFlaps{OPEN}
 	\AltimeterQNH[x\Naltimeters]
 	\Check{Flight instruments}{SET}
@@ -91,35 +94,36 @@
 	\DepartureBriefingCOMPLETED
 	\TaxiLandingLights{ON}
 	\ParkingBrake{RELEASED}
-\end{SubCheckList}%% }}}
+\end{SubCheckList}% }}}
 \end{SubWrapper}
-%% }}}
+% }}}
 \SkipPage
-\begin{CheckListRule}{Line-up}{}%% {{{
+%
+\begin{CheckListRule}{Line-up}{}% {{{
 	\TakeOffTime
-	\ApproachSectorFREE
+	\ApproachAndRunwayCLEAR
 	\Check{Strobe, Taxi, Landing lights}{3x ON}
 	\Transponder{ALT}
 	\RunwayIDENTIFIED
-	\GyroSET[hh]
-	\WindCHECKED[hh]
-\end{CheckListRule}%% }}}
-\begin{CheckListRule}{Take-off}{h}%% {{{
+	\DirectionSET[hh]
+	\WindCHECK[hh]
+\end{CheckListRule}% }}}
+\begin{CheckListRule}{Take-off}{h}% {{{
 	\RunwayFREE
 	\PowerFULL{2400}
 	\MixtureRICH
 	\SpeedALIVE[x3]
-\end{CheckListRule}%% }}}
-\begin{CheckListRule}{Climb}{h}%% {{{
+\end{CheckListRule}% }}}
+\begin{CheckListRule}{Climb}{h}% {{{
 	\Check{Climb power}{FULL THROTTLE (23 inHg) and \RPM{2300}}
 	\CowlFlaps{OPEN}
 	\Flaps{UP}
 	\Mixture{SET}
 	\Transponder{ALT}
 	\Check{Strobe, Landing, Taxi lights}{ON}
-\end{CheckListRule}%% }}}
-\begin{CheckListRule}{Cruise}{h}%% {{{
-	\GyroSET
+\end{CheckListRule}% }}}
+\begin{CheckListRule}{Cruise}{h}% {{{
+	\DirectionSET
 	\Altimeter[x\Naltimeters]
 	\Check{Power}{SET}
 	\Mixture{SET}
@@ -128,64 +132,68 @@
 	\CowlFlaps{CLOSED}
 	\Check{Lights}{}
 	\Check{Elevator and Rudder trims}{SET}
-\end{CheckListRule}%% }}}
-%\begin{CheckList}{Descent}{h}%% {{{
-	%\Check{Fuel selector valve}{BOTH}
-	%\Check{Mixture}{ENRICHED as required}
-%\end{CheckList}%% }}}
-%%
-\begin{InfoBox}%% speeds + downwind power
+\end{CheckListRule}% }}}
+%\begin{CheckList}{Descent}{h}% {{{
+	%\FuelSelectorBOTH
+	%\Mixture{ENRICHED as required}
+%\end{CheckList}% }}}
+%
+\vfill
+\begin{InfoBox}% speeds + downwind power {{{
 	% Take off          1   r   x                 y  cc
 	\InfoSpeedsTakeOff{45}{55}{58 (F2), 65 (F0)}{80}{90}
 	% Landing                   app  fin         a    glide
 	\InfoSpeedsLandingCriticals{90}{75-70 (65)}{110}{70 (FX), 75 (F0)}
 	% More infos   plan ratio NM  fuel    downwind             Xwind
 	\InfoSpeedsMore{120}{XX}{1.4}{13 USG}{20 inHg \& \RPM{20}}{15}
-\end{InfoBox}%%
+\end{InfoBox}% }}}
 \SkipPage
-\begin{CheckListRule}{Approach}{h}%% {{{
+%
+\begin{CheckListRule}{Approach}{h}% {{{
 	\ApproachBriefingCOMPLETED
 	\Check{Avionics}{SET, HDG BUG SET on RWY}
 	\Altimeter[x\Naltimeters]
 	\FuelQuantityLR
-	\FuelSelectorValveBOTH
+	\FuelSelectorBOTH
 	\CowlFlaps{CLOSED}
 	\Mixture{RICH}
 	\Autopilot{OFF}
 	\Check{Strobe, Taxi, Landing light}{3x ON}
 	\Check{Cabin + PAX}{SECURED}
-\end{CheckListRule}%% }}}
-\begin{CheckListRule}{Final}{h}%% {{{
+\end{CheckListRule}% }}}
+\begin{CheckListRule}{Final}{h}% {{{
 	\Flaps{FULL}
 	\PropellerMAX
 	\Check{Mixture}{RICH as required}
-	\WindCHECKED
-\end{CheckListRule}%% }}}
-\begin{CheckListRule}{After landing}{}%% {{{
+	\WindCHECK
+\end{CheckListRule}% }}}
+\begin{CheckListRule}{After landing}{}% {{{
 	\LandingTime
 	\Flaps{UP}
 	\CowlFlaps{OPEN}
 	\Transponder{GND}
 	\Check{Strobe light}{OFF}
-\end{CheckListRule}%% }}}
-\begin{CheckList}{Engine shut down}{}%% {{{
+\end{CheckListRule}% }}}
+\begin{CheckList}{Engine shut down}{}% {{{
 	\ParkingBrake{SET}
 	\TaxiLandingLights{OFF}
 	\ThrottleRpm{1000}
 	\BlockTime{on}
-	\ElectricalOFF
-	\AvionicsMasterSwitch{OFF}
+	\ElectricalConsumersOFF
+	\Avionics{OFF}
 	\MagnetosGrounding
 	\Mixture{CUT OFF}
 	\MagnetosOFF
-	\HourMeterStandWRITTEN
+	\HourMeterWRITTEN
 	\MasterSwitch{OFF}
 	\Check{Control lock}{SET}
-	\FuelSelectorValve{LEFT or RIGHT}
+	\FuelSelector{LEFT or RIGHT}
 	\Check{Cabin and seat belts}{TIDY}
-	\WheelChocksAndPitotCoverSET
-\end{CheckList}%% }}}
-%%
+	\WheelChocksAndPitotCover{SET}
+\end{CheckList}% }}}
+%
+\vfill
+% InfoDistances {{{
 \begin{InfoDistances}{2300}
 	T-off F2
 	& 315 (610)  % roll(50ft) #1 ft 1003hPa +20oC
@@ -205,5 +213,6 @@
 	& +10 (+15)  % +30oC
 	& +45\% (N/A)  % grass
 	\\
-\end{InfoDistances}
+\end{InfoDistances}% }}}
 \end{document}
+
