@@ -2,8 +2,8 @@
 
 % TeX
 \NeedsTeXFormat{LaTeX2e}[1998/12/01]
-\newcommand*{\GIclsChecklistsV}{1.0}
-\newcommand*{\GIclsChecklistsD}{2020/06/29}
+\newcommand*{\GIclsChecklistsV}{1.1}
+\newcommand*{\GIclsChecklistsD}{2022/01/24}
 % Class name {{{
 % Tell your name and your birthday and describe yourself in 5 words
 \newcommand*{\GIclsChecklistsN}{checklists}
@@ -52,10 +52,10 @@
 %
 \newcommand*{\SrcVersion}{}
 \newcommand*{\SrcName}{}
+%
 \newcommand*{\DocV}[2]{%
 \renewcommand*{\SrcName}{#1}%
 \renewcommand*{\SrcVersion}{#2}%
-\ifthenelse{\equal{\SrcName}{}}{}{\renewcommand*{\SrcFoot}{from \SrcName\ v\SrcVersion}}%
 }
 %
 \newcommand*{\ID}{}
@@ -91,7 +91,6 @@
 	pdfauthor         = {\Gael}
 }% }}}
 % Fancy {{{
-\newcommand*{\SrcFoot}{}
 \fancypagestyle{plain}{%
 \fancyhf{}
 \fancyhf[HC]{%
@@ -103,8 +102,8 @@
 \fancyhf[FC]{%
 \jobname.pdf %
 \textbf{v\SrcVersion.\today}\ %
-cls v\GIclsChecklistsV\ %
-\textbf{\SrcFoot}%
+\ifthenelse{\equal{\SrcName}{}}{}{(\SrcName)\ }%
+cls v\GIclsChecklistsV%
 }
 \fancyhf[FR]{\thepage/\pageref{LastPage}}
 % Rules at top and bottom
@@ -114,44 +113,40 @@ cls v\GIclsChecklistsV\ %
 \pagestyle{plain}
 % }}}
 % mdframed env {{{
-\mdfsetup{%
+\mdfsetup{% {{{
 	linecolor=white,
 	skipabove=0,
 	skipbelow=0,
 	innertopmargin=0,
 	innerbottommargin=0
-}%
+}% }}}
 %
-\newmdenv[
+\newmdenv[% {{{ MDeven
 	backgroundcolor=yellow!50,
 	innerbottommargin=2pt,
 	innertopmargin=1.2mm
-]{MDeven}%
-%
-\newmdenv[
+]{MDeven}% }}}
+\newmdenv[% {{{ MDheartEnv
 	backgroundcolor=orange!80,
 	innerbottommargin=2pt,
 	innertopmargin=1.2mm
-]{MDheartEnv}%
-%
-\newmdenv[
+]{MDheartEnv}% }}}
+\newmdenv[% {{{ MDheartItem
 	backgroundcolor=orange!80,
-	innerbottommargin=2pt,
-	innertopmargin=1.2mm
-]{MDheartItem}%
-%
-\newmdenv[
+	innerbottommargin=1mm,
+	innertopmargin=1.2mm,
+	innerleftmargin=9mm
+]{MDheartItem}% }}}
+\newmdenv[% {{{ MDconditional
 	backgroundcolor=blue!10
-]{MDconditional}%
-%
-\newmdenv[
+]{MDconditional}% }}}
+\newmdenv[% {{{ MDinfobox
 	backgroundcolor=blue!30,
 	innertopmargin=2mm,
 	innerbottommargin=2mm,
-	skipbelow=5mm
-]{MDinfobox}
+	skipbelow=-3mm
+]{MDinfobox}% }}}
 % }}}
-%
 %
 \newcounter{SubCheck}
 \newcounter{CheckOddEven}
@@ -265,7 +260,7 @@ cls v\GIclsChecklistsV\ %
 	\begin{MDinfobox}%
 	\Large%
 }{%
-	\vspace{-2pt}%
+	\vspace{-2mm}%
 	\end{MDinfobox}%
 }% }}}
 \newenvironment{InfoDistances}[1]{% {{{
@@ -281,7 +276,6 @@ cls v\GIclsChecklistsV\ %
 			\\\hline
 }{%
 		\end{tabular}%
-		\vspace{-1mm}%
 	\end{InfoBox}%
 }% }}}
 \newcommand{\InfoSpeedsTakeOff}[5]{% {{{
@@ -330,10 +324,10 @@ Downwind pwr: #5%
 %
 \newcommand*{\WriteTime}[1]{\Check{#1 time}{WRITTEN}}
 \newcommand*{\BlockTime}[1]{\WriteTime{Block-#1}}
-\newcommand*{\BlockOnCounter}{\Check{Block-on time, hour meter stand}{WRITTEN}}
+\newcommand*{\BlockOnCounter}{\Check{Block-on time, hour meter}{WRITTEN}}
 \newcommand*{\TakeOffTime}{\WriteTime{Take-off}}
 \newcommand*{\LandingTime}{\WriteTime{Landing}}
-\newcommand*{\HourMeterStandWRITTEN}{\Check{Hour meter stand}{WRITTEN}}
+\newcommand*{\HourMeterWRITTEN}{\Check{Hour meter}{WRITTEN}}
 %
 \newcommand*{\PreflightInspectionCOMPLETED}{\Check{Preflight inspection}{COMPLETED}}
 %
@@ -343,8 +337,7 @@ Downwind pwr: #5%
 \newcommand*{\ApproachBriefingCOMPLETED}{\BriefingCOMPLETED{Approach}}
 %
 \newcommand*{\WheelChocksAndPitotCover}[1]{\Check{Wheel chocks and pitot cover}{#1}}
-\newcommand*{\WheelChocksAndPitotCoverOnBoard}{\WheelChocksAndPitotCover{REMOVED, ON BOARD}}
-\newcommand*{\WheelChocksAndPitotCoverSET}{\WheelChocksAndPitotCover{SET}}
+\newcommand*{\WheelChocksAndPitotCoverREMOVED}{\WheelChocksAndPitotCover{REMOVED, ON BOARD}}
 %
 \newcommand*{\ParkingBrake}[1]{\Check{Parking brake}{#1}}
 \newcommand*{\ParkingBrakeTESTED}{\ParkingBrake{TESTED and SET}}
@@ -352,32 +345,52 @@ Downwind pwr: #5%
 \newcommand*{\CheckChecklist}[1]{\Check{On-board checklist version}{#1}}
 %
 \newcommand*{\SeatsADJUSTED}{\Check{Seats, seat belts}{ADJUSTED and LOCKED}}
+\newcommand*{\SeatsAndBeltsADJUSTED}{\Check{Seats, seat belts}{ADJUSTED and LOCKED}}% TODO
 \newcommand*{\SeatsSECURED}{\Check{Seats and seat belts}{SECURED}}
+\newcommand*{\SeatBeltsHarnessFASTENED}{\Check{Seat belts and harness}{FASTENED}}
+\newcommand*{\SeatPositionLOCKED}{\Check{Seats position}{CHECKED and LOCKED}}
 \newcommand*{\SeatBacksUPRIGHT}{\Check{Seat backs}{MOST UPRIGHT POSITION}}
+\newcommand*{\VentilationEtc}{\Check{Ventilation, heater, defroster}{AS REQUIRED}}
 %
-\newcommand*{\AvionicsMasterSwitch}[1]{\Check{Avionics master switch}{#1}}
+\newcommand*{\Avionics}[2][]{\Check{Avionics #1}{#2}}
+\newcommand*{\AvionicsFlarm}[1]{\Avionics[+ FLARM]{#1}}
+\newcommand*{\COM}[2][]{\Check{COM #1}{#2}}
+\newcommand*{\Direction}[1]{\Check{Direction}{#1}}
 \newcommand*{\MasterSwitch}[1]{\Check{Master switch}{#1}}
-\newcommand*{\ElectricalOFF}{\Check{Electrical equipment}{OFF}}
+\newcommand*{\BatteryAlternator}[1]{\Check{Battery master and alternator}{#1}}
+\newcommand*{\ElectricalConsumersOFF}{\Check{Electrical consumers}{OFF}}
 \newcommand*{\CircuitBreakers}[1]{\Check{Circuit breakers}{#1}}
+\newcommand*{\CircuitBreakersALLIN}[1]{\Check{Circuit breakers}{ALL IN}}
 \newcommand*{\PositionLightAsRequired}{\Check{Position light}{AS REQUIRED}}
 \newcommand*{\TaxiLandingLights}[1]{\Check{Taxi and Landing lights}{BOTH #1}}
+\newcommand*{\Lights}[2]{\Check{#1 lights}{#2}}
+\newcommand*{\AnnunciatorLights}[1]{\Check{Annunciator lights}{#1}}
+\newcommand*{\ELTARMED}{\Check{ELT}{AUTO, ARMED}}
 %
+\newcommand*{\WarmUpTimeCHECK}{\Check{Warm up time}{}}
+\newcommand*{\ZoneBehindAircraftCLEAR}{\Check{Zone behind aircraft}{CLEAR}}
+\newcommand*{\Magnetos}[1]{\Check{Magnetos}{#1}}
+\newcommand*{\MagnetosDropDiffCHECK}[2]{\Magnetos{max drop \RPM{#1}, max diff \RPM{#2}}}
 \newcommand*{\MagnetosOFF}{\Check{Magnetos}{OFF and KEY REMOVED}}
-\newcommand*{\MagnetosGrounding}{\Check{Magnetos grounding (at idle)}{}}
+\newcommand*{\MagnetosGrounding}{\Check{Magnetos grounding (at idle)}{AS REQUIRED}}
+\newcommand*{\KeyINSERT}{\Check{Key}{INSERT}}
 \newcommand*{\IgnitionKeySTART}{\Check[hh]{Ignition key}{START}}
+\newcommand*{\StarterENGAGE}{\Check{Starter}{ENGAGE}}
 %
-\newcommand*{\FuelSelectorValve}[1]{\Check{Fuel selector valve}{#1}}
-\newcommand*{\FuelSelectorValveBOTH}{\FuelSelectorValve{BOTH}}
+\newcommand*{\FuelSelector}[1]{\Check{Fuel selector}{#1}}
+\newcommand*{\FuelSelectorBOTH}{\FuelSelector{BOTH}}
+\newcommand*{\FuelSelectorFULLER}{\FuelSelector{FULLER TANK}}
 \newcommand*{\FuelPump}[1]{\Check{Fuel pump}{#1, PRESSURE CHECKED}}
 \newcommand*{\FuelQuantity}[1][CHECKED]{\Check{Fuel quantity}{#1, Endurance}}
 \newcommand*{\FuelQuantityLR}{\FuelQuantity[L + R]}
 \newcommand*{\PropellerMAX}{\Check{Propeller}{MAX RPM}}
 \newcommand*{\ThrottleFrictionLockADJUSTED}{\Check{Throttle friction lock}{ADJUSTED}}
 \newcommand*{\PowerFULL}[1]{\Check{Power}{FULL (\RPM{#1})}}
-\newcommand*{\ThrottleRpm}[2][]{\Check{Throttle #1}{\RPM{#2}}}
-\newcommand*{\EngineWarmUp}[1]{\Check{Engine warm up}{\RPM{#1}}}
+\newcommand*{\Throttle}[2][]{\Check{Throttle #1}{#2}}
+\newcommand*{\ThrottleRpm}[2][]{\Throttle[#1]{\RPM{#2}}}
 \newcommand*{\Mixture}[1]{\Check{Mixture}{#1}}
 \newcommand*{\MixtureRICH}{\Mixture{RICH or according AFM}}
+\newcommand*{\CarburetorHeater}[1]{\Check{Carburetor heater}{#1}}
 %
 \newcommand*{\RunwayIDENTIFIED}{\Check[h]{Runway}{IDENTIFIED}}
 \newcommand*{\RunwayFREE}{\Check{Runway}{FREE}}
@@ -385,21 +398,27 @@ Downwind pwr: #5%
 \newcommand*{\Flaps}[1]{\Check{Flaps}{#1}}
 \newcommand*{\Transponder}[1]{\Check{Transponder}{#1}}
 \newcommand*{\Autopilot}[1]{\Check{Autopilot}{#1}}
+\newcommand*{\AutopilotTESTED}{\Autopilot{TESTED then OFF}}
 \newcommand*{\Altimeter}[1][]{\Check{Altimeter #1}{}}
 \newcommand*{\AltimeterQNH}[1][]{\Check{Altimeter #1}{QNH}}
 \newcommand*{\PropellerAreaCLEAR}{\Check[h]{Propeller area}{CLEAR}}
 \newcommand*{\RadiosON}{\Check{Radios}{ON, SET}}
-\newcommand*{\WingFlapsCHECKED}{\Check{Wing flaps}{CHECKED then RETRACTED}}
+\newcommand*{\WingFlapsCHECK}{\Check{Wing flaps}{CHECKED then RETRACTED}}
 \newcommand*{\BrakesCHECK}{\Check[h]{Brakes}{}}
 \newcommand*{\NoseWheelSteeringCHECK}{\Check[hh]{Nose wheel steering}{}}
+\newcommand*{\BrakesSteeringCHECK}{\Check{Brakes + steering}{}}
 \newcommand*{\FlightInstrumentsCHECK}{\Check[hh]{Flight instruments}{}}
+\newcommand*{\EngineInstrumentsCHECK}{\Check{Engine instruments}{}}
 \newcommand*{\OilPressureTemperature}{\Check{Oil pressure, Oil temperature}{}}
 \newcommand*{\CabinDoorsCLOSED}{\Check{Cabin doors}{CLOSED and LATCHED}}
+\newcommand*{\CabinPaxSECURED}{\Check{Cabin + PAX}{SECURED}}
+\newcommand*{\CanopyCLOSED}{\Check{Canopy}{CLOSED and LOCKED}}
 \newcommand*{\FlightControlsCORRECT}{\Check{Flight controls}{FREE, EASY and CORRECT}}
-\newcommand*{\ApproachSectorFREE}{\Check{Approach sector}{FREE}}
-\newcommand*{\GyroSET}[1][]{\Check[#1]{Gyro}{CHECKED and HDG BUG SET}}
-\newcommand*{\WindCHECKED}[1][]{\Check[#1]{Wind}{}}
+\newcommand*{\ApproachAndRunwayCLEAR}{\Check{Approach sector and Runway}{CLEAR}}
+\newcommand*{\DirectionSET}[1][]{\Check[#1]{Direction}{CHECKED and HDG BUG SET}}
+\newcommand*{\WindCHECK}[1][]{\Check[#1]{Wind}{}}
 \newcommand*{\SpeedALIVE}[1][]{\Check{Speed #1}{ALIVE}}
+\newcommand*{\Trim}[2][]{\Check{#1 Trim}{#2}}
 %
 %
 \AtBeginDocument{\BoxSpace\large}
