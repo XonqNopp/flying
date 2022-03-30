@@ -2,8 +2,8 @@
 
 % TeX
 \NeedsTeXFormat{LaTeX2e}[1998/12/01]
-\newcommand*{\GIclsChecklistsV}{1.1}
-\newcommand*{\GIclsChecklistsD}{2022/01/24}
+\newcommand*{\GIclsChecklistsV}{1.2}
+\newcommand*{\GIclsChecklistsD}{2022-03-30}
 % Class name {{{
 % Tell your name and your birthday and describe yourself in 5 words
 \newcommand*{\GIclsChecklistsN}{checklists}
@@ -344,7 +344,7 @@ Downwind pwr: #5%
 %
 \newcommand*{\CheckChecklist}[1]{\Check{On-board checklist version}{#1}}
 %
-\newcommand*{\SeatsADJUSTED}{\Check{Seats, seat belts}{ADJUSTED and LOCKED}}
+\newcommand*{\SeatsADJUSTED}{\Check{Seats}{ADJUSTED and LOCKED}}
 \newcommand*{\SeatsAndBeltsADJUSTED}{\Check{Seats, seat belts}{ADJUSTED and LOCKED}}% TODO
 \newcommand*{\SeatsSECURED}{\Check{Seats and seat belts}{SECURED}}
 \newcommand*{\SeatBeltsHarnessFASTENED}{\Check{Seat belts and harness}{FASTENED}}
@@ -360,7 +360,7 @@ Downwind pwr: #5%
 \newcommand*{\BatteryAlternator}[1]{\Check{Battery master and alternator}{#1}}
 \newcommand*{\ElectricalConsumersOFF}{\Check{Electrical consumers}{OFF}}
 \newcommand*{\CircuitBreakers}[1]{\Check{Circuit breakers}{#1}}
-\newcommand*{\CircuitBreakersALLIN}[1]{\Check{Circuit breakers}{ALL IN}}
+\newcommand*{\CircuitBreakersALLIN}{\Check{Circuit breakers}{ALL IN}}
 \newcommand*{\PositionLightAsRequired}{\Check{Position light}{AS REQUIRED}}
 \newcommand*{\TaxiLandingLights}[1]{\Check{Taxi and Landing lights}{BOTH #1}}
 \newcommand*{\Lights}[2]{\Check{#1 lights}{#2}}
