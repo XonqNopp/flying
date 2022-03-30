@@ -43,8 +43,8 @@
 	\Magnetos{LEFT}
 	\begin{ConditionalChecks}{If WEATHER cold:}
 		\Throttle{10x open-close then $5mm$}
-		\Magnetos{BOTH}
-		\StarterENGAGE
+		%\Magnetos{BOTH ???}% TODO confirm?
+		\StarterENGAGE% TODO how long
 		\Throttle{5-6x open-close then idle}
 		\Magnetos{LEFT}
 		\StarterENGAGE
@@ -64,7 +64,7 @@
 	\VentilationEtc
 	\AvionicsFlarm{ON}
 	\Trim[Electrical]{ON}
-	\Check{Flight instruments}{SET and CHECKED}
+	\Check{Flight instruments}{ON}
 	\EngineInstrumentsCHECK
 	\Avionics[COM, NAV, transponder]{SET}
 	\AutopilotTESTED
@@ -147,9 +147,8 @@
 %
 % Approach briefing
 \begin{CheckListRule}{Descent check}{}% {{{
-	%\Check{ATIS or AD INFO}{WRITTEN}
-	\Avionics{SET}
-	\Direction{SET}
+	\Check{ATIS or AD INFO}{WRITTEN}
+	\Check{Avionics + Direction}{SET}
 	\CircuitBreakers{}
 	\CabinPaxSECURED
 	\ApproachBriefingCOMPLETED
