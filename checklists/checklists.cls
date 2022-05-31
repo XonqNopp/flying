@@ -2,8 +2,8 @@
 
 % TeX
 \NeedsTeXFormat{LaTeX2e}[1998/12/01]
-\newcommand*{\GIclsChecklistsV}{1.2}
-\newcommand*{\GIclsChecklistsD}{2022-03-30}
+\newcommand*{\GIclsChecklistsV}{2.0}
+\newcommand*{\GIclsChecklistsD}{2022-06-20}
 % Class name {{{
 % Tell your name and your birthday and describe yourself in 5 words
 \newcommand*{\GIclsChecklistsN}{checklists}
@@ -43,6 +43,7 @@
 %
 % Defining some commands {{{
 \newcommand*{\Gael}{Ga\"el Induni}
+\newcommand*{\ShowURL}{\tiny Document source \url{https://github.com/XonqNopp/flying/tree/master/checklists}}
 \newcommand*{\oC}{\ensuremath{^{\circ}C}}
 \newcommand*{\oF}{\ensuremath{^{\circ}F}}
 \newcommand*{\DEG}{\ensuremath{^{\circ}} }
@@ -93,17 +94,20 @@
 % Fancy {{{
 \fancypagestyle{plain}{%
 \fancyhf{}
-\fancyhf[HC]{%
+\fancyhf[HL]{%
 	\textbf{\LongPlane}%
 	\ifthenelse{\equal{\ShortPlane}{}}{}{ (\ShortPlane)}%
 	\ifthenelse{\equal{\ID}{}}{}{ \ID}%
 }
-\fancyhf[FL]{\Gael}
-\fancyhf[FC]{%
-\jobname.pdf %
-\textbf{v\SrcVersion.\today}\ %
-\ifthenelse{\equal{\SrcName}{}}{}{(\SrcName)\ }%
-cls v\GIclsChecklistsV%
+\fancyhf[HR]{\textbf{Bold} or index numbers show personal changes -- \Gael}
+%
+%\fancyhf[FL]{\Gael}
+\fancyhf[FL]{%
+\jobname.pdf
+-- \textbf{\SrcName\ v\SrcVersion}\ %
+--
+cls v\GIclsChecklistsV,
+TeX \today
 }
 \fancyhf[FR]{\thepage/\pageref{LastPage}}
 % Rules at top and bottom
@@ -151,6 +155,12 @@ cls v\GIclsChecklistsV%
 \newcounter{SubCheck}
 \newcounter{CheckOddEven}
 \setcounter{CheckOddEven}{0}
+
+\newcommand*{\SetItem}[1]{\setcounter{enumi}{#1}}
+\newcommand*{\StepItem}{\stepcounter{enumi}}
+\newcommand*{\AddItem}[1]{\addtocounter{enumi}{#1}}
+\newcommand*{\DestepItem}{\AddItem{-1}}
+\newcommand*{\ItemZero}{\SetItem{-1}}
 %
 \newcommand{\EndRule}[1][0.95]{% {{{
 	\vspace{-10mm}%
@@ -233,26 +243,35 @@ cls v\GIclsChecklistsV%
 \newenvironment{SubCheckList}[1]{% {{{
 	\CheckSub{#1}%
 	\begin{enumerate}%
-	\setcounter{enumi}{\value{SubCheck}}
+	\SetItem{\value{SubCheck}}
 }{%
 	\setcounter{SubCheck}{\value{enumi}}%
 	\end{enumerate}%
 }% }}}
 \newenvironment{ConditionalChecks}[1]{% {{{
 	\begin{MDconditional}%
-	\textbf{#1}%
+	#1%
 }{%
 	\end{MDconditional}%
 }% }}}
 %\setlength{leftmargin}{0mm}%
-\newcommand{\Check}[3][]{% {{{
+% Check command and PERSONAL+SKIP {{{
+\newcommand{\Check}[3][]{
 	\ifthenelse{\equal{#1}{h} }{\vspace{2pt}}{}%
-	\stepcounter{enumi}
+	\StepItem
 	\item[\arabic{enumi}.]
 	\ifthenelse{\equal{#1}{h} \OR \equal{#1}{hh}}{\begin{MDheartItem}}{}%
 	#2\dotfill\ifthenelse{\equal{#3}{}}{CHECKED}{#3}%
 	\ifthenelse{\equal{#1}{h} \OR \equal{#1}{hh}}{\end{MDheartItem}\vspace{-1pt}}{}%
-}% }}}
+}
+%
+\newcommand{\PERSONAL}[1]{{\bfseries#1}}
+%
+\newcommand*{\SKIP}[1]{%
+	% \1 is the item itself
+	\StepItem
+}
+% }}}
 \newcommand{\CheckBis}[1]{% {{{
 	\item[]\dotfill #1%
 }% }}}
@@ -278,9 +297,20 @@ cls v\GIclsChecklistsV%
 		\end{tabular}%
 	\end{InfoBox}%
 }% }}}
+% One InfoDistance table row {{{
+% All values are personal computation from AFM table
+\newcommand{\InfoDistanceRow}[5]{%
+#1% label
+& \PERSONAL{#2}% roll (50ft) at provided altitude 1003hPa +20oC
+& \PERSONAL{#3}% 993hPa
+& \PERSONAL{#4}% +30oC
+& \PERSONAL{#5}% grass
+\\\hline
+}
+% }}}
 \newcommand{\InfoSpeedsTakeOff}[5]{% {{{
 {\large%
-$\VBmath{1} = #1$ kts%
+$\VBmath{1} = \textbf{#1}$ kts%
 \hfill%
 $\VBtxt{r} = #2$ kts%
 \hfill%
@@ -322,6 +352,8 @@ Downwind pwr: #5%
 \newcommand*{\VBtxt}[1]{\ensuremath{\textbf{v}_{\textrm{\small #1}} }}
 \newcommand*{\VBmath}[1]{\ensuremath{\textbf{v}_{#1} }}
 %
+\newcommand*{\CheckChecklist}{\ItemZero\PERSONAL{\Check{On-board checklist version}{\SrcName\ \SrcVersion}}}
+%
 \newcommand*{\WriteTime}[1]{\Check{#1 time}{WRITTEN}}
 \newcommand*{\BlockTime}[1]{\WriteTime{Block-#1}}
 \newcommand*{\BlockOnCounter}{\Check{Block-on time, hour meter}{WRITTEN}}
@@ -336,64 +368,45 @@ Downwind pwr: #5%
 \newcommand*{\DepartureBriefingCOMPLETED}{\BriefingCOMPLETED{Departure}}
 \newcommand*{\ApproachBriefingCOMPLETED}{\BriefingCOMPLETED{Approach}}
 %
-\newcommand*{\WheelChocksAndPitotCover}[1]{\Check{Wheel chocks and pitot cover}{#1}}
+\newcommand*{\WheelChocksAndPitotCover}[1]{\Check{Wheel chocks \& pitot cover}{#1}}
 \newcommand*{\WheelChocksAndPitotCoverREMOVED}{\WheelChocksAndPitotCover{REMOVED, ON BOARD}}
 %
 \newcommand*{\ParkingBrake}[1]{\Check{Parking brake}{#1}}
 \newcommand*{\ParkingBrakeTESTED}{\ParkingBrake{TESTED and SET}}
 %
-\newcommand*{\CheckChecklist}[1]{\Check{On-board checklist version}{#1}}
-%
-\newcommand*{\SeatsADJUSTED}{\Check{Seats}{ADJUSTED and LOCKED}}
-\newcommand*{\SeatsAndBeltsADJUSTED}{\Check{Seats, seat belts}{ADJUSTED and LOCKED}}% TODO
-\newcommand*{\SeatsSECURED}{\Check{Seats and seat belts}{SECURED}}
-\newcommand*{\SeatBeltsHarnessFASTENED}{\Check{Seat belts and harness}{FASTENED}}
-\newcommand*{\SeatPositionLOCKED}{\Check{Seats position}{CHECKED and LOCKED}}
-\newcommand*{\SeatBacksUPRIGHT}{\Check{Seat backs}{MOST UPRIGHT POSITION}}
-\newcommand*{\VentilationEtc}{\Check{Ventilation, heater, defroster}{AS REQUIRED}}
-%
 \newcommand*{\Avionics}[2][]{\Check{Avionics #1}{#2}}
-\newcommand*{\AvionicsFlarm}[1]{\Avionics[+ FLARM]{#1}}
-\newcommand*{\COM}[2][]{\Check{COM #1}{#2}}
 \newcommand*{\Direction}[1]{\Check{Direction}{#1}}
-\newcommand*{\MasterSwitch}[1]{\Check{Master switch}{#1}}
-\newcommand*{\BatteryAlternator}[1]{\Check{Battery master and alternator}{#1}}
-\newcommand*{\ElectricalConsumersOFF}{\Check{Electrical consumers}{OFF}}
 \newcommand*{\CircuitBreakers}[1]{\Check{Circuit breakers}{#1}}
-\newcommand*{\CircuitBreakersALLIN}{\Check{Circuit breakers}{ALL IN}}
-\newcommand*{\PositionLightAsRequired}{\Check{Position light}{AS REQUIRED}}
-\newcommand*{\TaxiLandingLights}[1]{\Check{Taxi and Landing lights}{BOTH #1}}
 \newcommand*{\Lights}[2]{\Check{#1 lights}{#2}}
-\newcommand*{\AnnunciatorLights}[1]{\Check{Annunciator lights}{#1}}
-\newcommand*{\ELTARMED}{\Check{ELT}{AUTO, ARMED}}
 %
-\newcommand*{\WarmUpTimeCHECK}{\Check{Warm up time}{}}
-\newcommand*{\ZoneBehindAircraftCLEAR}{\Check{Zone behind aircraft}{CLEAR}}
 \newcommand*{\Magnetos}[1]{\Check{Magnetos}{#1}}
-\newcommand*{\MagnetosDropDiffCHECK}[2]{\Magnetos{max drop \RPM{#1}, max diff \RPM{#2}}}
 \newcommand*{\MagnetosOFF}{\Check{Magnetos}{OFF and KEY REMOVED}}
-\newcommand*{\MagnetosGrounding}{\Check{Magnetos grounding (at idle)}{AS REQUIRED}}
+\newcommand*{\MagnetosDropDiffCHECK}[2]{\Check{Magnetos L-B-R-L-B}{max drop \RPM{#1}, max diff \RPM{#2}} }
 \newcommand*{\KeyINSERT}{\Check{Key}{INSERT}}
-\newcommand*{\IgnitionKeySTART}{\Check[hh]{Ignition key}{START}}
-\newcommand*{\StarterENGAGE}{\Check{Starter}{ENGAGE}}
 %
 \newcommand*{\FuelSelector}[1]{\Check{Fuel selector}{#1}}
 \newcommand*{\FuelSelectorBOTH}{\FuelSelector{BOTH}}
 \newcommand*{\FuelSelectorFULLER}{\FuelSelector{FULLER TANK}}
-\newcommand*{\FuelPump}[1]{\Check{Fuel pump}{#1, PRESSURE CHECKED}}
+%
+\newcommand*{\FuelPump}[1]{\Check{Fuel pump}{#1}}
+\newcommand*{\FuelPumpOffChecked}{\Check{Fuel pump}{OFF, PRESSURE CHECKED}}
+%
 \newcommand*{\FuelQuantity}[1][CHECKED]{\Check{Fuel quantity}{#1, Endurance}}
 \newcommand*{\FuelQuantityLR}{\FuelQuantity[L + R]}
-\newcommand*{\PropellerMAX}{\Check{Propeller}{MAX RPM}}
+\newcommand*{\PropellerHIGH}{\Check{Propeller}{HIGH RPM}}
+%
 \newcommand*{\ThrottleFrictionLockADJUSTED}{\Check{Throttle friction lock}{ADJUSTED}}
 \newcommand*{\PowerFULL}[1]{\Check{Power}{FULL (\RPM{#1})}}
 \newcommand*{\Throttle}[2][]{\Check{Throttle #1}{#2}}
 \newcommand*{\ThrottleRpm}[2][]{\Throttle[#1]{\RPM{#2}}}
+%
 \newcommand*{\Mixture}[1]{\Check{Mixture}{#1}}
 \newcommand*{\MixtureRICH}{\Mixture{RICH or according AFM}}
-\newcommand*{\CarburetorHeater}[1]{\Check{Carburetor heater}{#1}}
+\newcommand*{\MixtureIDLE}{\Mixture{IDLE CUT OFF}}
+%
+\newcommand*{\CarburetorHeat}[1]{\Check{Carburetor heat}{#1}}
 %
 \newcommand*{\RunwayIDENTIFIED}{\Check[h]{Runway}{IDENTIFIED}}
-\newcommand*{\RunwayFREE}{\Check{Runway}{FREE}}
 %
 \newcommand*{\Flaps}[1]{\Check{Flaps}{#1}}
 \newcommand*{\Transponder}[1]{\Check{Transponder}{#1}}
@@ -402,22 +415,12 @@ Downwind pwr: #5%
 \newcommand*{\Altimeter}[1][]{\Check{Altimeter #1}{}}
 \newcommand*{\AltimeterQNH}[1][]{\Check{Altimeter #1}{QNH}}
 \newcommand*{\PropellerAreaCLEAR}{\Check[h]{Propeller area}{CLEAR}}
-\newcommand*{\RadiosON}{\Check{Radios}{ON, SET}}
 \newcommand*{\WingFlapsCHECK}{\Check{Wing flaps}{CHECKED then RETRACTED}}
-\newcommand*{\BrakesCHECK}{\Check[h]{Brakes}{}}
-\newcommand*{\NoseWheelSteeringCHECK}{\Check[hh]{Nose wheel steering}{}}
-\newcommand*{\BrakesSteeringCHECK}{\Check{Brakes + steering}{}}
-\newcommand*{\FlightInstrumentsCHECK}{\Check[hh]{Flight instruments}{}}
-\newcommand*{\EngineInstrumentsCHECK}{\Check{Engine instruments}{}}
-\newcommand*{\OilPressureTemperature}{\Check{Oil pressure, Oil temperature}{}}
 \newcommand*{\CabinDoorsCLOSED}{\Check{Cabin doors}{CLOSED and LATCHED}}
 \newcommand*{\CabinPaxSECURED}{\Check{Cabin + PAX}{SECURED}}
 \newcommand*{\CanopyCLOSED}{\Check{Canopy}{CLOSED and LOCKED}}
-\newcommand*{\FlightControlsCORRECT}{\Check{Flight controls}{FREE, EASY and CORRECT}}
-\newcommand*{\ApproachAndRunwayCLEAR}{\Check{Approach sector and Runway}{CLEAR}}
-\newcommand*{\DirectionSET}[1][]{\Check[#1]{Direction}{CHECKED and HDG BUG SET}}
+\newcommand*{\FlightControlsCORRECT}{\Check{Flight controls}{FREE and CORRECT}}
 \newcommand*{\WindCHECK}[1][]{\Check[#1]{Wind}{}}
-\newcommand*{\SpeedALIVE}[1][]{\Check{Speed #1}{ALIVE}}
 \newcommand*{\Trim}[2][]{\Check{#1 Trim}{#2}}
 %
 %
