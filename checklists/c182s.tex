@@ -1,73 +1,128 @@
 \documentclass{checklists}
 \SetPlane{C182S}{Skylane}{HB-TDR}
-\DocV{AFS}{2.14}
+\DocV{AFS}{2.14 (06.2020)}
 %
-\newcommand*{\Naltimeters}{4}
+% Commands specific to this file {{{
 \newcommand*{\CowlFlaps}[1]{\Check{Cowl flaps}{#1}}
+\newcommand*{\MasterSwitch}[1]{\Check{Master switch}{#1}}
+\newcommand*{\TaxiLandingLights}[1]{\Lights{Taxi \& Landing}{BOTH #1}}
+\newcommand*{\AuxFuelPump}[1]{\Check{Auxiliary fuel pump}{#1}}
+\newcommand*{\OilPressureTemperature}{\Check{Oil pressure, Oil temperature}{}}
+%
+% PERSONAL: actually we have 4 altimeters, not 3
+\newcommand*{\Naltimeters}{\PERSONAL{4}}
+%
+% PERSONAL: no magnetic direction; we have magnetic compass, and electronic heading
+\newcommand*{\DirectionSET}[1][]{\Check[#1]{\PERSONAL{Direction}}{CHECKED and HDG BUG SET}}
+% }}}
 %
 \begin{document}
 \begin{CheckListRule}{Before starting engine}{}% {{{
+	% PERSONAL: first check the version of the official on-board checklist
+	\CheckChecklist
+
 	\PreflightInspectionCOMPLETED
 	\WheelChocksAndPitotCoverREMOVED
+	\Check{Seats, seat belts}{ADJUSTED and LOCKED}
 	\ParkingBrakeTESTED
 	\PassengerBriefingCOMPLETED
-	\SeatsAndBeltsADJUSTED% TODO
-	\CowlFlaps{OPEN}
 	\Avionics{OFF}
-	\ElectricalConsumersOFF
+	\Check{Electrical equipment}{OFF}
+	\CowlFlaps{OPEN}
 	\CircuitBreakers{2 rows IN}
 	\MasterSwitch{ON}
 	\HourMeterWRITTEN
 	\FuelQuantityLR
 	\FuelSelectorBOTH
 \end{CheckListRule}% }}}
-\vfill
 \begin{CheckList}{Starting engine}{}% {{{
 	\Check{BCN + NAV lights, FLARM, Aspen PFD}{ALL ON}
-	\PropellerMAX
-	\ThrottleFrictionLockADJUSTED
-	\Check{Throttle}{5mm}
-	\Mixture{CUT OFF}
-	\begin{ConditionalChecks}{If engine cold:}
-		\Check{Auxiliary fuel pump}{ON}
-		\Mixture{RICH up to 3--5 GPH then CUT OFF}
-		\Check{Auxiliary fuel pump}{OFF}
-	\end{ConditionalChecks}
+	\PropellerHIGH
+
+	% PERSONAL: better to check throttle friction lock before taxi
+	\PERSONAL{\ThrottleFrictionLockADJUSTED}
+
+	% PERSONAL: use SI unit
+	\Check{Throttle}{\PERSONAL{5mm}}
+
+	\MixtureIDLE
+
+	\begin{ConditionalChecks}{If engine cold:}% {{{
+		\AuxFuelPump{ON}
+
+		% PERSONAL: ensure we go full rich and not smoothly
+		\Mixture{ADVANCE \PERSONAL{RICH} up to 3--5 GPH then IDLE CUT OFF}
+
+		\AuxFuelPump{OFF}
+	\end{ConditionalChecks}% }}}
+
+	% No-read section {{{
 	\PropellerAreaCLEAR
-	\IgnitionKeySTART
-	\Check[hh]{Mixture}{SMOOTHLY TO RICH when engine fires}
+
+	% PERSONAL: there is an indicator light to show the starter is running.
+	% We can check it afterwards to see the starter really disconnected.
+	% But to trust it, we have to check right when we make contact that it is indeed working properly.
+	\Check[hh]{Magnetos}{START \PERSONAL{and check light}\ (release when engine starts)}
+
+	\Check[hh]{Mixture}{ADVANCE smoothly to RICH when engine fires}
 	\Check[hh]{Engine warm up}{\RPM{1000--1200}}
 	\Check[hh]{Oil pressure}{}
-	\Check[hh]{Starter}{CHECK DISCONNECTED (light + ammeter)}
-	\Avionics{ON}
-	\Check{Radios}{ON, LIGHTS TESTED, SET}
+
+	% PERSONAL: check indicator light too
+	\Check[hh]{Starter}{CHECK DISCONNECTED (\PERSONAL{light +} ammeter)}
+	% }}}
+
+	% PERSONAL: we turn on avionics, the master switch we only toggle
+	\Check{\PERSONAL{Avionics}}{ON}
+
+	% PERSONAL: test radio lights before going further
+	\Check{Radios}{ON, \PERSONAL{LIGHTS TESTED}, SET}
+
 	\WingFlapsCHECK
 \end{CheckList}% }}}
 \vfill
-\begin{CheckListRule}{Taxi}{}% {{{
-	\BlockTime{off}
+\begin{CheckList}{Taxi}{}% {{{
+	% PERSONAL: write down block-off time
+	\ItemZero\PERSONAL{\BlockTime{off}}
+
 	\TaxiLandingLights{ON}
 	\ParkingBrake{RELEASED}
-	\BrakesCHECK
-	\NoseWheelSteeringCHECK
-	\FlightInstrumentsCHECK
-	\Check[hh]{Transponder}{GND}
-\end{CheckListRule}% }}}
-\SkipPage
+
+	% No-read section {{{
+	% PERSONAL: we not only check the brake pedals, but the brakes themselves
+	\Check[h]{\PERSONAL{Brakes}}{}
+
+	\Check[hh]{Nose wheel steering}{}
+
+	% PERSONAL: we do not SET anything right now, we only check
+	\Check[hh]{Flight instruments}{\PERSONAL{CHECK}}
+
+	\Check[hh]{Transponder}{GND (Mode S)}
+	% }}}
+\end{CheckList}% }}}
+\SkipPage%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 \begin{CheckListRule}{Engine check}{}% {{{
-	\Check{PAX checklist}{GIVEN}
-	\ParkingBrake{SET (pedals depressed)}
+	% PERSONAL: provide PAX checklist so they have something to do
+	\ItemZero\PERSONAL{\Check{PAX checklist}{GIVEN}}
+
+	\ParkingBrake{SET, brake pedals depressed}
 	\TaxiLandingLights{OFF}
 	\ThrottleRpm{1800}
-	\Check{Magnetos}{CHECKED (max drop \RPM{150})}
-	\Check{Propeller}{CYCLE, then MAX RPM}
+	\Magnetos{CHECKED (max drop \RPM{150})}
+	\Check{Propeller}{CYCLE then HIGH RPM}
 	\Check{Mixture, EGT and Fuel Flow}{}
 	\Check{Ammeter}{}
 	\OilPressureTemperature
-	\Check{Annunciator panel}{TESTED then NO LIGHTS}
+
+	% PERSONAL: we do not check the lights, we test them
+	\Check{Annunciator panel}{\PERSONAL{TESTED} then ensure no annunciator illuminated}
+
 	\ThrottleRpm[idle]{500--700}
 	\Throttle{1000}
+
+	% SKIP: done in BeforeStartingEngine
+	\SKIP{\ThrottleFrictionLockADJUSTED}
 \end{CheckListRule}% }}}
 \begin{SubWrapper}{Before take-off}{}% {{{
 \begin{SubCheckList}{Fuel}% {{{
@@ -77,50 +132,67 @@
 \end{SubCheckList}% }}}
 \begin{SubCheckList}{Engine}% {{{
 	\OilPressureTemperature
-	\PropellerMAX
+	\PropellerHIGH
 \end{SubCheckList}% }}}
-\begin{SubCheckList}{Airplane}% {{{
-	\Check{Wing flaps}{SET for take-off (0 or 2)}
-	\Check{Elevator and Rudder trims}{SET for take-off (1cm right, PAX: 2cm nose up)}
+\begin{SubCheckList}{Aircraft}% {{{
+	% PERSONAL: use steps instead of degrees to not have to look at the lever
+	\Check{Wing flaps}{SET for take-off (0 or \PERSONAL{2})}
+
+	% PERSONAL: write down how to set trims for take-off
+	\Check{Elevator and Rudder trims}{SET for take-off \PERSONAL{(1cm right, PAX: 2cm nose up)}}
+
 	\CowlFlaps{OPEN}
 	\AltimeterQNH[x\Naltimeters]
-	\Check{Flight instruments}{SET}
+
+	% PERSONAL: not listing all flight instruments
+	\Check{Flight instruments (\PERSONAL{...})}{SET}
+
 	\Autopilot{OFF}
 	\CabinDoorsCLOSED
+
 	%\Check{Cabin + PAX}{SEATS and SEAT BELTS SECURED, SEAT BACKS UPRIGHT}
-	\SeatsSECURED
-	\SeatBacksUPRIGHT
+	\Check{Seats \& seat belts}{SECURED}
+	\addtocounter{enumi}{-1}
+	\Check{Seat backs}{MOST UPRIGHT POSITION}
+
 	\FlightControlsCORRECT
 	\DepartureBriefingCOMPLETED
-	\TaxiLandingLights{ON}
+
+	% PERSONAL: turn on lights before releasing brakes
+	\PERSONAL{\TaxiLandingLights{ON}}
+
 	\ParkingBrake{RELEASED}
 \end{SubCheckList}% }}}
 \end{SubWrapper}
 % }}}
-\SkipPage
+\SkipPage%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 \begin{CheckListRule}{Line-up}{}% {{{
-	\TakeOffTime
-	\ApproachAndRunwayCLEAR
-	\Check{Strobe, Taxi, Landing lights}{3x ON}
+	% PERSONAL: write down take-off time
+	\PERSONAL{\TakeOffTime}
+
+	\Check{Approach sector}{CHECK FREE}
+	\Lights{Strobe, Taxi, Landing}{3x ON}
 	\Transponder{ALT}
 	\RunwayIDENTIFIED
 	\DirectionSET[hh]
 	\WindCHECK[hh]
 \end{CheckListRule}% }}}
 \begin{CheckListRule}{Take-off}{h}% {{{
-	\RunwayFREE
+	\Check{Runway}{FREE}
 	\PowerFULL{2400}
 	\MixtureRICH
-	\SpeedALIVE[x3]
+	\Check{Speed (x3)}{RAISING}
 \end{CheckListRule}% }}}
 \begin{CheckListRule}{Climb}{h}% {{{
 	\Check{Climb power}{FULL THROTTLE (23 inHg) and \RPM{2300}}
-	\CowlFlaps{OPEN}
+
+	% PERSONAL: do this here instead of after flaps as we go bottom-top on the panel
+	\PERSONAL{\CowlFlaps{OPEN}}
+
 	\Flaps{UP}
 	\Mixture{SET}
 	\Transponder{ALT}
-	\Check{Strobe, Landing, Taxi lights}{ON}
 \end{CheckListRule}% }}}
 \begin{CheckListRule}{Cruise}{h}% {{{
 	\DirectionSET
@@ -130,88 +202,87 @@
 	\FuelQuantityLR
 	\Check{Engine instruments}{}
 	\CowlFlaps{CLOSED}
-	\Check{Lights}{}
-	\Check{Elevator and Rudder trims}{SET}
 \end{CheckListRule}% }}}
-%\begin{CheckList}{Descent}{h}% {{{
-	%\FuelSelectorBOTH
-	%\Mixture{ENRICHED as required}
-%\end{CheckList}% }}}
+\begin{CheckList}{Descent}{}% {{{
+	\Check{ATIS, AD INFO, Approach briefing}{COMPLETED}
+	\Avionics{SET FOR APPROACH}
+	\CabinPaxSECURED
+	\Mixture{ENRICHED}
+	\CowlFlaps{CLOSED}
+\end{CheckList}% }}}
 %
 \vfill
 \begin{InfoBox}% speeds + downwind power {{{
 	% Take off          1   r   x                 y  cc
-	\InfoSpeedsTakeOff{45}{55}{58 (F2), 65 (F0)}{80}{90}
+	\InfoSpeedsTakeOff{45}{55}{58 (F2), 63 (F0)}{80}{85-95}
 	% Landing                   app  fin         a    glide
-	\InfoSpeedsLandingCriticals{90}{75-70 (65)}{110}{70 (FX), 75 (F0)}
+	\InfoSpeedsLandingCriticals{90}{75-70 (65)}{110}{75 (F0), 70 (FX)}
 	% More infos   plan ratio NM  fuel    downwind             Xwind
 	\InfoSpeedsMore{120}{XX}{1.4}{13 USG}{20 inHg \& \RPM{20}}{15}
 \end{InfoBox}% }}}
-\SkipPage
 %
-\begin{CheckListRule}{Approach}{h}% {{{
-	\ApproachBriefingCOMPLETED
-	\Check{Avionics}{SET, HDG BUG SET on RWY}
+\SkipPage%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\begin{CheckListRule}{Approach}{}% {{{
 	\Altimeter[x\Naltimeters]
 	\FuelQuantityLR
 	\FuelSelectorBOTH
-	\CowlFlaps{CLOSED}
 	\Mixture{RICH}
+	\CowlFlaps{CLOSED}
 	\Autopilot{OFF}
-	\Check{Strobe, Taxi, Landing light}{3x ON}
-	\Check{Cabin + PAX}{SECURED}
+	%
+	% PERSONAL: also check strobe light is ON
+	\Lights{\PERSONAL{Strobe}, Taxi, Landing}{3x ON}
 \end{CheckListRule}% }}}
 \begin{CheckListRule}{Final}{h}% {{{
-	\Flaps{FULL}
-	\PropellerMAX
-	\Check{Mixture}{RICH as required}
-	\WindCHECK
+	\Flaps{FULL or as necessary}
+	\PropellerHIGH
+
+	% PERSONAL: also check mixture
+	\PERSONAL{\Check{Mixture}{RICH as required}}
+
+	% PERSONAL: check the wind
+	\PERSONAL{\WindCHECK}
 \end{CheckListRule}% }}}
 \begin{CheckListRule}{After landing}{}% {{{
-	\LandingTime
+	% PERSONAL: write down landing time
+	\ItemZero\PERSONAL{\LandingTime}
+
 	\Flaps{UP}
 	\CowlFlaps{OPEN}
 	\Transponder{GND}
-	\Check{Strobe light}{OFF}
+	\Lights{Strobe}{OFF}
 \end{CheckListRule}% }}}
 \begin{CheckList}{Engine shut down}{}% {{{
 	\ParkingBrake{SET}
-	\TaxiLandingLights{OFF}
+
+	% PERSONAL: turn lights off when parking brake is set
+	\PERSONAL{\TaxiLandingLights{OFF}}
+
 	\ThrottleRpm{1000}
-	\BlockTime{on}
-	\ElectricalConsumersOFF
+
+	% PERSONAL: write down block-on time
+	\PERSONAL{\BlockTime{on}}
+
+	\Check{Electrical equipment}{OFF}
 	\Avionics{OFF}
-	\Mixture{CUT OFF}
+	\MixtureIDLE
 	\MagnetosOFF
 	\HourMeterWRITTEN
 	\MasterSwitch{OFF}
-	\Check{Control lock}{SET}
+	\Check{Control lock}{INSTALL}
 	\FuelSelector{LEFT or RIGHT}
-	\Check{Cabin and seat belts}{TIDY}
+	\Check{Cabin and seat belts}{OK}
 	\WheelChocksAndPitotCover{SET}
 \end{CheckList}% }}}
 %
 \vfill
 % InfoDistances {{{
 \begin{InfoDistances}{2300}
-	T-off F2
-	& 315 (610)  % roll(50ft) #1 ft 1003hPa +20oC
-	& +10 (+25)  % 993hPa
-	& +25 (+45)  % +30oC
-	& +15\% (N/A)  % grass
-	\\\hline
-	%T-off 0F
-	%& ? (?)  % roll(50ft) #1 ft 1003hPa +20oC
-	%& +? (+?)  % 993hPa
-	%& +? (+?)  % +30oC
-	%& +? (+?)  % grass
-	%\\\hline
-	Landing
-	& 200 (445)  % roll(50ft) #1 ft 1003hPa +20oC
-	& +5 (+5)  % 993hPa
-	& +10 (+15)  % +30oC
-	& +45\% (N/A)  % grass
-	\\
+	% {Label} {roll (50ft) at alt 1003hPa +20oC} {993hPa} {+30oC} {grass}
+	\InfoDistanceRow{T-off F2}{315 (610)}{+10 (+25)}{+25 (+45)}{+15\% (N/A)}
+	\InfoDistanceRow{Landing}{200 (445)}{+5 (+5)}{+10 (+15)}{+45\% (N/A)}
 \end{InfoDistances}% }}}
+\vspace{3mm}
+\ShowURL
 \end{document}
-
