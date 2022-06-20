@@ -1,0 +1,54 @@
+% Common commands for Robin GVM Sion checklists {{{
+\newcommand*{\BatteryAlternator}[1]{\Check{Battery master \& alternator}{#1}}
+\newcommand*{\ElectricalConsumersOFF}{\Check{Electrical consumers}{OFF}}
+\newcommand*{\AnnunciatorLights}[1]{\Check{Annunciator lights}{#1}}
+% }}}
+%
+% Robin aircraft preparation
+\begin{CheckListRule}{Aeroplane and cockpit preparation}{}
+	% PERSONAL: first check the version of the official on-board checklist
+	\CheckChecklist
+
+	% PERSONAL: PAX briefing must be completed before we are all fastened
+	% so PIC can show stuff around (ventilation, extinguisher...).
+	\PERSONAL{\PassengerBriefingCOMPLETED}
+
+	% PERSONAL: check papers+log before going too far in the plane
+	\PERSONAL{\Check{Aircraft papers + log}{}}
+
+	% PERSONAL: write down hour meter
+	\PERSONAL{\HourMeterWRITTEN}
+
+	% Now go on with official checklist
+	\KeyINSERT
+	\Throttle{IDLE}
+	\MixtureIDLE
+	\CarburetorHeat{OFF}
+
+	% Official checklist is doing:
+	% Battery Alternator ON
+	% Electrical consumers OFF
+
+	% PERSONAL: first electrical consumers OFF
+	% Rationale: I don't want any electrical consumers when I press battery ON
+	\PERSONAL{\ElectricalConsumersOFF}
+	\PERSONAL{\BatteryAlternator{ON}}
+
+	\CircuitBreakers{ALL IN}
+	\AnnunciatorLights{TESTED}
+
+	% PERSONAL: need to turn avionics ON and OFF for this part
+	\PERSONAL{\Avionics{ON}}
+
+	% PERSONAL: do not mention frequencies here, we can be on any AD
+	\Check{COM}{MONITOR EMG 121.5 + ATIS then \PERSONAL{SET}}
+
+	% PERSONAL: need to turn avionics ON and OFF for this part
+	\PERSONAL{\Avionics{OFF}}
+
+	% PERSONAL: parking brake should be tested at least once
+	\ParkingBrake{\PERSONAL{TESTED and}\ SET}
+
+	\Trim[Elevator and rudder]{NEUTRAL}
+	\Flaps{UP}
+\end{CheckListRule}%

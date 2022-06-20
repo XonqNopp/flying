@@ -1,119 +1,165 @@
 \documentclass{checklists}
 %
 \SetPlane{Robin DR400--180 EFIS}{}{HB-KHV}
-\DocV{GVM Sion}{1.5(23.06.2019)}
+\DocV{GVM Sion}{1.5 (23.06.2019)}
 %
-\input{robinPreparation}
+% Commands specific to this file {{{
+\newcommand*{\FuelQuantityMainWings}{\FuelQuantity[MAIN + WINGS]}
+\newcommand*{\StarterENGAGE}{\Check{Starter}{ENGAGE}}
+\newcommand*{\EngineInstrumentsCHECK}{\Check{Engine instruments}{}}
+%
+% PERSONAL: toggle FLARM together with avionics
+\newcommand*{\AvionicsFLARM}[1]{\Avionics[\textbf{+ FLARM}]{#1}}
+% }}}
 %
 \begin{document}
 %
-\RobinPreparation{\SrcName\ \SrcVersion}
+\input{robin_preparation}
 %
 \begin{CheckListRule}{Preflight check}{}% {{{
 	\Check{Outside check}{COMPLETED}
-	%\Check{Wheel chocks and pitot cover}{REMOVED, ON BOARD}
 	\Check{Cargo door}{CLOSED and LOCKED}
+
+	% SKIP: done in robin_preparation.tex
+	\SKIP{\Check{Aircraft papers}{}}
+
+	% SKIP: done in robin_preparation.tex
+	\SKIP{\Check{Aircraft log}{}}
+
 	\Check{Tow bar}{REMOVED and SECURED}
 	\Check{Cabin}{}
+
+	% SKIP: done when preparing the nav
+	\SKIP{\Check{Load sheet}{WITHIN LIMITS}}
+
+	% PERSONAL: wheel chocks and pitot cover are not checked elsewhere
+	\PERSONAL{\WheelChocksAndPitotCoverREMOVED}
 \end{CheckListRule}% }}}
 \begin{CheckList}{Check before engine start}{}% {{{
+	\Check{Seats}{ADJUSTED and LOCKED}
 	\ParkingBrake{SET}
-	\SeatsADJUSTED
-	\SeatBeltsHarnessFASTENED
+	\Check{Seat belts \& harness}{FASTENED}
 	\ElectricalConsumersOFF
 	\CircuitBreakers{}
-	\AvionicsFlarm{OFF}
+	\AvionicsFLARM{OFF}
 	\BatteryAlternator{ON}
-	\Check{LED safety plane}{ON (maybe)}
+
+	% PERSONAL: Daniel Berchtold said it was not always working
+	\Check{LED safety plane}{\PERSONAL{should be}\ ON}
+
 	\AnnunciatorLights{TESTED}
-	\ELTARMED
-	\FuelQuantity[MAIN + WINGS]
+	\Check{ELT}{AUTO, ARMED}
+	\FuelQuantityMainWings
 	\FuelSelectorFULLER
 	\Mixture{RICH}
-	\CarburetorHeater{OFF}
+	\CarburetorHeat{OFF}
 	\Throttle{IDLE}
 	\CanopyCLOSED
 \end{CheckList}% }}}
-\SkipPage
+\SkipPage%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 \begin{CheckListRule}{Engine start}{}% {{{
 	\Lights{NAV}{ON}
 	\Check[h]{Fuel pump}{ON}
-	\Check[hh]{Fuel pressure}{CHECKED MOVING}
+
+	% PERSONAL: check the fuel pressure is moving when we turn pump ON
+	% Rationale: it is the only time we can check the pressure indicator is working properly
+	\PERSONAL{\Check[hh]{Fuel pressure}{CHECKED MOVING}}
+
 	\Magnetos{LEFT}
-	\begin{ConditionalChecks}{If WEATHER cold:}
-		\Throttle{10x open-close then $5mm$}
-		%\Magnetos{BOTH ???}% TODO confirm?
-		\StarterENGAGE% TODO how long
-		\Throttle{5-6x open-close then idle}
-		\Magnetos{LEFT}
-		\StarterENGAGE
-		\Throttle{Increase progressively}
-	\end{ConditionalChecks}
-	\Throttle{3x open-close then $5mm$}
+
+	% Cold weather priming according to Daniel Berchtold
+	\begin{ConditionalChecks}{If WEATHER cold:}% {{{
+		\PERSONAL{\Throttle{10x open-close then $5mm$}}
+		\PERSONAL{\Magnetos{BOTH}}
+		\PERSONAL{\StarterENGAGE}
+		\PERSONAL{\Throttle{5-6x open-close then idle}}
+		\PERSONAL{\Magnetos{LEFT}}
+		\PERSONAL{\StarterENGAGE}
+		\PERSONAL{\Throttle{Increase progressively}}
+	\end{ConditionalChecks}% }}}
+
+	% Regular priming according to Daniel Berchtold
+	\PERSONAL{\Throttle{3x open-close then $5mm$}}
+
+	% No-read section {{{
 	\PropellerAreaCLEAR
 	\Check[hh]{Starter}{ENGAGE, TIME CHECK}
 	\Check[hh]{Magnetos}{BOTH}
 	\Check[hh]{Throttle}{\RPM{1200}}
-	\Check[hh]{Oil pressure}{MIN YELLOW ARC (max 30s)}
+	\Check[hh]{Oil pressure}{MIN YELLOW ARC (after max 30s)}
+	% }}}
 \end{CheckListRule}% }}}
 \begin{CheckListRule}{Check after engine start}{}% {{{
-	\Check{Alternator output [V]}{12.0 -- 14.5}
-	\FuelPump{OFF}
+	\Check{Alternator output}{12.0 -- 14.5 V}
+	\FuelPumpOffChecked
 	\AnnunciatorLights{}
-	\VentilationEtc
-	\AvionicsFlarm{ON}
+	\Check{Ventilation, heater, defroster}{AS REQUIRED}
+	\AvionicsFLARM{ON, CHECK ATIS}
 	\Trim[Electrical]{ON}
-	\Check{Flight instruments}{ON}
+	\Check{Flight instruments}{SET and CHECKED}
 	\EngineInstrumentsCHECK
-	\Avionics[COM, NAV, transponder]{SET}
+	\Avionics[COM, NAV, transponder]{SET and PRESELECTED}
 	\AutopilotTESTED
-	%\Flaps{UP}
+
+	% SKIP: done in robin_preparation.tex
+	\SKIP{\Flaps{UP}}
 \end{CheckListRule}% }}}
 \begin{CheckListRule}{Taxi check}{}% {{{
-	\BlockTime{off}
-	\BrakesSteeringCHECK
-	\FlightInstrumentsCHECK
-	\Check[hh]{Transponder}{GND}
+	% PERSONAL: write down block-off time
+	\PERSONAL{\BlockTime{off}}
+
+	\Check{Brakes + steering}{}
+
+	% Official checklist is: Gyro instruments: checked
+	% PERSONAL: check flight instruments (compass, direction, turn indicator, horizon)
+	% This airplane is EFIS and not using gyros.
+	\PERSONAL{\Check[hh]{Flight instruments}{}}
 \end{CheckListRule}% }}}
 %
-%\vfill
-\vspace{-3mm}
+\vfill
 \begin{InfoBox}% {{{ speeds + downwind power
-	% Take off          1   r   x   y  cc
-	\InfoSpeedsTakeOff{45}{54}{70}{92}{92}
+	% Take off          1   r   x   y                cc
+	\InfoSpeedsTakeOff{45}{54}{70}{81 (F1), 92 (F0)}{92}
 	% Landing                   app    fin  a    glide
 	\InfoSpeedsLandingCriticals{85, 80}{68}{116}{81}
 	% More infos   plan ratio NM  fuel   downwind   Xwind
-	\InfoSpeedsMore{100}{9.3}{1.5}{40 l}{\RPM{2000}}{22}
+	\InfoSpeedsMore{110}{9.3}{1.5}{40 l}{\RPM{2000}}{22}
 \end{InfoBox}% }}}
-\SkipPage
+%
+\SkipPage%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 \begin{CheckList}{Run up}{}% {{{
+	% PERSONAL: provide PAX checklist so they have something to do
+	\ItemZero\PERSONAL{\Check{PAX checklist}{GIVEN}}
+
 	\ParkingBrake{SET}
-	\WarmUpTimeCHECK
-	\ZoneBehindAircraftCLEAR
+	\Check{Warm up time}{}
+	\Check{Zone behind aircraft}{CLEAR}
 	\ThrottleRpm{2000}
 	\Check{Engine instruments, voltmeter}{}
 	\MagnetosDropDiffCHECK{175}{50}
-	\CarburetorHeater{}
-	\Mixture{EGT, RPM}
+	\CarburetorHeat{CHECK FUNCTION}
+	\Mixture{CHECK FUNCTION}
 	\ThrottleRpm[idle]{500--700}
 	\ThrottleRpm{1200}
 \end{CheckList}% }}}
 % Departure briefing
 \begin{CheckListRule}{Check before departure}{}% {{{
 	\FuelPump{ON}
-	\FuelQuantity[MAIN + WINGS]
+	\FuelQuantityMainWings
 	\FuelSelectorFULLER
 	\Mixture{AS REQUIRED}
-	\CarburetorHeater{OFF}
+	\CarburetorHeat{OFF}
 	\Magnetos{BOTH}
 	\Trim{SET FOR DEPARTURE}
-	\Flaps{set for departure: F1}
-	\Check{Flight instruments + avionics}{SET FOR DEPARTURE}
+
+	% PERSONAL: just write down take-off flaps configuration
+	\Flaps{set for departure: \PERSONAL{F1}}
+
+	\Check{Flight instruments \& avionics}{SET FOR DEPARTURE}
 	\Check{STBY power}{GREEN LIGHT, CHECKED}
-	\SeatPositionLOCKED
+	\Check{Seats position}{CHECKED and LOCKED}
 	\CabinPaxSECURED
 	\FlightControlsCORRECT
 	\DepartureBriefingCOMPLETED
@@ -121,73 +167,98 @@
 \begin{CheckListRule}{Line up check}{}% {{{
 	\CanopyCLOSED
 	\TakeOffTime
-	%\Transponder{ALT}
-	%\Check{Approach sector and runway}{CLEAR}
-	\ApproachAndRunwayCLEAR
+	\Transponder{ALT}
+	\Check{Approach sector \& Runway}{CLEAR}
 	\Lights{Landing + strobe}{ON}
-	\RunwayIDENTIFIED
-	\WindCHECK[hh]
+
+	% PERSONAL: identify runway (marking, heading)
+	\PERSONAL{\RunwayIDENTIFIED}
+
+	% PERSONAL: check wind sock
+	\PERSONAL{\WindCHECK[hh]}
 \end{CheckListRule}% }}}
+\vspace{2mm}
 \stepcounter{CheckOddEven}%
 \begin{CheckListRule}{Climb check}{h}% {{{
 	\Flaps{UP}
 	\Check{Climb power}{SET}
-	\FuelPump{OFF}
+	\FuelPumpOffChecked
 \end{CheckListRule}% }}}
 \begin{CheckList}{Cruise check}{}% {{{
-	\Altimeter
-	\Direction{SET}
-	\Check{Power}{}
+	\Check{Altimeter}{CHECKED (STD or QNH)}
+
+	% PERSONAL: no directional gyro on this plane
+	\PERSONAL{\Direction{SET}}
+
+	\Check{Cruise power}{}
 	\Mixture{}
 	\EngineInstrumentsCHECK
-	\FuelQuantity[MAIN + WINGS]
+	\FuelQuantityMainWings
 	\Check{Fuel management}{AS REQUIRED}
 \end{CheckList}% }}}
-\SkipPage
+\SkipPage%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % Approach briefing
 \begin{CheckListRule}{Descent check}{}% {{{
 	\Check{ATIS or AD INFO}{WRITTEN}
-	\Check{Avionics + Direction}{SET}
+	\ApproachBriefingCOMPLETED
+
+	% PERSONAL: no directional gyro on this plane
+	\Check{Avionics + \PERSONAL{Direction}}{SET}
+
 	\CircuitBreakers{}
 	\CabinPaxSECURED
-	\ApproachBriefingCOMPLETED
 \end{CheckListRule}% }}}
 \begin{CheckListRule}{Approach check}{}% {{{
 	\AltimeterQNH
 	\FuelPump{ON}
-	\FuelQuantity[MAIN + WINGS]
+	\FuelQuantityMainWings
 	\FuelSelectorFULLER
-	\Mixture{ENRICHED AS REQUIRED}
-	\CarburetorHeater{AS REQUIRED}
-	\Autopilot{OFF}
+
+	% PERSONAL: mention we need to have mixture more rich to descend
+	\Mixture{\PERSONAL{ENRICHED} AS REQUIRED}
+
+	\CarburetorHeat{AS REQUIRED}
+
+	% PERSONAL: provide safety height for disabling autopilot
+	\Autopilot{OFF \PERSONAL{below 2000ft AGL}}
 \end{CheckListRule}% }}}
 \stepcounter{CheckOddEven}%
 \begin{CheckListRule}{Landing check}{h}% {{{
 	\Flaps{SET FOR LANDING}
 	\Mixture{AS REQUIRED}
-	\CarburetorHeater{OFF (or TO GO)}
-	\WindCHECK
+	\CarburetorHeat{OFF (or TO GO)}
+
+	% PERSONAL: check wind sock to better appreciate wind influence
+	\PERSONAL{\WindCHECK}
 \end{CheckListRule}% }}}
 \begin{CheckListRule}{After landing check}{}% {{{
-	\Transponder{CHECKED, GND or STBY}
+	% PERSONAL: transponder should be in an appropriate state
+	\Transponder{CHECKED, \PERSONAL{GND or STBY}}
+
 	\Lights{Strobe + landing}{OFF}
-	\FuelPump{OFF}
+
+	% PERSONAL: always check fuel pressure when toggling pump OFF
+	\FuelPump{OFF, \PERSONAL{PRESSURE CHECKED}}
+
 	\Flaps{UP}
 	\LandingTime
 \end{CheckListRule}% }}}
 \begin{CheckList}{Engine shut down}{}% {{{
 	\ParkingBrake{SET}
 	\ThrottleRpm{1200}
-	\Flaps{DOWN}
-	\AvionicsFlarm{MONITOR 121.500, THEN OFF}
+	\AvionicsFLARM{MONITOR 121.500, THEN OFF}
 	\ElectricalConsumersOFF
-	\MagnetosGrounding
-	\Mixture{CUT OFF}
+	\Check{Magnetos grounding}{AS REQUIRED (at idle)}
+	\Mixture{LEAN CUT OFF}
 	\MagnetosOFF
 	\Lights{NAV}{OFF}
 	\BatteryAlternator{OFF}
-	\BlockOnCounter
+	\Flaps{DOWN}
+
+	% PERSONAL: reminder to write down the block-on time
+	\PERSONAL{\BlockOnCounter}
+
 	\Check{Flight data and documents}{NOTED and COMPLETED}
 	\Check{Aircraft}{TO BE SECURED}
 \end{CheckList}% }}}
@@ -195,19 +266,10 @@
 %
 % InfoDistances {{{
 \begin{InfoDistances}{1600}% [ft]
-	T-off F1
-	& 310 (641)      % roll(50ft) #1 ft 1003hPa +20oC
-	&  +6 (+13)      % 993hPa
-	& +21 (+45)      % +30oC
-	& +15\% (+15\%)  % grass
-	\\\hline
-%
-	Landing
-	& 273 (570)      % roll(50ft) #1 ft 1003hPa +20oC
-	&  +3 (+5)       % 993hPa
-	& +10 (+15)      % +30oC
-	& +15\% (+15\%)  % grass
-	\\\hline
+	% {Label} {roll (50ft) at alt 1003hPa +20oC} {993hPa} {+30oC} {grass}
+	\InfoDistanceRow{T-off F1}{310 (641)}{+6 (+13)}{+21 (+45)}{+15\% (+15\%)}
+	\InfoDistanceRow{Landing}{273 (570)}{+3 (+5)}{+10 (+15)}{+15\% (+15\%)}
 \end{InfoDistances}% }}}
+\vspace{1.8mm}
+\ShowURL
 \end{document}
-
