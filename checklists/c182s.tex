@@ -1,6 +1,6 @@
 \documentclass{checklists}
 \SetPlane{C182S}{Skylane}{HB-TDR}
-\DocV{AFS}{2.14 (06.2020)}
+\DocV{AFS}{2.15 (05.2022)}
 %
 % Commands specific to this file {{{
 \newcommand*{\CowlFlaps}[1]{\Check{Cowl flaps}{#1}}
@@ -23,6 +23,7 @@
 
 	\PreflightInspectionCOMPLETED
 	\WheelChocksAndPitotCoverREMOVED
+	\Check{Tow bar}{REMOVED, ON BOARD or STORED}
 	\Check{Seats, seat belts}{ADJUSTED and LOCKED}
 	\ParkingBrakeTESTED
 	\PassengerBriefingCOMPLETED
@@ -80,8 +81,10 @@
 
 	\WingFlapsCHECK
 \end{CheckList}% }}}
-\vfill
-\begin{CheckList}{Taxi}{}% {{{
+\SkipPage%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\vspace{2mm}
+\begin{CheckListRule}{Taxi}{}% {{{
 	% PERSONAL: write down block-off time
 	\ItemZero\PERSONAL{\BlockTime{off}}
 
@@ -99,9 +102,7 @@
 
 	\Check[hh]{Transponder}{GND (Mode S)}
 	% }}}
-\end{CheckList}% }}}
-\SkipPage%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
+\end{CheckListRule}% }}}
 \begin{CheckListRule}{Engine check}{}% {{{
 	% PERSONAL: provide PAX checklist so they have something to do
 	\ItemZero\PERSONAL{\Check{PAX checklist}{GIVEN}}
@@ -111,7 +112,7 @@
 	\ThrottleRpm{1800}
 	\Magnetos{CHECKED (max drop \RPM{150})}
 	\Check{Propeller}{CYCLE then HIGH RPM}
-	\Check{Mixture, EGT and Fuel Flow}{}
+	\Check{Mixture, EGT, Fuel Flow}{}
 	\Check{Ammeter}{}
 	\OilPressureTemperature
 
@@ -150,10 +151,7 @@
 	\Autopilot{OFF}
 	\CabinDoorsCLOSED
 
-	%\Check{Cabin + PAX}{SEATS and SEAT BELTS SECURED, SEAT BACKS UPRIGHT}
-	\Check{Seats \& seat belts}{SECURED}
-	\addtocounter{enumi}{-1}
-	\Check{Seat backs}{MOST UPRIGHT POSITION}
+	\Check{Cabin + PAX (seats, seat backs upright, seat belts)}{SECURED}
 
 	\FlightControlsCORRECT
 	\DepartureBriefingCOMPLETED
@@ -174,6 +172,7 @@
 	\Check{Approach sector}{CHECK FREE}
 	\Lights{Strobe, Taxi, Landing}{3x ON}
 	\Transponder{ALT}
+
 	\RunwayIDENTIFIED
 	\DirectionSET[hh]
 	\WindCHECK[hh]
@@ -225,12 +224,14 @@
 %
 \begin{CheckListRule}{Approach}{}% {{{
 	\Altimeter[x\Naltimeters]
+
 	\FuelQuantityLR
 	\FuelSelectorBOTH
 	\Mixture{RICH}
+
 	\CowlFlaps{CLOSED}
 	\Autopilot{OFF}
-	%
+
 	% PERSONAL: also check strobe light is ON
 	\Lights{\PERSONAL{Strobe}, Taxi, Landing}{3x ON}
 \end{CheckListRule}% }}}
@@ -268,6 +269,7 @@
 	\Avionics{OFF}
 	\MixtureIDLE
 	\MagnetosOFF
+	\Check{NAV light}{OFF}
 	\HourMeterWRITTEN
 	\MasterSwitch{OFF}
 	\Check{Control lock}{INSTALL}
