@@ -1,7 +1,7 @@
 \documentclass{checklists}
 %
 \SetPlane{Robin DR400--180 EFIS}{}{HB-KHV}
-\DocV{GVM Sion}{1.5 (23.06.2019)}
+\DocV{GVM Sion}{1.7 (27.12.2022)}
 %
 % Commands specific to this file {{{
 \newcommand*{\FuelQuantityMainWings}{\FuelQuantity[MAIN + WINGS]}
@@ -44,10 +44,13 @@
 	\AvionicsFLARM{OFF}
 	\BatteryAlternator{ON}
 
-	% PERSONAL: Daniel Berchtold said it was not always working
-	\Check{LED safety plane}{\PERSONAL{should be}\ ON}
+	% PERSONAL: Daniel Berchtold said it was not always working, cannot do
+	% anything if not working, but not mandatory to fly.
+	\Check{LED safety plane \PERSONAL{(flight recorder)}}{\PERSONAL{should be}\ ON}
 
-	\AnnunciatorLights{TESTED}
+	% SKIP: done in robin_preparation.tex
+	\SKIP{\AnnunciatorLights{TESTED}}
+
 	\Check{ELT}{AUTO, ARMED}
 	\FuelQuantityMainWings
 	\FuelSelectorFULLER
@@ -68,12 +71,12 @@
 
 	\Magnetos{LEFT}
 
-	% Cold weather priming according to Daniel Berchtold
-	\begin{ConditionalChecks}{If WEATHER cold:}% {{{
-		\PERSONAL{\Throttle{10x open-close then $5mm$}}
+	% Cold weather priming according to Daniel Berchtold {{{
+	\begin{ConditionalChecks}{If WEATHER cold:}
+		\PERSONAL{\Throttle{10-12x open-close then $5mm$}}
 		\PERSONAL{\Magnetos{BOTH}}
 		\PERSONAL{\StarterENGAGE}
-		\PERSONAL{\Throttle{5-6x open-close then idle}}
+		\PERSONAL{\Throttle{5-6x open-close then idle (no flame return)}}
 		\PERSONAL{\Magnetos{LEFT}}
 		\PERSONAL{\StarterENGAGE}
 		\PERSONAL{\Throttle{Increase progressively}}
@@ -95,7 +98,7 @@
 	\FuelPumpOffChecked
 	\AnnunciatorLights{}
 	\Check{Ventilation, heater, defroster}{AS REQUIRED}
-	\AvionicsFLARM{ON, CHECK ATIS}
+	\AvionicsFLARM{ON, (check ATIS)}
 	\Trim[Electrical]{ON}
 	\Check{Flight instruments}{SET and CHECKED}
 	\EngineInstrumentsCHECK
@@ -109,22 +112,38 @@
 	% PERSONAL: write down block-off time
 	\PERSONAL{\BlockTime{off}}
 
-	\Check{Brakes + steering}{}
-
-	% Official checklist is: Gyro instruments: checked
-	% PERSONAL: check flight instruments (compass, direction, turn indicator, horizon)
-	% This airplane is EFIS and not using gyros.
-	\PERSONAL{\Check[hh]{Flight instruments}{}}
+	\Check[h]{Brakes + steering}{}
+	\Check[hh]{Flight instruments}{}
 \end{CheckListRule}% }}}
 %
 \vfill
 \begin{InfoBox}% {{{ speeds + downwind power
-	% Take off          1   r   x   y                cc
-	\InfoSpeedsTakeOff{45}{54}{70}{81 (F1), 92 (F0)}{92}
-	% Landing                   app    fin  a    glide
-	\InfoSpeedsLandingCriticals{85, 80}{68}{116}{81}
-	% More infos   plan ratio NM  fuel   downwind   Xwind
-	\InfoSpeedsMore{110}{9.3}{1.5}{40 l}{\RPM{2000}}{22}
+	% Take off
+	\InfoSpeedsTakeOff%
+		{45}% v1
+		{54}% vr
+		{70}% vx
+		{%    vy
+			\textrm{\footnotesize F1:}\ 81, %
+			\textrm{\footnotesize F0:}\ 92%
+		}%
+		{92}% cc
+	%
+	% Landing
+	\InfoSpeedsLandingCriticals%
+		{85, 80}% approach
+		{68}%     finale
+		{116}%    va
+		{81}%     best glide
+	%
+	% More infos
+	\InfoSpeedsMore%
+		{110}%        planning speed
+		{9.3}%        glide ratio 1:X
+		{1.5}%        glide NM/1000ft
+		{40 l}%       fuel per hour
+		{\RPM{2000}}% downwind power
+		{22}%         max crosswind component
 \end{InfoBox}% }}}
 %
 \SkipPage%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -158,8 +177,11 @@
 	\Flaps{set for departure: \PERSONAL{F1}}
 
 	\Check{Flight instruments \& avionics}{SET FOR DEPARTURE}
-	\Check{STBY power}{GREEN LIGHT, CHECKED}
-	\Check{Seats position}{CHECKED and LOCKED}
+
+	% PERSONAL: tell what to do
+	\Check{STBY power: \PERSONAL{Press until light blinks}}{GREEN LIGHT, CHECKED}
+
+	\Check{Seat positions}{CHECKED and LOCKED}
 	\CabinPaxSECURED
 	\FlightControlsCORRECT
 	\DepartureBriefingCOMPLETED
@@ -186,10 +208,6 @@
 \end{CheckListRule}% }}}
 \begin{CheckList}{Cruise check}{}% {{{
 	\Check{Altimeter}{CHECKED (STD or QNH)}
-
-	% PERSONAL: no directional gyro on this plane
-	\PERSONAL{\Direction{SET}}
-
 	\Check{Cruise power}{}
 	\Mixture{}
 	\EngineInstrumentsCHECK
@@ -202,10 +220,7 @@
 \begin{CheckListRule}{Descent check}{}% {{{
 	\Check{ATIS or AD INFO}{WRITTEN}
 	\ApproachBriefingCOMPLETED
-
-	% PERSONAL: no directional gyro on this plane
-	\Check{Avionics + \PERSONAL{Direction}}{SET}
-
+	\Check{Avionics}{SET and CHECKED}
 	\CircuitBreakers{}
 	\CabinPaxSECURED
 \end{CheckListRule}% }}}
