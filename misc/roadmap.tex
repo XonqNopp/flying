@@ -1,90 +1,60 @@
 
-%% Headers %%% {{{
+% Headers %%% {{{
 \documentclass[12pt,twoside,a4paper]{article}
 
-%% Document variables %%% {{{
+% Document variables %%% {{{
 \newcommand*{\Gael}{Ga\"el Induni}
 \newcommand*{\ThisAuthors}{\Gael}
 \newcommand*{\ThisTitle}{Flight Roadmap}
 \newcommand*{\ThisTitleSHORT}{\ThisTitle}
 \newcommand*{\DocVersion}{\today}
-%% End of document variables %%% }}}
-%% Usepackages %%% {{{
-%% General {{{
+% End of document variables %%% }}}
+% Usepackages %%% {{{
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage[english]{babel}
-%% }}}
-%% Math %% {{{
 \usepackage{amsmath}
 %\usepackage{amssymb}
-%\usepackage{empheq}
-%\usepackage{cancel}
-%% }}}
-%% Hyper refs %% {{{
 \usepackage{hyperref}
 \hypersetup{
-	colorlinks        = true,
-	bookmarks         = true,
-	bookmarksnumbered = false,
-	linkcolor         = black,
-	urlcolor          = blue,
-	citecolor         = blue,
-	filecolor         = blue,
-	hyperfigures      = true,
-	breaklinks        = false,
-	ps2pdf,
-	pdftitle          = {\ThisTitle},
-	pdfsubject        = {\ThisTitle},
-	pdfauthor         = {\ThisAuthors}
+    colorlinks        = true,
+    bookmarks         = true,
+    bookmarksnumbered = false,
+    linkcolor         = black,
+    urlcolor          = blue,
+    citecolor         = blue,
+    filecolor         = blue,
+    hyperfigures      = true,
+    breaklinks        = false,
+    ps2pdf,
+    pdftitle          = {\ThisTitle},
+    pdfsubject        = {\ThisTitle},
+    pdfauthor         = {\ThisAuthors}
 }
-%% }}}
-%% Tables and lists %% {{{
 \usepackage{longtable}
 \usepackage{multirow}
 %\usepackage{array}
-%\usepackage{colortbl}
-%\newcommand*{\HL}{\cellcolor[gray]{0.85}}
+\usepackage{colortbl}
+\newcommand*{\GrayCell}{\cellcolor[gray]{0.85}}
 \usepackage{hhline}
-%\usepackage{spreadtab}
-%\usepackage{numprint}
-%\usepackage{enumitem}
-%\setlist{noitemsep}
-%\usepackage{rotating}
-%% }}}
-%% Making stuff fancy (not fancyhdr package) %% {{{
 %\usepackage{color}
-%\usepackage{everysel,ragged2e}
-%\usepackage{gensymb}
-%\usepackage{marvosym}
-%\usepackage{wasysym}
-%\usepackage{fourier}
 %\usepackage{nicefrac}
-%\usepackage[normalem]{ulem}
 \usepackage[yyyymmdd]{datetime}
 \renewcommand*{\dateseparator}{-}
-%% }}}
-%% Miscellaneous %% {{{
-%\usepackage{alltt}
-%\usepackage{ifthen}
-%\usepackage{xstring}
 %\usepackage{multicol}% Remember environement is begin{multicols}{n}
-%% }}}
-%% End of usepackages %%% }}}
-%% Document size %%% {{{
+% End of usepackages %%% }}}
+% Document size %%% {{{
 \setlength{\topmargin}{-15mm}
 \setlength{\textheight}{270mm}
 \setlength{\hoffset}{-17mm}
 \setlength{\textwidth}{190mm}
 \setlength{\evensidemargin}{3.8mm}
 \setlength{\parskip}{0.5ex}
-%% End of document size %%% }}}
-%% Fancy and header and footer rules %%% {{{
+% End of document size %%% }}}
+% Fancy and header and footer rules %%% {{{
 \usepackage{fancyhdr}
-%\usepackage{lastpage}
-%\newcommand*{\LastPage}{\pageref{LastPage}}
 \newcommand*{\GoodJob}{\jobname.pdf}
-%% Fancy!
+% Fancy!
 \fancypagestyle{plain}{%
 \fancyhf{}
 \fancyhf[HR]{\ThisAuthors}
@@ -93,167 +63,182 @@
 \pagestyle{plain}
 \renewcommand{\headrulewidth}{0.4pt}
 %\renewcommand{\footrulewidth}{0.4pt}
-%% End of fancy %%% }}}
-%% Pictures positions %%% {{{
-\renewcommand{\topfraction}{0.85}
-\renewcommand{\textfraction}{0.1}
-\renewcommand{\floatpagefraction}{0.75}
-%% End of pictures %%% }}}
-%% New commands %%% {{{
+% End of fancy %%% }}}
+% New commands %%% {{{
 \newcommand*{\Vi}[1]{\ensuremath{\textrm{v}_{#1}} }
 \newcommand*{\Vapp}{\Vi{\textrm{app}} }
 \newcommand*{\Speed}{\ensuremath{\textrm{v}} }
 \newcommand*{\RefSpeed}{\ensuremath{\Speed_{\textrm{\small ref}} }}
 \newcommand*{\WSpeed}{\ensuremath{\Speed_w}}
 \newcommand*{\GSpeed}{\ensuremath{\Speed_G}}
-%% Hyperref {{{
-\newcommand*{\mailto}[1]{\href{mailto:#1}{#1}}
-%% \url{link}
-%% \href{link}{text}
-%% \href[ref]{text}
-%% Form commands {{{
-%% Must be placed in a 'Form' environment
-%% \MyField{fieldname (like HTML form)}{additional options}{Text to be displayed before}
-%% options: (double) width, (int) maxlen, (bool) multiline
-%\newcommand{\MyField}[3]{\TextField[name=#1,backgroundcolor=1 1 0.95,bordercolor=0 0 0,bordersep=3,borderwidth=1,charsize=12pt,color=0 0 0,#2]{#3}}
-%% \MyRadio{fieldname (like HTML form)}{wth}{wtf} %% prints a radio box AFTER text
-%\newcommand{\MyRadio}[3]{\ChoiceMenu[name=#1,backgroundcolor=1 1 0.95,bordercolor=0 0 0,bordersep=3,borderwidth=1,charsize=12pt,color=0 0 0,radio=true,radiosymbol=\ding{54}]{#2}{#3}}
-%% \MySingleRadio{fieldname (like HTML form)} %% only prints a radio box
-%\newcommand{\MySingleRadio}[1]{\MyRadio{#1}{ }{ }}
-%% }}}
-%% }}}
-%% Miscellaneous %% {{{
-\renewcommand{\epsilon}{\varepsilon}
-\renewcommand{\roman}{\Roman}
 %\renewcommand{\geq}{\geqslant}
 %\renewcommand{\leq}{\leqslant}
 \newcommand*{\oC}{\ensuremath{^{\circ}C}}
-\AtBeginDocument{\renewcommand{\labelitemi}{\textbullet}}% Default is \textendash % must be placed after begin-doc
-\makeatletter
-\newcommand{\rom}[1]{\expandafter\@slowromancap\romannumeral #1@}
-%\newcommand{\InlineTOC}{\@starttoc{toc}}%% For report inline toc (to use with the 'notitlepage' class option
-\makeatother
-%% }}}
-%% End of new commands %%% }}}
-%% }}}
+% End of new commands %%% }}}
+% }}}
 
-%% content defined {{{
-%\newcommand*{\LvS}{$\frac{\textsc{L}}{\textsc{S}}$}
-%\newcommand*{\LvS}[1]{{\footnotesize LS}{\small #1}}
-\newcommand*{\LvS}[1]{{LS}{#1}}
-\newcommand*{\LvSS}[2]{{LS}{#1}\ {\small #2}}
+% content defined {{{
 \newcommand*{\ATIS}{{\footnotesize ATIS}}
+\newcommand{\Vglide}{$\Vi{\textrm{glide}} = \_\_\_\_$}
 
 \newcounter{visp}
 \setcounter{visp}{-16}
 
 
 \newcommand{\ALL}{%% {{{
-
+%
 \mbox{}
 \vspace{\value{visp}mm}
-\begin{longtable}{c|c|c|c|l}%% {{{
-& LSGELSGEL & LSGELSGEL & LSGELSGEL & space space space spac\kill
-	\multicolumn{1}{l}{HB\textbf{--}}
-	&\multicolumn{1}{l}{}
-	&
-	\multicolumn{1}{r}{Date:}
-	&
-	& C-off:
-\\
-	\multicolumn{1}{l}{\small Aircraft:}
-	&\multicolumn{1}{l}{}
-	&
-	\multicolumn{1}{r}{HRH*:}
-	&
-	& B-off:
-\\
-\hhline{~---~}
-	& From & To & Alt
-	& T-off:
-\\
-\hline
-	\multicolumn{1}{|l|}{\small AD}
-	&&&
-	& Ldg:
-\\\hhline{----~}
-	\multicolumn{1}{|l|}{\multirow{3}{*}{\small COM}} &&&
-	& B-on:
-\\
-	\multicolumn{1}{|l|}{}&&&
-	& C-on:
-\\
-\hhline{~~~~=}
-	\multicolumn{1}{|l|}{}&&&
-	& LDG:
-\\
-\hhline{----~}
-	\multicolumn{4}{l|}{%
-		$%
-		\Vi{1} = \_\_
-		\ \ \Vi{r} = \_\_
-		\ \ \Vi{x} = \_\_
-		\ \ \Vi{y} = \_\_
-		\ \ \Vi{cc} = \_\_
-		$%
-	}
-	& GA:
-\\
-\hhline{~~~~-}
-	\multicolumn{4}{l}{%
-		$%
-		\Vapp = \_\_\_\_
-		\ \ \Vi{\textrm{fin}} = \_\_\_\_
-		\ \ \Vi{a} = \_\_
-		\ \ \Vi{\textrm{glide}} = \_\_
-		$%
-	}
-	&
-\\
-\hhline{~~~~-}
-	\multicolumn{4}{l|}{}
-	& Oil up:
-\\
-\hhline{~~~~=}
-	\multicolumn{1}{l}{\normalsize Wind:}
-	& \multicolumn{3}{r|}{%
-		$\Speed_{\textrm{dep}} = \RefSpeed + \_\_\_$
-	\normalsize max(G/3 or G--W)
-	}
-	& RFOB:
-\\
-\hhline{----~}
-	\multicolumn{4}{l|}{
-		\normalsize
-		$
-		\textrm{QNH} > \textrm{QNE} \Longrightarrow \textrm{altitude} > \textrm{FL}
-		$\ !
-	}
-	& Fuel up:
-\\
-\hhline{~~~~-}
-	\multicolumn{4}{l|}{}
-	& T-off fuel:
-\\
-	\multicolumn{4}{l|}{}
-	&Exp. 0-fuel LT:
-\\
-\hhline{~~~~-}
+%
+% Log {{{
+\begin{longtable}{lllrc}
+    date date date & Oil up: 12345 & Up: 1234567890 && 1234567890\kill
+
+    Date: &         & RFOB:     & T-off fuel:     &\\\hhline{~~~~-}
+    HRH*: & Oil up: & Fuel up:  & Exp. 0-fuel LT: &\multicolumn{1}{|c|}{}\\\hline
 \end{longtable}%% }}}
+%
+\vspace{-7mm}
+%
+% Voice {{{
+\begin{longtable}{c|c|c|c|c|l}
+	&& LSGE LSGE & 1234567890123 & space space & space space space spac\kill
 
-\vspace{57mm}
+	& \multicolumn{4}{l}{Good day!}
+	& \multicolumn{1}{r}{\small Next maint.}
+	\\\hhline{~~~~~-}
 
-\begin{longtable}{c|c|c|c|c|c|c|c|l}%% {{{
-	&&&& SHRA FG &&&& hello world\kill
+	& \multicolumn{4}{l|}{HB\textbf{--}}
+    & C-off:\ \ \ \ \ \ \ \ \ \ /
+	\\
+
+	\textbf{V}
+	& \multicolumn{4}{l|}{\small Aircraft:}
+    & B-off:
+	\\
+
+	\textbf{O}
+	& \multicolumn{4}{l|}{VFR (round, cicruits)}
+    & T-off:
+	\\\hhline{~~~~~-}
+
+	\textbf{I}
+	&& AD
+	& COM
+	&
+    & Ldg:
+	\\\hhline{~---~~}
+
+	\textbf{C}
+	& From &&&
+    & B-on:
+	\\\hhline{~---~~}
+
+	\textbf{E}
+	& To &&&
+    & C-on:
+	\\\hhline{~---~=}
+
+	& (Alt) &&&
+    & LDG:
+	\\\hhline{~---~~}
+
+	& \multicolumn{4}{l|}{Ready / Coming / Request / ... \& Information ??}
+    & GA:
+	\\\hline
+\end{longtable}%% }}}
+%
+\vspace{-7mm}
+%
+% Ref speeds {{{
+\begin{longtable}{c|l|l|lr}
+	&&&& hello world give me space\kill
+
+	\textbf{S}
+	& \multicolumn{1}{c|}{ DEP}% 1 r x y glide
+	& \multicolumn{1}{c|}{APP}% app fin glide
+	& \multicolumn{1}{c}{}% cc a glide
+	\\\hhline{~---~}
+	&&\\[-5mm]
+
+	\textbf{P}
+	& $\Vi{1} = \_\_\_$
+	& $\Vapp = \_\_\_\_$
+	& $\Vi{cc} = \_\_\_$
+	\\[0.3em]
+
+	\textbf{E}
+	& $\Vi{r} = \_\_\_$
+	& $\Vi{\textrm{fin}} = \_\_\_\_$
+	& $\Vi{a} = \_\_\_$
+	\\[0.3em]
+
+	\textbf{E}
+	& $\Vi{x} = \_\_\_$
+	& \Vglide
+	& \Vglide
+	\\[0.3em]\hhline{~~--~}
+
+	\textbf{D}
+	& $\Vi{y} = \_\_\_\_\_$
+	& \multicolumn{2}{l|}{Wind:}
+	\\[0.3em]
+
+	\textbf{S}
+	& \Vglide
+	& \multicolumn{2}{l|}{$\Speed = \RefSpeed + \_\_\_$\ \ \ \ \small max(G/3 or G--W)}
+	\\\hhline{~~--~}
+\end{longtable}%% }}}
+%
+\vspace{22mm}
+%
+% Freq {{{
+\begin{longtable}{c|rl|rl||rl||r|l|l|}
+    \hhline{~------~~~}
+
+	\textbf{F}
+	& \textbf{LSGE} & 120.630
+    & \multicolumn{2}{c||}{LSZB}
+    & \multicolumn{2}{c||}{LSGS}
+    & \multicolumn{3}{c}{}
+    \\\hhline{~~~----~--}
+
+	\textbf{R}
+	& LSGT     & 124.680
+    & \small T & 121.025
+    & \small T & 118.275
+    &
+    & \multicolumn{1}{c|}{GVA}
+    & \multicolumn{1}{c|}{ZRH}
+    \\\hhline{~~~~~~~---}
+
+	\textbf{E}
+	& LSMP       & 128.675
+    & \small APP & 127.325
+    & \small G   & 121.705
+    & Info & 126.350 & 124.700
+    \\\hhline{~~~~~~~---}
+
+	\textbf{Q}
+	& {\small Baloo} & 122.255
+    & \ATIS          & 125.130
+    & LSTA           & 129.880
+    & Alps R & 119.175 & 119.225
+    \\\hline
+\end{longtable}%% }}}
+\vspace{-8mm}
+% ATIS {{{
+\begin{longtable}{c|c|c|c|c|c|c|c|l}
+    &&&& SHRA FG &&&& hello world\kill
 \hhline{~--------}
-	& AD,ID
-	& \textsc{rwy}
-	& SW
-	& wind + \RefSpeed
-	& visi + clouds
-	& T/DP
-	& QNH
-	& RMK
+    & AD,ID
+    & \textsc{rwy}
+    & SW
+    & wind + \RefSpeed
+    & visi + clouds
+    & T/DP
+    & QNH
+    & RMK
 \\\hline
 &&&&&&&&\\
 \textbf{A} &&&&&&&&\\
@@ -265,55 +250,15 @@
 &&&&&&&&\\
 \hline
 \end{longtable}%% }}}
-\vspace{-8mm}
-\begin{longtable}{rl|rl|rl|rl}%% {{{
-& 88888888 && 88888888 && 88888888 && 88888888\kill
-	\multicolumn{2}{c|}{Gen\`eve}
-	&\multicolumn{2}{c|}{Z\"urich}
-
-	& \textbf{LSGE} & 120.630
-	& \multicolumn{1}{l}{\textbf{LSGS} {\small T}} & 118.275
-\\
-\hhline{----~~~~}
-	Info   & 126.350
-	& Info & 124.700
-
-	& \LvS{GT} & 124.680
-	& \multicolumn{1}{l}{\LvSS{GS}{G}} & 121.705
-\\
-	Delta   & 119.175
-	& Delta & 119.225
-
-	& \LvS{MP}       & 128.675
-	& \LvS{GS} \ATIS & 130.630
-\\
-\hhline{------~~}
-	&&&
-	& \multicolumn{1}{l}{\LvSS{ZB}{T}} & 121.025
-	& \multicolumn{1}{l}{\LvSS{GS}{H}} & 131.475
-\\
-\hhline{~~~~~~--}
-	&
-	&&
-	& \LvS{ZB} \ATIS & 125.130
-	& \LvS{TA}       & 129.880
-\\
-	{\small Baloo}   & 122.255
-	&&
-	& \LvSS{ZB}{APP} & 127.325
-	& \LvS{GB}       & 122.155
-\\
-\end{longtable}%% }}}
-
+%
 }%% }}}
-
-
-%% }}}
+%
+% }}}
 \begin{document}
 \Large
 \ALL
 \clearpage
-%% vspace -= 1mm;
+% vspace -= 1mm;
 \addtocounter{visp}{-1}
 \ALL
 \end{document}
