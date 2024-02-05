@@ -423,6 +423,4 @@ Downwind pwr: #5%
 \newcommand*{\WindCHECK}[1][]{\Check[#1]{Wind}{}}
 \newcommand*{\Trim}[2][]{\Check{#1 Trim}{#2}}
 %
-%
 \AtBeginDocument{\BoxSpace\large}
-%
