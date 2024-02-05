@@ -1,3 +1,4 @@
+% Headers {{{
 \documentclass[12pt,a4paper,twoside]{article}
 % usepackage {{{
 \usepackage[T1]{fontenc}
@@ -6,46 +7,11 @@
 \usepackage{amssymb}
 \usepackage{enumitem}
 \setlist{noitemsep}
-%\usepackage{ifthen}
 \usepackage{fancyhdr}
 \usepackage{lastpage}
 \usepackage[yyyymmdd]{datetime}
 \renewcommand*{\dateseparator}{-}
-\usepackage{xcolor}
 \usepackage{mdframed}
-%\usepackage{wasysym}
-\usepackage{hyperref}
-\usepackage{nicefrac}
-\usepackage{longtable}
-\usepackage{hhline}
-\usepackage{multirow}
-% }}}
-% newcommand {{{
-\newcommand*{\Gael}{Ga\"el Induni}
-\newcommand*{\ShowURL}{\tiny Document source \url{https://github.com/XonqNopp/flying/tree/master/checklists}}
-\newcommand*{\oC}{\ensuremath{^{\circ}C}}
-\newcommand*{\oF}{\ensuremath{^{\circ}F}}
-\newcommand*{\DEG}{\ensuremath{^{\circ}} }
-\newcommand*{\RPM}[1]{#1 \textsc{rpm}}
-\renewcommand*{\geq}{\geqslant}
-\renewcommand*{\leq}{\leqslant}
-%
-\newcommand*{\SrcVersion}{}
-\newcommand*{\SrcName}{}
-%
-\newcommand*{\DocV}[2]{%
-\renewcommand*{\SrcName}{#1}%
-\renewcommand*{\SrcVersion}{#2}%
-}
-%
-\newcommand*{\ID}{}
-\newcommand*{\LongPlane}{}
-\newcommand*{\ShortPlane}{}
-\newcommand*{\SetPlane}[3]{%
-	\renewcommand*{\LongPlane}{#1}%
-	\renewcommand*{\ShortPlane}{#2}%
-	\renewcommand*{\ID}{#3}%
-}
 % }}}
 % Document size {{{
 \setlength{\topmargin}{-20mm}
@@ -55,39 +21,15 @@
 \setlength{\evensidemargin}{-5mm}
 \setlength{\parskip}{0.5ex}
 % }}}
-\hypersetup{% {{{
-	colorlinks        = true,
-	%bookmarks         = true,
-	bookmarksnumbered = false,
-	linkcolor         = black,
-	urlcolor          = blue,
-	citecolor         = blue,
-	filecolor         = blue,
-	%hyperfigures      = true,
-	breaklinks        = false,
-	%ps2pdf,
-	pdftitle          = {\jobname.pdf},% \today},
-	pdfsubject        = {\jobname.pdf},% \today},
-	pdfauthor         = {\Gael}
-}% }}}
 % Fancy {{{
 \fancypagestyle{plain}{%
 \fancyhf{}
-\fancyhf[HL]{%
-	\textbf{\LongPlane}%
-	\ifthenelse{\equal{\ShortPlane}{}}{}{ (\ShortPlane)}%
-	\ifthenelse{\equal{\ID}{}}{}{ \ID}%
-}
-\fancyhf[HR]{\textbf{Bold} or index numbers show personal changes -- \Gael}
+\fancyhf[HL]{\textbf{\DocTitle}}
+\fancyhf[HR]{}
 %
-%\fancyhf[FL]{\Gael}
-\fancyhf[FL]{%
-\jobname.pdf
--- \textbf{\SrcName\ v\SrcVersion}\ %
---
-TeX \today
-}
+\fancyhf[FL]{\jobname.pdf \today}
 \fancyhf[FR]{\thepage/\pageref{LastPage}}
+%
 % Rules at top and bottom
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\footrulewidth}{0.4pt}
@@ -96,385 +38,408 @@ TeX \today
 % }}}
 % mdframed env {{{
 \mdfsetup{% {{{
-	linecolor=white,
-	skipabove=0,
-	skipbelow=0,
-	innertopmargin=0,
-	innerbottommargin=0
+    linecolor=white,
+    skipabove=0,
+    skipbelow=0,
+    innertopmargin=0,
+    innerbottommargin=0
 }% }}}
 %
-\newmdenv[% {{{ MDeven
-	backgroundcolor=yellow!50,
-	innerbottommargin=2pt,
-	innertopmargin=1.2mm
-]{MDeven}% }}}
-\newmdenv[% {{{ MDheartEnv
-	backgroundcolor=orange!80,
-	innerbottommargin=2pt,
-	innertopmargin=1.2mm
-]{MDheartEnv}% }}}
-\newmdenv[% {{{ MDheartItem
-	backgroundcolor=orange!80,
-	innerbottommargin=1mm,
-	innertopmargin=1.2mm,
-	innerleftmargin=9mm
-]{MDheartItem}% }}}
-\newmdenv[% {{{ MDconditional
-	backgroundcolor=blue!10
-]{MDconditional}% }}}
 \newmdenv[% {{{ MDinfobox
-	backgroundcolor=blue!30,
-	innertopmargin=2mm,
-	innerbottommargin=2mm,
-	skipbelow=-3mm
+    innertopmargin=2mm,
+    innerbottommargin=2mm,
+    skipbelow=-3mm
 ]{MDinfobox}% }}}
 % }}}
 %
+% new commands {{{
+\newcommand{\BoxSpace}{\mbox{}\vspace{-8mm}}
+\newcommand{\SkipPage}{\clearpage\BoxSpace}
+% Counters {{{
 \newcounter{SubCheck}
-\newcounter{CheckOddEven}
-\setcounter{CheckOddEven}{0}
 %
 \newcommand*{\SetItem}[1]{\setcounter{enumi}{#1}}
 \newcommand*{\StepItem}{\stepcounter{enumi}}
-\newcommand*{\AddItem}[1]{\addtocounter{enumi}{#1}}
-\newcommand*{\DestepItem}{\AddItem{-1}}
-\newcommand*{\ItemZero}{\SetItem{-1}}
-%
-\newcommand{\EndRule}[1][0.95]{% {{{
-	\vspace{-10mm}%
-	\begin{center}%
-	\rule{#1\textwidth}{1pt}%
-	\end{center}%
-	\vspace{1pt}%
+% }}}
+\newcommand{\EndRule}{% {{{
+    \vspace{-10mm}%
+    \begin{center}%
+    \rule{0.95\textwidth}{1pt}%
+    \end{center}%
+    \vspace{1pt}%
 }% }}}
 \newcommand{\CheckSec}[1]{% {{{
-	\begin{flushleft}
-	\noindent\textbf{\Large #1}%
-	\end{flushleft}
-	\vspace{-6mm}%
+    \begin{flushleft}
+    \noindent\textbf{\Large #1}%
+    \end{flushleft}
+    \vspace{-6mm}%
 }% }}}
 \newcommand{\CheckSub}[1]{% {{{
-	\noindent\hspace{7mm}\textbf{#1:}%
-	\vspace{-5mm}%
+    \noindent\hspace{7mm}\textbf{#1:}%
+    \vspace{-5mm}%
 }% }}}
-\newcommand*{\Heart}{}
-\newenvironment{CheckList}[2]{% {{{
-	\renewcommand{\Heart}{#2}%
-	\ifthenelse{\equal{\Heart}{h}}{%
-		\vspace{-5mm}%
-		\begin{MDheartEnv}%
-	}{%
-		\stepcounter{CheckOddEven}%
-		\ifthenelse{\isodd{\value{CheckOddEven}} }{%
-			\vspace{-11mm}%
-		}{%
-			\vspace{-5mm}%
-			\begin{MDeven}%
-		}%
-	}
-	\CheckSec{#1}%
-	\ifthenelse{\isodd{\value{CheckOddEven}} }{\vspace{-4mm}}{}%
-	\begin{enumerate}%
-}{%
-	\end{enumerate}%
-	\ifthenelse{\equal{\Heart}{h}}{%
-		\end{MDheartEnv}%
-	}{%
-		\ifthenelse{\isodd{\value{CheckOddEven}} }{\vspace{-3mm}}{\end{MDeven}}%
-	}%
-	\setcounter{SubCheck}{0}%
-}% }}}
-\newenvironment{CheckListRule}[2]{% {{{
-	\begin{CheckList}{#1}{#2}%
-}{%
-	\end{CheckList}%
-	\EndRule%
-}% }}}
-\newenvironment{SubWrapper}[2]{% {{{
-	\renewcommand{\Heart}{#2}%
-	\ifthenelse{\equal{\Heart}{h}}{%
-		\begin{MDheartEnv}%
-	}{%
-		\stepcounter{CheckOddEven}%
-		\ifthenelse{\isodd{\value{CheckOddEven}} }{%
-			\vspace{-7mm}%
-		}{%
-			\vspace{-5mm}%
-			\begin{MDeven}%
-		}%
-	}
-	\CheckSec{#1}%
-}{%
-	\ifthenelse{\equal{\Heart}{h}}{%
-		\end{MDheartEnv}%
-	}{%
-		\ifthenelse{\isodd{\value{CheckOddEven}} }{\vspace{-3mm}}{\end{MDeven}}%
-	}%
-	\setcounter{SubCheck}{0}%
-}% }}}
-\newenvironment{SubWrapperRule}[2]{% {{{
-	\begin{SubWrapper}{#1}{#2}%
-}{%
-	\end{SubWrapper}%
-	\EndRule%
-}% }}}
-\newenvironment{SubCheckList}[1]{% {{{
-	\CheckSub{#1}%
-	\begin{enumerate}%
-	\SetItem{\value{SubCheck}}
-}{%
-	\setcounter{SubCheck}{\value{enumi}}%
-	\end{enumerate}%
-}% }}}
-\newenvironment{ConditionalChecks}[1]{% {{{
-	\begin{MDconditional}%
-	#1%
-}{%
-	\end{MDconditional}%
-}% }}}
-%
-% Check command and PERSONAL+SKIP {{{
-\newcommand{\Check}[3][]{
-	\ifthenelse{\equal{#1}{h} }{\vspace{2pt}}{}%
-	\StepItem
-	\item[\arabic{enumi}.]
-	\ifthenelse{\equal{#1}{h} \OR \equal{#1}{hh}}{\begin{MDheartItem}}{}%
-	#2\dotfill\ifthenelse{\equal{#3}{}}{CHECKED}{#3}%
-	\ifthenelse{\equal{#1}{h} \OR \equal{#1}{hh}}{\end{MDheartItem}\vspace{-1pt}}{}%
-}
-%
-\newcommand{\PERSONAL}[1]{{\bfseries#1}}
-%
-\newcommand*{\SKIP}[1]{%
-	% \1 is the item itself
-	\StepItem
+\newcommand{\Check}[2]{% {{{
+    \StepItem
+    \item[\arabic{enumi}.]
+    #1%
+    \dotfill%
+    #2%
 }
 % }}}
-\newcommand{\CheckBis}[1]{% {{{
-	\item[]\dotfill #1%
-}% }}}
-\newenvironment{InfoBox}{% {{{
-	\begin{MDinfobox}%
-	\Large%
-}{%
-	\vspace{-2mm}%
-	\end{MDinfobox}%
-}% }}}
-\newenvironment{InfoDistances}[1]{% {{{
-	\begin{InfoBox}%
-		\normalsize
-		\vspace{-1mm}%
-		\begin{tabular}{r|c|c|c|c|}%
-			$[m]$ (50ft)
-			& #1 ft 1003hPa $+20\oC$
-			& 993hPa = +300 ft
-			& $+30\oC =$ +1200 ft
-			& Grass
-			\\\hline
-}{%
-		\end{tabular}%
-	\end{InfoBox}%
-}% }}}
+% Math {{{
+\newcommand*{\oC}{\ensuremath{^{\circ}C}}
+\newcommand*{\RPM}[1]{#1 \textsc{rpm}}
+\renewcommand*{\geq}{\geqslant}
+\renewcommand*{\leq}{\leqslant}
+\newcommand*{\Vtxt}[1]{\ensuremath{\textrm{v}_{\textrm{\small #1}} }}
+\newcommand*{\Vmath}[1]{\ensuremath{\textrm{v}_{#1} }}
+% }}}
+% Title {{{
+\newcommand*{\DocTitle}{}
+\newcommand*{\SetTitle}[1]{%
+    \renewcommand*{\DocTitle}{#1}%
+}
+% }}}
 % One InfoDistance table row {{{
 % All values are personal computation from AFM table
 \newcommand{\InfoDistanceRow}[5]{%
 #1% label
-& \PERSONAL{#2}% roll (50ft) at provided altitude 1003hPa +20oC
-& \PERSONAL{#3}% 993hPa
-& \PERSONAL{#4}% +30oC
-& \PERSONAL{#5}% grass
+& #2% roll (50ft) at provided altitude 1003hPa +20oC
+& #3% 993hPa
+& #4% +30oC
+& #5% grass
 \\\hline
 }
 % }}}
-\newcommand{\InfoSpeedsTakeOff}[5]{% {{{
+\newcommand{\InfoSpeedsTakeOff}[4]{% {{{
 {\large%
-$\VBmath{1} = \textbf{#1}$ kts%
+$\Vmath{1} = #1$ kts%
 \hfill%
-$\VBtxt{r} = #2$ kts%
+$\Vtxt{r} = #2$ kts%
 \hfill%
-$\VBmath{x} = #3$ kts%
+$\Vmath{x} = #3$ kts%
 \hfill%
-$\VBmath{y} = #4$ kts%
-\hfill%
-$\VBmath{cc} = #5$ kts%
+$\Vmath{y} = #4$ kts%
 \\%
 }}% }}}
-\newcommand{\InfoSpeedsLandingCriticals}[4]{% {{{
+\newcommand{\InfoSpeedsCruise}[3]{% {{{
 {\large%
-$\VBtxt{app} = #1$ kts%
+$\Vmath{cc} = #1$ kts%
 \hfill%
-$\VBtxt{fin} = #2$ kts%
+$\Vmath{a} = #2$ kts%
 \hfill%
-$\VBmath{a} = #3$ kts%
-\hfill%
-$\VBtxt{glide} = #4$ kts%
+$\Vtxt{glide} = #3$ kts%
 \\%
 }}% }}}
-\newcommand{\InfoSpeedsMore}[6]{% {{{
+\newcommand{\InfoSpeedsLanding}[2]{% {{{
 {\large%
-($\VBtxt{plan} = #1$ kts)%
+$\Vtxt{app} = #1$ kts%
+\hfill%
+$\Vtxt{fin} = #2$ kts%
+\hfill\mbox{}%
+\hfill\mbox{}%
+\hfill\mbox{}%
+\\%
+}}% }}}
+\newcommand{\InfoSpeedsMore}[8]{% {{{
+{\large%
+($\Vtxt{plan} = #1$ kts)%
 \hfill%
 Glide ratio: 1:#2 (1000 ft: #3 NM)%
 \\%
-Fuel: #4/h%
+Downwind pwr: #5%
 \hfill%
 Max X-wind comp: #6 kts%
 \\%
-Downwind pwr: #5%
+Fuel: #4/h%
+\hfill%
+MTOW: #7 -- Max LDG W: #8%
 }}% }}}
-\newcommand{\BoxSpace}{\mbox{}\vspace{-8mm}}
-\newcommand{\SkipPage}{\clearpage\BoxSpace}
+% }}}
+% new environments {{{
+\newenvironment{CheckList}[1]{% {{{
+    \vspace{-9mm}%
+    \CheckSec{#1}%
+    \vspace{-3mm}%
+    \begin{enumerate}%
+}{%
+    \end{enumerate}%
+    \setcounter{SubCheck}{0}%
+    \vspace{-2mm}%
+}% }}}
+\newenvironment{CheckListRule}[1]{% {{{
+    \begin{CheckList}{#1}%
+}{%
+    \end{CheckList}%
+    \EndRule%
+}% }}}
+\newenvironment{SubWrapper}[1]{% {{{
+    \vspace{-7mm}%
+    \CheckSec{#1}%
+}{%
+    \vspace{-3mm}%
+    \setcounter{SubCheck}{0}%
+}% }}}
+\newenvironment{SubWrapperRule}[1]{% {{{
+    \begin{SubWrapper}{#1}%
+}{%
+    \end{SubWrapper}%
+    \EndRule%
+}% }}}
+\newenvironment{SubCheckList}[1]{% {{{
+    \CheckSub{#1}%
+    \begin{enumerate}%
+}{%
+    \setcounter{SubCheck}{\value{enumi}}%
+    \end{enumerate}%
+}% }}}
+\newenvironment{InfoBox}{% {{{
+    \begin{MDinfobox}%
+    \Large%
+}{%
+    \end{MDinfobox}%
+}% }}}
+\newenvironment{InfoDistances}[1]{% {{{
+    \begin{InfoBox}%
+        \normalsize
+        \begin{tabular}{r|c|c|c|c|}%
+            $[m]$ (50ft)
+            & #1 ft 1003hPa $+20\oC$
+            & 993hPa = +300 ft
+            & $+30\oC =$ +1200 ft
+            & Grass
+            \\\hline
+}{%
+        \end{tabular}%
+    \end{InfoBox}%
+}% }}}
+% }}}
 %
-\newcommand*{\Vtxt}[1]{\ensuremath{\textrm{v}_{\textrm{\small #1}} }}
-\newcommand*{\Vmath}[1]{\ensuremath{\textrm{v}_{#1} }}
-\newcommand*{\VBtxt}[1]{\ensuremath{\textbf{v}_{\textrm{\small #1}} }}
-\newcommand*{\VBmath}[1]{\ensuremath{\textbf{v}_{#1} }}
-%
-\newcommand*{\CheckChecklist}{\ItemZero\PERSONAL{\Check{On-board checklist version}{\SrcName\ \SrcVersion}}}
-%
-\newcommand*{\WriteTime}[1]{\Check{#1 time}{WRITTEN}}
-\newcommand*{\BlockTime}[1]{\WriteTime{Block-#1}}
-\newcommand*{\BlockOnCounter}{\Check{Block-on time, hour meter}{WRITTEN}}
-\newcommand*{\TakeOffTime}{\WriteTime{Take-off}}
-\newcommand*{\LandingTime}{\WriteTime{Landing}}
-\newcommand*{\HourMeterWRITTEN}{\Check{Hour meter}{WRITTEN}}
-%
-\newcommand*{\PreflightInspectionCOMPLETED}{\Check{Preflight inspection}{COMPLETED}}
-%
-\newcommand*{\BriefingCOMPLETED}[1]{\Check{#1 briefing}{COMPLETED}}
-\newcommand*{\PassengerBriefingCOMPLETED}{\BriefingCOMPLETED{Passenger}}
-\newcommand*{\DepartureBriefingCOMPLETED}{\BriefingCOMPLETED{Departure}}
-\newcommand*{\ApproachBriefingCOMPLETED}{\BriefingCOMPLETED{Approach}}
-%
-\newcommand*{\WheelChocksAndPitotCover}[1]{\Check{Wheel chocks \& pitot cover}{#1}}
-\newcommand*{\WheelChocksAndPitotCoverREMOVED}{\WheelChocksAndPitotCover{REMOVED, ON BOARD}}
-%
-\newcommand*{\ParkingBrake}[1]{\Check{Parking brake}{#1}}
-\newcommand*{\ParkingBrakeTESTED}{\ParkingBrake{TESTED and SET}}
-%
-\newcommand*{\Avionics}[2][]{\Check{Avionics #1}{#2}}
-\newcommand*{\Direction}[1]{\Check{Direction}{#1}}
-\newcommand*{\CircuitBreakers}[1]{\Check{Circuit breakers}{#1}}
-\newcommand*{\Lights}[2]{\Check{#1 lights}{#2}}
-%
-\newcommand*{\Magnetos}[1]{\Check{Magnetos}{#1}}
-\newcommand*{\MagnetosOFF}{\Check{Magnetos}{OFF and KEY REMOVED}}
-\newcommand*{\MagnetosDropDiffCHECK}[2]{\Check{Magnetos L-B-R-L-B}{max drop \RPM{#1}, max diff \RPM{#2}} }
-\newcommand*{\KeyINSERT}{\Check{Key}{INSERT}}
-%
-\newcommand*{\FuelSelector}[1]{\Check{Fuel selector}{#1}}
-\newcommand*{\FuelSelectorBOTH}{\FuelSelector{BOTH}}
-\newcommand*{\FuelSelectorFULLER}{\FuelSelector{FULLER TANK}}
-%
-\newcommand*{\FuelPump}[1]{\Check{Fuel pump}{#1}}
-\newcommand*{\FuelPumpOffChecked}{\Check{Fuel pump}{OFF, PRESSURE CHECKED}}
-%
-\newcommand*{\FuelQuantity}[1][CHECKED]{\Check{Fuel quantity}{#1, Endurance}}
-\newcommand*{\FuelQuantityLR}{\FuelQuantity[L + R]}
-\newcommand*{\PropellerHIGH}{\Check{Propeller}{HIGH RPM}}
-%
-\newcommand*{\ThrottleFrictionLockADJUSTED}{\Check{Throttle friction lock}{ADJUSTED}}
-\newcommand*{\PowerFULL}[1]{\Check{Power}{FULL (\RPM{#1})}}
-\newcommand*{\Throttle}[2][]{\Check{Throttle #1}{#2}}
-\newcommand*{\ThrottleRpm}[2][]{\Throttle[#1]{\RPM{#2}}}
-%
-\newcommand*{\Mixture}[1]{\Check{Mixture}{#1}}
-\newcommand*{\MixtureRICH}{\Mixture{RICH or according AFM}}
-\newcommand*{\MixtureIDLE}{\Mixture{IDLE CUT OFF}}
-%
-\newcommand*{\CarburetorHeat}[1]{\Check{Carburetor heat}{#1}}
-%
-\newcommand*{\RunwayIDENTIFIED}{\Check[h]{Runway}{IDENTIFIED}}
-%
-\newcommand*{\Flaps}[1]{\Check{Flaps}{#1}}
-\newcommand*{\Transponder}[1]{\Check{Transponder}{#1}}
-\newcommand*{\Autopilot}[1]{\Check{Autopilot}{#1}}
-\newcommand*{\AutopilotTESTED}{\Autopilot{TESTED then OFF}}
-\newcommand*{\Altimeter}[1][]{\Check{Altimeter #1}{}}
-\newcommand*{\AltimeterQNH}[1][]{\Check{Altimeter #1}{QNH}}
-\newcommand*{\PropellerAreaCLEAR}{\Check[h]{Propeller area}{CLEAR}}
-\newcommand*{\WingFlapsCHECK}{\Check{Wing flaps}{CHECKED then RETRACTED}}
-\newcommand*{\CabinDoorsCLOSED}{\Check{Cabin doors}{CLOSED and LATCHED}}
-\newcommand*{\CabinPaxSECURED}{\Check{Cabin + PAX}{SECURED}}
-\newcommand*{\CanopyCLOSED}{\Check{Canopy}{CLOSED and LOCKED}}
-\newcommand*{\FlightControlsCORRECT}{\Check{Flight controls}{FREE and CORRECT}}
-\newcommand*{\WindCHECK}[1][]{\Check[#1]{Wind}{}}
-\newcommand*{\Trim}[2][]{\Check{#1 Trim}{#2}}
-%
-\AtBeginDocument{\BoxSpace\large}
-%
-\SetPlane{Pilot's own checks}{PIC}{}
-\DocV{}{1}
+\newcommand{\BeforeStartingEngineItems}{% {{{
+    \Check{Aircraft papers+log}{CHECKED}
+    \Check{Passenger briefing}{CHECKED}
+    \Check{Hour meter}{CHECKED}
+}% }}}
+\newcommand{\FuelPumpCheckItems}{% {{{
+    \Check{Fuel pump ON first time}{check fuel pressure is moving}
+    \Check{Fuel pump OFF}{check fuel pressure and keep finger on switch}
+}% }}}
+\newcommand{\EngineStartItems}{% {{{
+    \Check{Radios}{ON + LIGHTS TESTED}
+}% }}}
+\newcommand{\TaxiEngineCheckItems}{% {{{
+    \Check{Block-off time}{WRITTEN}
+    \Check{PAX checklist}{GIVEN}
+    \Check{Annunciator panel}{TESTED}
+}% }}}
+\newcommand{\TimeToff}{\Check{Take-off time}{WRITTEN}}
+\newcommand{\TimeLdg}{\Check{Landing time}{WRITTEN}}
+\newcommand{\TimeBlockOn}{\Check{Block-on time}{WRITTEN}}
 %
 \begin{document}
-\vspace{5mm}
-\begin{CheckListRule}{Before boarding}{}%% {{{
-	\vspace{2mm}
-	\Check{PPL(A) SEP(L)}{9 PAX, MTOW $\leq 2700 kg$, no pressure or special}
-	\Check{oxy lim PIC FL125, FL230 deadly}{unless > 1 month > 3500m}
-	\Check{children < 12 y.o. max altitude}{FL100}
-\end{CheckListRule}%% }}}
+% }}}
+\BoxSpace
+\SetTitle{Pilot's own checks}% {{{
+%
+\vspace{-7mm}
+\begin{itemize}
+    \item PPL(A) SEP(L): 9 PAX, MTOW $\leq 2700 kg$, no pressure or special
+    \item oxygen limit PIC FL125, FL230 deadly (unless > 1 month > 3500m)
+    \item children < 12 y.o. max altitude FL100
+\end{itemize}
 \vfill
-\begin{SubWrapper}{Diseases}{}%% {{{
-	\vspace{5mm}
-\begin{SubCheckList}{General}{}%%{{{
-	\Check{cinetosis}{look ahead, head straight, fresh air (ev. fly the plane)}
-	\item hypoxia\\\phantom{boooo}
-		pickling in hands or mouth, audition and visual troubles, tiredness, concentration difficulties
-	\item hyperventilation\\\phantom{boooo}
-		fear, respiratory difficulties, pickling in hands or mouth, cramps
-\end{SubCheckList}%% }}}
-\begin{SubCheckList}{Specific}%% {{{
-	\item CO intoxication\\\phantom{boooo}
-		headache, vertigo, red nails, concentration troubles, confusion, loss of consciousness
-	\item decompression accident\\\phantom{boooo}
-		bends (articulations), chokes (pulmonary), itching/picking, \textbf{starry vision, headache, shaking}
-\end{SubCheckList}%% }}}
-\end{SubWrapper}%% }}}
+\begin{SubWrapper}{Diseases}% {{{
+    \vspace{5mm}
+\begin{SubCheckList}{General}{}% {{{
+    \Check{cinetosis}{look ahead, head straight, fresh air (ev. fly the plane)}
+    \Check{hypoxia}{pickling in hands/mouth, audition/visual troubles, tired, cannot concentrate}
+    \Check{hyperventilation}{fear, breathing difficult, pickling in hands/mouth, cramps}
+\end{SubCheckList}% }}}
+\begin{SubCheckList}{CO intoxication}% {{{
+    \item headache, vertigo, cannot concentrate, confusion
+    \item red nails
+    \item loss of consciousness
+\end{SubCheckList}% }}}
+\begin{SubCheckList}{Decompression accident}% {{{
+    \item localized pain in articulations
+    \item dry cough, burning chest, shortness of breath
+    \item itching, picking
+    \item starry vision, headache, cannot concentrate, confusion, amnesia
+    \item shaking, tightening feeling
+    \item loss of consciousness
+\end{SubCheckList}% }}}
+\end{SubWrapper}% }}}
+% }}}
 \SkipPage
 %
-\SetPlane{Flight with passengers}{PAX}{}
-\begin{SubWrapperRule}{Before boarding}{}%%{{{
-\begin{SubCheckList}{Altidude}%% {{{
-	\Check{diving or hyperbaric environment}{$\geq 24h$}
-	\Check{recent alcohol                  }{check}
-	\Check{smoker                          }{critic FL25, deadly FL130}
-		%% non-smoker: sane FL100, critic FL125, deadly FL231
-\end{SubCheckList}%% }}}
-\begin{SubCheckList}{Health}%% {{{
-	\Check{toilets                }{done}
-	\Check{subject to sea/road sickness}{check}
-	\Check{cold, pharyngitis, etc.}{healthy}
-	\Check{teach Vaslava (gently!)}{done}
-	\Check{if feeling bad, weird, tickling, pricking, sleepy, pain}{tell me\\
-		(often reversible quickly, not worth waiting and having a bad flight)}
-\end{SubCheckList}%% }}}
-\begin{SubCheckList}{Security}%% {{{
-	\Check{afraid of flying?                              }{check}
-	\Check{if problem, do not yell!! Questions welcome    }{understood}
-	\Check{I must listen to the radio communications      }{understood}
-	\Check{tell me if see traffic and side                }{understood}
-\end{SubCheckList}%% }}}
-\begin{SubCheckList}{Planned trip}%% {{{
-	\Check{Map}{EXPOSED}
-\end{SubCheckList}%% }}}
-\begin{SubCheckList}{Responsibilities}%% {{{
-	\Check{boarding pass or declaration of renouncement}{DONE}
-\end{SubCheckList}%% }}}
-\end{SubWrapperRule}%% }}}
+\SetTitle{Flight with passengers}% {{{
+\begin{SubWrapper}{Before boarding}% {{{
+    \vspace{5mm}
+\begin{SubCheckList}{Altidude}% {{{
+    \Check{diving or hyperbaric environment}{$\geq 24h$}
+    \Check{smoker                          }{critic FL25, deadly FL130}
+        % non-smoker: sane FL100, critic FL125, deadly FL231
+\end{SubCheckList}% }}}
+\begin{SubCheckList}{Health}% {{{
+    \Check{toilets}{done}
+    \Check{subject to sea/road sickness}{check}
+    \Check{cold, pharyngitis, etc.}{teach Vaslava (gently!)}
+    \Check{if feeling bad, weird, tickling, pricking, sleepy, pain}{tell me\\
+        (often reversible quickly, not worth waiting and having a bad flight)}
+\end{SubCheckList}% }}}
+\begin{SubCheckList}{Security}% {{{
+    \Check{afraid of flying?                          }{check}
+    \Check{if problem, do not yell!! Questions welcome}{understood}
+    \Check{I must listen to the radio communications  }{understood}
+    \Check{tell me if see traffic and side            }{understood}
+\end{SubCheckList}% }}}
+\begin{SubCheckList}{Planned trip}% {{{
+    \Check{Map}{EXPOSED}
+\end{SubCheckList}% }}}
+\begin{SubCheckList}{Responsibilities}% {{{
+    \Check{boarding pass or declaration of renouncement}{DONE}
+\end{SubCheckList}% }}}
+\end{SubWrapper}% }}}
 \vfill
-\begin{CheckList}{Passengers briefing}{}%% {{{
-	\Check{Headsets}{DONNED}
-	\Check{Seat belts}{OPEN--CLOSED}
-	\Check{Air ventilation}{OK}
-	\Check{Sick bags}{OK}
-	\Check{Extinguisher}{LOCATED}
-	\Check{Break glass}{}
-	\Check{Emergency exit}{}
-	\Check{Door mechanisms}{}
-	\Check{Seat firmly fixed}{}
-	\Check{Commands free}{HANDS \& FEET}
-	\Check{Radio}{}
-	\Check{FLARM}{INFORMED}
-\end{CheckList}%% }}}
+\begin{CheckList}{Passengers briefing}{}% {{{
+    \Check{Headsets}{DONNED, MIC TOUCH LIPS}
+
+    \Check{Seat belts}{OPEN \& CLOSED}
+    \Check{Seat firmly fixed}{CHECKED}
+    \Check{Commands free}{HANDS \& FEET}
+
+    \Check{Air ventilation}{SHOWED}
+    \Check{Sick bags}{AVAILABLE}
+
+    \Check{Emergency exit}{CHECKED}
+    \Check{Extinguisher}{LOCATED}
+    \Check{Door mechanisms}{CHECKED}
+    \Check{Break glass}{CHECKED}
+
+    \Check{FLARM}{INFORMED}
+\end{CheckList}% }}}
+% }}}
+\SkipPage
+%
+\SetTitle{Cessna C182S HB--TDR}% {{{
+\begin{CheckListRule}{Before starting engine}% {{{
+    \BeforeStartingEngineItems
+\end{CheckListRule}% }}}
+\begin{CheckListRule}{Engine start}{}% {{{
+    \Check{Magnetos start}{check starter light}
+    \Check{Starter check disconnected}{light + ammeter}
+    \EngineStartItems
+\end{CheckListRule}% }}}
+\begin{CheckListRule}{Taxi and engine check}% {{{
+    \TaxiEngineCheckItems
+\end{CheckListRule}% }}}
+\begin{CheckListRule}{Before departure and line-up}% {{{
+    \Check{Flaps}{F0 or F2}
+    \Check{Trim}{1cm right, PAX: 2cm nose up}
+    \TimeToff
+\end{CheckListRule}% }}}
+\vfill
+\begin{InfoBox}% speeds + downwind power {{{
+    \InfoSpeedsTakeOff% {{{
+        {45}%    v1
+        {55}%    vr
+        {%       vx
+            \textrm{\footnotesize F2:}\ 58, %
+            \textrm{\footnotesize F0:}\ 63%
+        }%
+        {80}%    vy
+    % }}}
+    \InfoSpeedsCruise% {{{
+        {85-95}%      cc
+        {110}%        va
+        {%            best glide
+            \textrm{\footnotesize F0:}\ 75, %
+            \textrm{\footnotesize FX:}\ 70%
+        }%
+    % }}}
+    \InfoSpeedsLanding% {{{
+        {90}%         approach
+        {75-70\ (65)}% finale
+    % }}}
+    \InfoSpeedsMore% {{{
+        {120}%                 planning speed
+        {XX}%                  glide ratio 1:X
+        {1.4}%                 glide NM/1000ft
+        {13 USG}%              fuel per hour
+        {20 inHg \& \RPM{20}}% downwind power
+        {15}%                  max crosswind component
+        {1406 kg}{N/A}%        MTOW
+    % }}}
+\end{InfoBox}% }}}
+\vspace{3mm}
+% InfoDistances {{{
+\begin{InfoDistances}{2300}
+    % {Label} {roll (50ft) at alt 1003hPa +20oC} {993hPa} {+30oC} {grass}
+    \InfoDistanceRow{T-off F2}{315 (610)}{+10 (+25)}{+25 (+45)}{+15\% (N/A)}
+    \InfoDistanceRow{Landing}{200 (445)}{+5 (+5)}{+10 (+15)}{+45\% (N/A)}
+\end{InfoDistances}% }}}
+% }}}
+\SkipPage
+%
+\SetTitle{Robin DR400--180 EFIS HB--KHV}% {{{
+\begin{CheckListRule}{Before starting engine}% {{{
+    \BeforeStartingEngineItems
+    \Check{LED safety plane: flight data recorder}{if not ON can fly anyway}
+\end{CheckListRule}% }}}
+\begin{CheckListRule}{Engine start}% {{{
+    \FuelPumpCheckItems
+    \EngineStartItems
+\end{CheckListRule}% }}}
+\begin{CheckListRule}{Taxi and engine check}% {{{
+    \TaxiEngineCheckItems
+\end{CheckListRule}% }}}
+\begin{CheckListRule}{Before departure and line-up}% {{{
+    \Check{Flaps}{F1}
+    \Check{STBY power}{press until light blinks}
+    \TimeToff
+\end{CheckListRule}% }}}
+\vfill
+\begin{InfoBox}% {{{ speeds + downwind power
+    \InfoSpeedsTakeOff% {{{
+        {45}% v1
+        {54}% vr
+        {%    vx
+            \textrm{\footnotesize F1:}\ 70, %
+            \textrm{\footnotesize F0:}\ 76%
+        }%
+        {%    vy
+            \textrm{\footnotesize F1:}\ 81, %
+            \textrm{\footnotesize F0:}\ 92%
+        }%
+    % }}}
+    \InfoSpeedsCruise% {{{
+        {92}%     cc
+        {116}%    va
+        {%        best glide
+            \textrm{\footnotesize F0:}\ 81, %
+            \textrm{\footnotesize F1:}\ 78%
+        }%
+    % }}}
+    \InfoSpeedsLanding% {{{
+        {85, 80}% approach
+        {68}%     finale
+    % }}}
+    \InfoSpeedsMore% {{{
+        {110}%              planning speed
+        {9.3}%              glide ratio 1:X
+        {1.5}%              glide NM/1000ft
+        {40 l}%             fuel per hour
+        {\RPM{2000}}%       downwind power
+        {22}%               max crosswind component
+        {1100 kg}{1045 kg}% MTOW
+    % }}}
+\end{InfoBox}% }}}
+\vspace{3mm}
+% InfoDistances {{{
+\begin{InfoDistances}{1600}% [ft]
+    % {Label} {roll (50ft) at alt 1003hPa +20oC} {993hPa} {+30oC} {grass}
+    \InfoDistanceRow{T-off F1}{310 (641)}{+6 (+13)}{+21 (+45)}{+15\% (+15\%)}
+    \InfoDistanceRow{Landing}{273 (570)}{+3 (+5)}{+10 (+15)}{+15\% (+15\%)}
+\end{InfoDistances}% }}}
+% }}}
 \end{document}
