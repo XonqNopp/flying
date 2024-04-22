@@ -92,35 +92,36 @@
 %
 % Log {{{
 \begin{longtable}{lllrc}
-    date date date & Oil up: 12345 & Up: 1234567890 && 1234567890\kill
+    date date date & Oil up: 12345 & Up: 1234567890 && 12345678\kill
 
-    Date: &         & RFOB:     & T-off fuel:     &\\\hhline{~~~~-}
-    HRH*: & Oil up: & Fuel up:  & Exp. 0-fuel LT: &\multicolumn{1}{|c|}{}\\\hline
+    \multicolumn{2}{l|}{Date:}           & RFOB:     & T-off fuel: &\\\hhline{~-~--}
+    \multicolumn{1}{l|}{HRH*:} & Oil up: & Fuel up:  & \multicolumn{1}{|r}{Exp. 0-fuel LT:} &\multicolumn{1}{l|}{}\\\hline
 \end{longtable}%% }}}
 %
 \vspace{-7mm}
 %
 % Voice {{{
 \begin{longtable}{c|c|c|c|c|l}
-    && LSGE LSGE & 1234567890123 & space space & space space space spac\kill
+    && LSGE LSGE & 1234567890123 & & space space space spac\kill
 
-    & \multicolumn{4}{l}{Good day!}
+    & \multicolumn{4}{l|}{TWR/etc Good day!}
     & \multicolumn{1}{r}{\small Next maint.}
     \\\hhline{~~~~~-}
 
-    & \multicolumn{4}{l|}{HB\textbf{--}}
+    & \multicolumn{2}{l}{HB\textbf{--}}
+    & \multicolumn{2}{l|}{\small Aircraft:}
     & C-off:\ \ \ \ \ \ \ \ \ \ /
     \\
 
     \textbf{V}
-    & \multicolumn{4}{l|}{\small Aircraft:}
+    & \multicolumn{4}{l|}{[\textit{position, altitude}]}
     & B-off:
     \\
 
     \textbf{O}
-    & \multicolumn{4}{l|}{VFR (round, cicruits)}
+    & \multicolumn{4}{l|}{VFR: round, cicruits, \textit{or}:}
     & T-off:
-    \\\hhline{~~~~~-}
+    \\\hhline{~~--~-}
 
     \textbf{I}
     && AD
@@ -139,28 +140,29 @@
     & C-on:
     \\\hhline{~---~=}
 
-    & (Alt) &&&
+    & Alt &&
+    & {\small (diverting)}
     & LDG:
     \\\hhline{~---~~}
 
-    & \multicolumn{4}{l|}{Ready / Coming / Request / ...}
+    & \multicolumn{4}{l|}{Ready/Coming for... / Request... / ??}
     & GA:
     \\\hhline{~~~~~-}
 
     & \multicolumn{4}{l|}{Information ??}
-    & \\\hhline{-----~}
+    \\\hhline{-----~}
 \end{longtable}%% }}}
 %
 \vspace{-7mm}
 %
 % Ref speeds {{{
-\begin{longtable}{c|l|l|lr}
+\begin{longtable}{c|l|l|l|r}
     &&&& hello world give me space\kill
 
     \textbf{S}
     & \multicolumn{1}{c|}{ DEP}% 1 r x y glide
     & \multicolumn{1}{c|}{APP}% app fin glide
-    & \multicolumn{1}{c}{}% cc a glide
+    & \multicolumn{1}{c|}{\Vglide}% cc a glide
     \\\hhline{~---~}
     &&\\[-5mm]
 
@@ -174,26 +176,27 @@
     & $\Vi{r} = \_\_\_$
     & $\Vi{\textrm{fin}} = \_\_\_\_$
     & $\Vi{a} = \_\_\_$
-    \\[0.3em]
+    \\[0.3em]\hhline{~~~-~}
 
     \textbf{E}
     & $\Vi{x} = \_\_\_$
     & \Vglide
-    & \Vglide
-    \\[0.3em]\hhline{~~--~}
+    & \multicolumn{1}{c}{}
+    \\[0.3em]
 
     \textbf{D}
     & $\Vi{y} = \_\_\_\_\_$
-    & \multicolumn{2}{l|}{Wind:}
-    \\[0.3em]
+    &
+    \\[0.3em]\hhline{~--~~}
 
     \textbf{S}
-    & \Vglide
+    & \multicolumn{2}{l|}{\small Wind:}
+    \\
     & \multicolumn{2}{l|}{$\Speed = \RefSpeed + \_\_\_$\ \ \ \ \small max(G/3 or G--W)}
-    \\\hhline{~~--~}
+    \\\hhline{~--~~}
 \end{longtable}%% }}}
 %
-\vspace{22mm}
+\vspace{20mm}
 %
 % Freq {{{
 \begin{longtable}{c|rl|rl||rl||r|l|l|}
