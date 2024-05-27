@@ -58,7 +58,7 @@
 \fancypagestyle{plain}{%
 \fancyhf{}
 \fancyhf[HR]{\ThisAuthors}
-\fancyhf[HL]{\GoodJob\ v\DocVersion}
+\fancyhf[HL]{\GoodJob\ v.\DocVersion}
 }
 \pagestyle{plain}
 \renewcommand{\headrulewidth}{0.4pt}
@@ -161,24 +161,26 @@
 
     &&&& hello world give me space\kill
 
-    \textbf{S}
-    & \multicolumn{1}{c|}{ DEP}% 1 r x y glide
+    & \multicolumn{1}{c|}{DEP}% 1 r x y glide
     & \multicolumn{1}{c|}{APP}% app fin glide
     & \multicolumn{1}{c|}{\Vglide}% cc a glide
-    \\\hhline{~---~}
+    \\
+    \hhline{~---~}
+
     &&\\[-5mm]
 
-    \textbf{P}
+    \textbf{S}
     & $\Vi{1} = \_\_\_$
     & $\Vapp = \_\_\_\_$
     & $\Vi{cc} = \_\_\_$
     \\[0.3em]
 
-    \textbf{E}
+    \textbf{P}
     & $\Vi{r} = \_\_\_$
     & $\Vi{\textrm{fin}} = \_\_\_\_$
     & $\Vi{a} = \_\_\_$
-    \\[0.3em]\hhline{~~~-~}
+    \\[0.3em]
+    \hhline{~~~-~}
 
     \textbf{E}
     & $\Vi{x} = \_\_\_$
@@ -186,19 +188,26 @@
     & \multicolumn{1}{c}{}
     \\[0.3em]
 
-    \textbf{D}
+    \textbf{E}
     & $\Vi{y} = \_\_\_\_\_$
     &
-    \\[0.3em]\hhline{~--~~}
+    \\[0.3em]
+
+    \textbf{D}
+    & \Vglide
+    &
+    \\[0.3em]
+    \hhline{~--~~}
 
     \textbf{S}
     & \multicolumn{2}{l|}{\small Wind:}
     \\
     & \multicolumn{2}{l|}{$\Speed = \RefSpeed + \_\_\_$\ \ \ \ \small max(G/3 or G--W)}
-    \\\hhline{~--~~}
+    \\
+    \hhline{~--~~}
 \end{longtable}%% }}}
 %
-\vspace{12mm}
+%\vspace{5mm}
 %
 % Freq {{{
 \begin{longtable}{c|rl|rl||rl||r|l|l|}
@@ -238,7 +247,9 @@
     & Alps R & 119.175 & 119.225
     \\\hline
 \end{longtable}%% }}}
+%
 \vspace{-8mm}
+%
 % ATIS {{{
 \begin{longtable}{c|c|c|c|c|c|c|c|l}
     &&&& SHRA FG &&&& hello world\kill
