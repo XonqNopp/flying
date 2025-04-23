@@ -141,19 +141,19 @@ $\Vtxt{fin} = #2$ kts%
 \hfill\mbox{}%
 \\%
 }}% }}}
-\newcommand{\InfoSpeedsMore}[8]{% {{{
+\newcommand{\InfoSpeedsMore}[7]{% {{{
 {\large%
 ($\Vtxt{plan} = #1$ kts)%
 \hfill%
-Glide ratio: 1:#2 (1000 ft: #3 NM)%
+Glide ratio: 1000 ft = #2 NM%
 \\%
-Downwind pwr: #5%
+Downwind pwr: #4%
 \hfill%
-Max X-wind comp: #6 kts%
+Max X-wind comp: #5 kts%
 \\%
-Fuel: #4/h%
+Fuel: #3/h%
 \hfill%
-MTOW: #7, Max LDG W: #8%
+MTOW: #6, Max LDG W: #7%
 }}% }}}
 % }}}
 % new environments {{{
@@ -228,13 +228,8 @@ MTOW: #7, Max LDG W: #8%
     \Check{Radios}{ON + LIGHTS TESTED}
 }% }}}
 \newcommand{\TaxiEngineCheckItems}{% {{{
-    \Check{Block-off time}{WRITTEN}
-    \Check{PAX checklist}{GIVEN}
     \Check{Annunciator panel}{TESTED}
 }% }}}
-\newcommand{\TimeToff}{\Check{Take-off time}{WRITTEN}}
-\newcommand{\TimeLdg}{\Check{Landing time}{WRITTEN}}
-\newcommand{\TimeBlockOn}{\Check{Block-on time}{WRITTEN}}
 %
 \begin{document}
 % }}}
@@ -337,7 +332,6 @@ MTOW: #7, Max LDG W: #8%
 \begin{CheckListRule}{Before departure and line-up}% {{{
     \Check{Flaps}{F0 or F2}
     \Check{Trim}{1cm right, PAX: 2cm nose up}
-    \TimeToff
 \end{CheckListRule}% }}}
 \vfill
 \begin{InfoBox}% speeds + downwind power {{{
@@ -354,7 +348,6 @@ MTOW: #7, Max LDG W: #8%
         {85-95}%      cc
         {110}%        va
         {%            best glide
-            65-70\ (75)\ %
             \textrm{\footnotesize F0:}\ 75, %
             \textrm{\footnotesize FX:}\ 70%
         }%
@@ -365,8 +358,7 @@ MTOW: #7, Max LDG W: #8%
     % }}}
     \InfoSpeedsMore% {{{
         {120}%                 planning speed
-        {XX}%                  glide ratio 1:X
-        {1.4}%                 glide NM/1000ft
+        {1.4}%                 glide NM/1000ft - 700ft=1NM
         {13 USG}%              fuel per hour
         {20 inHg \& \RPM{20}}% downwind power
         {15}%                  max crosswind component
@@ -398,7 +390,6 @@ MTOW: #7, Max LDG W: #8%
 \begin{CheckListRule}{Before departure and line-up}% {{{
     \Check{Flaps}{F1}
     \Check{STBY power}{press until light blinks}
-    \TimeToff
 \end{CheckListRule}% }}}
 \vfill
 \begin{InfoBox}% {{{ speeds + downwind power
@@ -428,7 +419,6 @@ MTOW: #7, Max LDG W: #8%
     % }}}
     \InfoSpeedsMore% {{{
         {110}%              planning speed
-        {9.3}%              glide ratio 1:X
         {1.5}%              glide NM/1000ft
         {40 l}%             fuel per hour
         {\RPM{2000}}%       downwind power
